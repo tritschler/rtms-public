@@ -1,6 +1,6 @@
 # eMudhra Weak Intermediate CA & TLS Chain Auditor (CVE-2026-91403)
 
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CVSS Score](https://img.shields.io/badge/CVSS_v3.1-9.1_CRITICAL-red.svg)](https://nvd.nist.gov/)
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
 [![Target](https://img.shields.io/badge/Vulnerability-CVE--2026--91403-orange.svg)]()
@@ -111,6 +111,6 @@ This auditor is proudly published as open source by **[3TS Consulting SRL](https
 
 ## ⚖️ License
 
-Distributed under the **Apache License 2.0**. See [`LICENSE`](LICENSE) for more information.
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more information.
 
-Copyright &copy; 2025-2026 **3TS Consulting SRL**. All rights reserved.
+Copyright &copy; 2026 **RTMS Project Contributors**.

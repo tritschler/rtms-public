@@ -1,15 +1,18 @@
 """
 emudhra_weak_ca_audit.py
 
-External Plugin for RTMS Suite.
+Standalone Security Audit Tool & External Plugin for RTMS Suite.
 Audits target SSL/TLS services for certificates chained to compromised eMudhra/emSign
 intermediate Certificate Authorities (CAs) issued with catastrophically weak elliptic-curve keys (CVE-2026-91403).
 
 CVSS Score: 9.1 (Critical) - CWE-295 (Improper Certificate Validation)
 Affected Components: WebPKI, Java Secure Socket Extension (JSSE), and TLS services.
 
-Copyright (c) 2025-2026 3TS Consulting SRL. All rights reserved.
+License: MIT
+SPDX-License-Identifier: MIT
+Copyright (c) 2026 RTMS Project Contributors
 """
+
 
 import socket
 import ssl
