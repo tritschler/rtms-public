@@ -5,7 +5,7 @@ test_php2shell_audit.py - Unit tests for PHP Core Stale Global State RCE Audit T
 import pytest
 from unittest.mock import MagicMock, patch
 
-from php2shell_cve_2026_109619_audit import (
+from plugins.php2shell.php2shell_cve_2026_109619_audit import (
     PHP2ShellAuditPlugin,
     parse_php_version,
     is_php_version_vulnerable,

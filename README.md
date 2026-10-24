@@ -43,9 +43,6 @@ rtms-public/
 ├── tests/                                 # Automated unit test suite
 │   ├── test_audit.py                      # Tests for eMudhra CA auditor
 │   └── test_php2shell_audit.py            # Tests for PHP2Shell auditor
-│
-├── emudhra_weak_ca_audit.py               # Root backward-compatibility wrapper
-└── php2shell_cve_2026_109619_audit.py     # Root backward-compatibility wrapper
 ```
 
 ---

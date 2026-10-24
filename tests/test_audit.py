@@ -11,7 +11,7 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.backends import default_backend
 
-from emudhra_weak_ca_audit import EmudhraWeakCAAuditPlugin, KNOWN_COMPROMISED_FINGERPRINTS
+from plugins.emudhra_weak_ca.emudhra_weak_ca_audit import EmudhraWeakCAAuditPlugin, KNOWN_COMPROMISED_FINGERPRINTS
 
 
 def generate_self_signed_cert(issuer_cn: str, subject_cn: str = "example.com") -> bytes:
