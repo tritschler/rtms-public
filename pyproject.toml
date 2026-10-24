@@ -3,9 +3,9 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "rtms-emudhra-weak-ca-auditor"
+name = "rtms-community-plugins"
 version = "1.0.0"
-description = "Auditor and RTMS scanner plugin for eMudhra Weak Intermediate CAs (CVE-2026-91403)"
+description = "Community security audit tools and official external plugins for RTMS Suite"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
@@ -20,5 +20,5 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-pythonpath = ["."]
+pythonpath = [".", "plugins", "plugins/emudhra_weak_ca", "plugins/php2shell"]
 testpaths = ["tests"]
