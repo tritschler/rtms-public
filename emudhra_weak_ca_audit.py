@@ -35,6 +35,13 @@ except ImportError:
                 "proof": proof,
                 "details": details
             }
+        def execute(self, target_ip: str, target_services: Any, credentials: Any = None) -> Dict[str, Any]:
+            if hasattr(self, "check_requirements") and not self.check_requirements(target_ip, target_services):
+                return self.format_result("Skipped", details="Requirements not met (e.g., target port is closed).")
+            try:
+                return self.run_audit(target_ip, target_services, credentials)
+            except Exception as e:
+                return self.format_result("Error", details=str(e))
 
 try:
     from cryptography import x509
