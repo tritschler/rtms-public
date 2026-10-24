@@ -80,16 +80,44 @@ Port 443: Certificate issued by 'emSign ECC Domain Validation CA - G3B' [SHA-256
 
 ---
 
+## 🐘 PHP Core Stale Global State RCE Auditor (CVE-2026-109619 / PHP2Shell)
+
+[![CVSS Score](https://img.shields.io/badge/CVSS_v3.1-9.2_CRITICAL-red.svg)](https://nvd.nist.gov/)
+[![Target](https://img.shields.io/badge/Vulnerability-CVE--2026--109619-orange.svg)]()
+
+Audits web applications, API endpoints, and FastCGI/PHP-FPM services for PHP runtime versions affected by **CVE-2026-109619** ("PHP2Shell").
+
+### Vulnerability Summary
+* **Severity**: **Critical (CVSS 9.2)** — CWE-416 (Use-After-Free) / CWE-672 (Stale State)
+* **Affected PHP Branches**:
+  * PHP < 8.2.35 (including all EOL branches 5.x, 7.x, 8.0, 8.1)
+  * PHP 8.3.0 through 8.3.35 (fixed in **8.3.36**)
+  * PHP 8.4.0 through 8.4.26 (fixed in **8.4.27**)
+  * PHP 8.5.0 through 8.5.11 (fixed in **8.5.12**)
+* **Mechanism**: Stale global state pointers pointing to freed request memory persist across abnormal request termination, allowing subsequent requests to reuse memory and achieve arbitrary Remote Code Execution (RCE).
+
+### Usage (Standalone CLI)
+```bash
+# Audit standard HTTP/HTTPS ports (80, 443, 8080, 8443)
+python php2shell_cve_2026_109619_audit.py target-server.com
+
+# Audit custom web or FastCGI ports
+python php2shell_cve_2026_109619_audit.py 192.168.1.10 -p 80 443 8000 8088 8888 9000
+```
+
+---
+
 ## 🔌 Use as a Plugin for RTMS Scanner
 
-This tool is engineered to function natively as an external plugin for the **RTMS Cybersecurity Suite**:
+This repository's audit tools are engineered to function natively as external plugins for the **RTMS Cybersecurity Suite**:
 
-1. Copy `emudhra_weak_ca_audit.py` into the `external_plugins/` directory of your RTMS Scanner probe:
+1. Copy the audit scripts into the `external_plugins/` directory of your RTMS Scanner probe:
    ```bash
    cp emudhra_weak_ca_audit.py /opt/rtms-scanner/external_plugins/
+   cp php2shell_cve_2026_109619_audit.py /opt/rtms-scanner/external_plugins/
    ```
-2. The RTMS dynamic plugin loader automatically activates the module on startup.
-3. Every **Deep Scan** cycle across your subnets will automatically audit discovered TLS services and report findings directly into your central **Security Findings & Risk Triage** dashboard.
+2. The RTMS dynamic plugin loader automatically validates AST security constraints and activates the modules on startup.
+3. Use the web console (Targeted Plugin Audit modal in **Asset Management** or **Plugins**) or run automated **Deep Scans** across your subnets to continuously evaluate infrastructure.
 
 ---
 
