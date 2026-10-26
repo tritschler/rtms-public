@@ -74,6 +74,7 @@ All plugins undergo static AST (**Abstract Syntax Tree**) validation before exec
 * ❌ **Forbidden Modules**: `subprocess`, `ctypes`, `shutil`, `pty`, `pickle`, `posix`, `winreg`.
 * ❌ **Forbidden Builtin Calls**: `eval()`, `exec()`, `compile()`, `__import__()`.
 * ❌ **Forbidden System Methods**: `os.system()`, `os.popen()`, `os.spawn*()`, `os.kill()`, `os.remove()`, `os.rmdir()`.
+* ❌ **Forbidden Filesystem Write / Tampering Operations**: Opening files in write/append mode (`open(..., 'w'/'wb'/'a'/'w+')`), `Path.write_bytes()`, `Path.write_text()`, `os.rename()`, `os.chmod()`, `truncate()`. Security audit plugins are strictly read-only.
 * ✅ **Allowed Networking & Parsing Modules**: `socket`, `ssl`, `http.client`, `urllib`, `requests`, `cryptography`, `hashlib`, `re`, `json`, `datetime`, `struct`, `bs4`, etc.
 
 ---

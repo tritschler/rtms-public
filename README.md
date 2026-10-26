@@ -107,7 +107,7 @@ We welcome contributions from security researchers, network engineers, and syste
    * Declare metadata in `self.info` (`name`, `description`, `severity`, `cve`, `version`).
    * Implement `check_requirements(target_ip, target_services) -> bool`.
    * Implement `run_audit(target_ip, target_services, credentials=None) -> Dict[str, Any]` returning `self.format_result(status, proof, details)`.
-3. **AST Security**: Strictly no `subprocess`, `os.system`, `ctypes`, `eval`, or `exec`.
+3. **AST Security**: Strictly read-only; no `subprocess`, `os.system`, `ctypes`, `eval`, `exec`, or file writing/tampering operations.
 4. **Automated Tests**: Add unit tests in `tests/test_<plugin_slug>.py` and verify with:
    ```bash
    uv run --extra dev pytest
