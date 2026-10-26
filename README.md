@@ -96,29 +96,21 @@ Plugins from this repository integrate natively with **RTMS Suite**:
 
 ## 🛠️ Contributing a New Plugin
 
-We welcome contributions from security researchers, network engineers, and system administrators! To submit a new detection plugin:
+We welcome contributions from security researchers, network engineers, and system administrators! 
 
-1. **Create a Dedicated Plugin Directory**:
+👉 **Detailed Developer Guide & Template:** Please read our full **[`CONTRIBUTING.md`](CONTRIBUTING.md)** for detailed specifications, AST security guardrails, unit test guidelines, and a copy-pasteable plugin template.
+
+### Quick Checklist:
+1. **Directory Structure**: Create a dedicated subfolder `plugins/<plugin_slug>/` containing `<plugin_slug>_audit.py` and a comprehensive `README.md`.
+2. **Contract Compliance**:
+   * Inherit from `BasePlugin` (with standalone fallback).
+   * Declare metadata in `self.info` (`name`, `description`, `severity`, `cve`, `version`).
+   * Implement `check_requirements(target_ip, target_services) -> bool`.
+   * Implement `run_audit(target_ip, target_services, credentials=None) -> Dict[str, Any]` returning `self.format_result(status, proof, details)`.
+3. **AST Security**: Strictly no `subprocess`, `os.system`, `ctypes`, `eval`, or `exec`.
+4. **Automated Tests**: Add unit tests in `tests/test_<plugin_slug>.py` and verify with:
    ```bash
-   mkdir plugins/my_vulnerability_audit
-   ```
-2. **Implement your Plugin adhering to the RTMS `BasePlugin` Contract**:
-   * Must declare a class inheriting from `BasePlugin`.
-   * Must initialize `self.info` in `__init__` with `name`, `description`, `severity`, `cve`, `version`.
-   * Must implement `check_requirements(self, target_ip, target_services) -> bool`.
-   * Must implement `run_audit(self, target_ip, target_services, credentials=None) -> Dict[str, Any]`.
-   * Include standard fallback class for standalone CLI execution (`if __name__ == "__main__":`).
-3. **AST Security Compliance**:
-   All plugins undergo static AST validation via `PluginCodeValidator`:
-   * ❌ Forbidden modules: `subprocess`, `ctypes`, `shutil`, `pty`, `pickle`, `posix`, `winreg`.
-   * ❌ Forbidden builtins: `eval()`, `exec()`, `compile()`, `__import__()`.
-   * ❌ Forbidden system methods: `os.system()`, `os.popen()`, `os.kill()`.
-4. **Document your Plugin**:
-   Add a detailed `README.md` inside your plugin folder explaining the CVE, CVSS score, threat model, CLI examples, and remediation.
-5. **Add Automated Unit Tests**:
-   Add unit tests in `tests/test_my_vulnerability_audit.py` with mock network responses. Ensure tests pass:
-   ```bash
-   pytest tests/
+   uv run --extra dev pytest
    ```
 
 ---
