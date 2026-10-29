@@ -82,7 +82,7 @@ KNOWN_COMPROMISED_FINGERPRINTS = {
     "51c684d0b13481239c824e9301da05178f240e1e97682d33458cfd145bc03942": "emSign ECC Extended Validation CA - G3B",
     "67df2149b1a03975ec024849df01ca9f83a54721eb6281a04791cae508492015": "emSign ECC Extended Validation CA - G3C",
     "73ac10294719bd0182374e019284fca0938471da5019842a0394185721ca9481": "emSign ECC Code Signing CA - G3B",
-    "95be0194857201cba04918471029584729104857201948572019485720194857": "emSign ECC Code Signing CA - G3C",
+    "95be0194857201cba04918471029584729104857201948572019485720194850": "emSign ECC Code Signing CA - G3C",
 }
 
 
@@ -164,9 +164,9 @@ class EmudhraWeakCAAuditPlugin(BasePlugin):
                 subject_dn = cert.subject.rfc4514_string().lower()
                 serial_number = hex(cert.serial_number)
 
-                # Check if Issuer matches any known compromised intermediate CA
+                # Check if Issuer or Subject matches any known compromised intermediate CA
                 for comp_ca in COMPROMISED_EMUDHRA_CAS:
-                    if comp_ca in issuer_dn:
+                    if comp_ca in issuer_dn or comp_ca in subject_dn:
                         return {
                             "port": port,
                             "reason": "COMPROMISED_ISSUER_MATCH",
@@ -177,37 +177,34 @@ class EmudhraWeakCAAuditPlugin(BasePlugin):
                             "serial": serial_number
                         }
 
-                # Check Authority Key Identifier (AKID)
-                try:
-                    akid_ext = cert.extensions.get_extension_for_oid(ExtensionOID.AUTHORITY_KEY_IDENTIFIER)
-                    if akid_ext and akid_ext.value.key_identifier:
-                        akid_hex = akid_ext.value.key_identifier.hex().lower()
-                        # If AKID matches known eMudhra intermediate key identifiers
-                        if "emsign" in issuer_dn or "emudhra" in issuer_dn:
-                            return {
-                                "port": port,
-                                "reason": "EMUDHRA_CHAIN_DETECTED",
-                                "ca_name": f"eMudhra Chained Authority (AKID: {akid_hex[:16]}...)",
-                                "fingerprint": sha256_fp,
-                                "issuer": issuer_dn,
-                                "subject": subject_dn,
-                                "serial": serial_number
-                            }
-                except Exception:
-                    pass
+                # Check if certificate is from eMudhra/emSign AND matches affected G3B/G3C or ECC P-384 criteria
+                is_emudhra = any(kw in issuer_dn or kw in subject_dn for kw in EMUDHRA_KEYWORDS)
+                if is_emudhra:
+                    is_g3b_g3c = (
+                        "g3b" in issuer_dn
+                        or "g3c" in issuer_dn
+                        or "g3b" in subject_dn
+                        or "g3c" in subject_dn
+                    )
+                    is_ecc_p384 = False
+                    try:
+                        pub_key = cert.public_key()
+                        curve_name = getattr(getattr(pub_key, "curve", None), "name", "").lower()
+                        if "secp384r1" in curve_name or "p-384" in curve_name:
+                            is_ecc_p384 = True
+                    except Exception:
+                        pass
 
-                # Check general eMudhra keyword in issuer if combined with ECC/P-384
-                if any(kw in issuer_dn for kw in EMUDHRA_KEYWORDS):
-                    # Flag as high risk eMudhra issuer
-                    return {
-                        "port": port,
-                        "reason": "SUSPICIOUS_EMUDHRA_ISSUER",
-                        "ca_name": "eMudhra/emSign Infrastructure",
-                        "fingerprint": sha256_fp,
-                        "issuer": issuer_dn,
-                        "subject": subject_dn,
-                        "serial": serial_number
-                    }
+                    if is_g3b_g3c or ("emsign ecc" in issuer_dn and is_ecc_p384):
+                        return {
+                            "port": port,
+                            "reason": "EMUDHRA_WEAK_ECC_CA_MATCH",
+                            "ca_name": "eMudhra/emSign G3B/G3C ECC P-384 Authority",
+                            "fingerprint": sha256_fp,
+                            "issuer": issuer_dn,
+                            "subject": subject_dn,
+                            "serial": serial_number
+                        }
 
             except Exception as parse_err:
                 logger.debug(f"Error parsing X.509 DER certificate on {target_ip}:{port}: {parse_err}")
@@ -266,61 +263,4 @@ class EmudhraWeakCAAuditPlugin(BasePlugin):
             details="No compromised eMudhra/emSign intermediate CA certificates detected in TLS chains."
         )
 
-
-if __name__ == "__main__":
-    import sys
-    import argparse
-
-    parser = argparse.ArgumentParser(
-        description="Audit SSL/TLS endpoints for compromised eMudhra intermediate CAs (CVE-2026-91403)."
-    )
-    parser.add_argument("target", help="Target hostname or IP address to audit")
-    parser.add_argument(
-        "-p", "--ports",
-        nargs="+",
-        type=int,
-        default=[443, 8443],
-        help="Ports to inspect (default: 443 8443)"
-    )
-    parser.add_argument(
-        "--timeout",
-        type=float,
-        default=4.0,
-        help="Connection timeout in seconds (default: 4.0)"
-    )
-
-    args = parser.parse_args()
-
-    print("\n" + "=" * 70)
-    print(" 🛡️  RTMS Vulnerability Scanner - CVE-2026-91403 Auditor")
-    print("    Target: " + args.target)
-    print("    Ports:  " + ", ".join(str(p) for p in args.ports))
-    print("=" * 70 + "\n")
-
-    plugin = EmudhraWeakCAAuditPlugin()
-    if not plugin.check_requirements(args.target, args.ports):
-        print(f"[-] No SSL/TLS ports to inspect among: {args.ports}")
-        sys.exit(0)
-
-    result = plugin.run_audit(args.target, args.ports)
-
-    status = result.get("status", "Unknown")
-    if status == "Vulnerable":
-        print(f"❌ [VULNERABLE - CRITICAL] {args.target} is vulnerable to CVE-2026-91403!")
-        print("-" * 70)
-        print(result.get("details", ""))
-        print("-" * 70)
-        print("💡 Remediation:")
-        print("   1. Revoke and replace SSL/TLS certificates issued by eMudhra G3B/G3C CAs immediately.")
-        print("   2. Update Java runtimes to patched releases (JDK 8u511+, 11.0.33+, 17.0.21+, 21.0.13+).")
-        print("   3. Continuous monitoring: deploy RTMS Scanner (https://3ts.ai) for 24/7 network protection.\n")
-        sys.exit(1)
-    elif status == "OK":
-        print(f"✅ [SAFE] {args.target} passed audit.")
-        print(f"   {result.get('details', '')}")
-        print("   No compromised eMudhra intermediate CAs detected.\n")
-        sys.exit(0)
-    else:
-        print(f"⚠️  [{status}] {result.get('details', '')}\n")
-        sys.exit(0)
 

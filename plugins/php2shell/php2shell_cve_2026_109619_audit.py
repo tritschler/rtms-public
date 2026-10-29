@@ -185,12 +185,14 @@ class PHP2ShellAuditPlugin(BasePlugin):
         target_ip: str,
         port: int,
         path: str = "/",
-        timeout: float = 4.0
+        timeout: float = 4.0,
+        use_ssl: Optional[bool] = None
     ) -> Optional[Dict[str, Any]]:
         """
         Safely probes an HTTP/HTTPS endpoint and extracts PHP runtime headers and signatures.
         """
-        use_ssl = port in SSL_PORTS or port == 443 or port == 8443 or port == 9443
+        if use_ssl is None:
+            use_ssl = port in SSL_PORTS or port == 443 or port == 8443 or port == 9443
         conn = None
 
         try:
@@ -214,10 +216,14 @@ class PHP2ShellAuditPlugin(BasePlugin):
             # Read up to 8KB of response body for PHP banners or error markers
             raw_body = response.read(8192).decode("utf-8", errors="replace")
 
-            # Collect relevant headers
+            # Collect relevant headers (combining multiple headers with the same name such as Set-Cookie)
             resp_headers: Dict[str, str] = {}
             for k, v in response.getheaders():
-                resp_headers[k.lower()] = v
+                k_low = k.lower()
+                if k_low in resp_headers:
+                    resp_headers[k_low] = f"{resp_headers[k_low]}; {v}"
+                else:
+                    resp_headers[k_low] = v
 
             return {
                 "port": port,
@@ -243,11 +249,14 @@ class PHP2ShellAuditPlugin(BasePlugin):
         Probes standard endpoints on a port to detect and fingerprint PHP runtime instances.
         """
         # 1. Probe root path
+        used_ssl: Optional[bool] = None
         probe_res = self.probe_http_endpoint(target_ip, port, path="/", timeout=timeout)
         if not probe_res:
             # Try HTTPS if HTTP failed on generic high ports
             if port not in SSL_PORTS:
-                probe_res = self.probe_http_endpoint(target_ip, port, path="/", timeout=timeout)
+                probe_res = self.probe_http_endpoint(target_ip, port, path="/", timeout=timeout, use_ssl=True)
+                if probe_res:
+                    used_ssl = True
 
         # 2. If root gave no PHP signatures, probe /index.php
         php_signature_found = False
@@ -257,7 +266,10 @@ class PHP2ShellAuditPlugin(BasePlugin):
                 php_signature_found = True
 
         if not php_signature_found:
-            probe_php = self.probe_http_endpoint(target_ip, port, path="/index.php", timeout=timeout)
+            if used_ssl is not None:
+                probe_php = self.probe_http_endpoint(target_ip, port, path="/index.php", timeout=timeout, use_ssl=used_ssl)
+            else:
+                probe_php = self.probe_http_endpoint(target_ip, port, path="/index.php", timeout=timeout)
             if probe_php:
                 probe_res = probe_php
 
@@ -386,59 +398,3 @@ class PHP2ShellAuditPlugin(BasePlugin):
             details="No vulnerable PHP runtime instances or banners detected on target ports."
         )
 
-
-if __name__ == "__main__":
-    import argparse
-    import sys
-
-    parser = argparse.ArgumentParser(
-        description="Audit web endpoints for PHP Stale Global State RCE vulnerability (CVE-2026-109619 / PHP2Shell)."
-    )
-    parser.add_argument("target", help="Target hostname or IP address to audit")
-    parser.add_argument(
-        "-p", "--ports",
-        nargs="+",
-        type=int,
-        default=[80, 443, 8080, 8443],
-        help="Ports to inspect (default: 80 443 8080 8443)"
-    )
-    parser.add_argument(
-        "--timeout",
-        type=float,
-        default=4.0,
-        help="HTTP probe timeout in seconds (default: 4.0)"
-    )
-
-    args = parser.parse_args()
-
-    print("\n" + "=" * 72)
-    print(" 🛡️  RTMS Vulnerability Scanner - CVE-2026-109619 Auditor (PHP2Shell)")
-    print(f"    Target:  {args.target}")
-    print(f"    Ports:   {', '.join(str(p) for p in args.ports)}")
-    print("=" * 72 + "\n")
-
-    plugin = PHP2ShellAuditPlugin()
-    if not plugin.check_requirements(args.target, args.ports):
-        print(f"[-] No target ports selected among: {args.ports}")
-        sys.exit(0)
-
-    result = plugin.run_audit(args.target, args.ports)
-    status = result.get("status", "Unknown")
-
-    if status == "Vulnerable":
-        print(f"❌ [VULNERABLE - CRITICAL] {args.target} is vulnerable to CVE-2026-109619!\n")
-        print(result.get("details", ""))
-        print("\n" + "=" * 72 + "\n")
-        sys.exit(1)
-    elif status == "Warning":
-        print(f"⚠️  [WARNING] {args.target} requires manual patch verification.\n")
-        print(result.get("details", ""))
-        print("\n" + "=" * 72 + "\n")
-        sys.exit(0)
-    elif status == "OK":
-        print(f"✅ [SAFE] {args.target} passed audit.")
-        print(f"   {result.get('details', '')}\n")
-        sys.exit(0)
-    else:
-        print(f"ℹ️  [{status}] {result.get('details', '')}\n")
-        sys.exit(0)
