@@ -20,5 +20,5 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-pythonpath = [".", "plugins", "plugins/emudhra_weak_ca", "plugins/php2shell", "plugins/wp_gravityforms"]
+pythonpath = [".", "plugins", "plugins/emudhra_weak_ca", "plugins/php2shell", "plugins/wp_gravityforms", "plugins/vsftpd", "plugins/pgadmin4"]
 testpaths = ["tests"]

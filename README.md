@@ -18,6 +18,8 @@ Each plugin is developed to provide rapid, reliable, and non-destructive detecti
 | **eMudhra Weak Intermediate CA Audit** | **CVE-2026-91403** | `CRITICAL 9.1` | WebPKI, Java JSSE, TLS endpoints | [`plugins/emudhra_weak_ca/`](plugins/emudhra_weak_ca/) | `python plugins/emudhra_weak_ca/emudhra_weak_ca_audit.py <target>` |
 | **PHP Core Stale Global State RCE Audit (PHP2Shell)** | **CVE-2026-109619** | `CRITICAL 9.2` | PHP 5.4 to 8.5.11, FastCGI, PAN-OS | [`plugins/php2shell/`](plugins/php2shell/) | `python plugins/php2shell/php2shell_cve_2026_109619_audit.py <target>` |
 | **WordPress Gravity Forms PHP Object Injection Audit** | **CVE-2026-103039** | `CRITICAL 9.8` | WordPress Gravity Forms `<= 3.1.2` | [`plugins/wp_gravityforms/`](plugins/wp_gravityforms/) | `python plugins/wp_gravityforms/wp_gravityforms_cve_2026_103039_audit.py <target>` |
+| **vsftpd FTPS Data Channel Hijacking Audit** | **CVE-2026-119568** | `CRITICAL 9.1` | vsftpd `<= 3.0.5` (Ubuntu, Debian, RHEL) | [`plugins/vsftpd/`](plugins/vsftpd/) | `python plugins/vsftpd/vsftpd_cve_2026_119568_audit.py <target>` |
+| **pgAdmin 4 psql \copy RCE & Lockout Bypass Audit** | **CVE-2026-116241** | `CRITICAL 9.4` | pgAdmin 4 Server Mode `< 9.19` | [`plugins/pgadmin4/`](plugins/pgadmin4/) | `python plugins/pgadmin4/pgadmin4_cve_2026_116241_audit.py <target>` |
 
 ---
 
@@ -41,14 +43,24 @@ rtms-public/
 │   │   ├── README.md                      # Detailed vulnerability analysis & guidance
 │   │   └── php2shell_cve_2026_109619_audit.py # Standalone CLI & RTMS BasePlugin script
 │   │
-│   └── wp_gravityforms/                   # WordPress Gravity Forms PHP Object Injection (CVE-2026-103039)
+│   ├── wp_gravityforms/                   # WordPress Gravity Forms PHP Object Injection (CVE-2026-103039)
+│   │   ├── README.md                      # Detailed vulnerability analysis & guidance
+│   │   └── wp_gravityforms_cve_2026_103039_audit.py # Standalone CLI & RTMS BasePlugin script
+│   │
+│   ├── vsftpd/                            # vsftpd FTPS Data Channel Hijacking (CVE-2026-119568)
+│   │   ├── README.md                      # Detailed vulnerability analysis & guidance
+│   │   └── vsftpd_cve_2026_119568_audit.py # Standalone CLI & RTMS BasePlugin script
+│   │
+│   └── pgadmin4/                          # pgAdmin 4 psql \copy RCE & Lockout Bypass (CVE-2026-116241)
 │       ├── README.md                      # Detailed vulnerability analysis & guidance
-│       └── wp_gravityforms_cve_2026_103039_audit.py # Standalone CLI & RTMS BasePlugin script
+│       └── pgadmin4_cve_2026_116241_audit.py # Standalone CLI & RTMS BasePlugin script
 │
 ├── tests/                                 # Automated unit test suite
 │   ├── test_audit.py                      # Tests for eMudhra CA auditor
 │   ├── test_php2shell_audit.py            # Tests for PHP2Shell auditor
-│   └── test_wp_gravityforms_audit.py      # Tests for WordPress Gravity Forms auditor
+│   ├── test_wp_gravityforms_audit.py      # Tests for WordPress Gravity Forms auditor
+│   ├── test_vsftpd_audit.py               # Tests for vsftpd FTPS auditor
+│   └── test_pgadmin4_audit.py             # Tests for pgAdmin 4 auditor
 ```
 
 ---
@@ -78,6 +90,12 @@ python plugins/php2shell/php2shell_cve_2026_109619_audit.py 192.168.1.10 -p 80 4
 
 # Audit a WordPress host for vulnerable Gravity Forms plugin versions (CVE-2026-103039)
 python plugins/wp_gravityforms/wp_gravityforms_cve_2026_103039_audit.py 192.168.1.20 -p 80 443
+
+# Audit an FTP/FTPS server for vsftpd data channel hijacking (CVE-2026-119568)
+python plugins/vsftpd/vsftpd_cve_2026_119568_audit.py 192.168.1.30 -p 21 990
+
+# Audit a pgAdmin 4 server for psql \copy RCE & lockout bypass (CVE-2026-116241 / CVE-2026-116238)
+python plugins/pgadmin4/pgadmin4_cve_2026_116241_audit.py 192.168.1.40 -p 80 443 5050
 ```
 
 ---
