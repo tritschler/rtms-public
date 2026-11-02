@@ -17,6 +17,7 @@ Each plugin is developed to provide rapid, reliable, and non-destructive detecti
 |:---|:---:|:---:|:---|:---:|:---|
 | **eMudhra Weak Intermediate CA Audit** | **CVE-2026-91403** | `CRITICAL 9.1` | WebPKI, Java JSSE, TLS endpoints | [`plugins/emudhra_weak_ca/`](plugins/emudhra_weak_ca/) | `python plugins/emudhra_weak_ca/emudhra_weak_ca_audit.py <target>` |
 | **PHP Core Stale Global State RCE Audit (PHP2Shell)** | **CVE-2026-109619** | `CRITICAL 9.2` | PHP 5.4 to 8.5.11, FastCGI, PAN-OS | [`plugins/php2shell/`](plugins/php2shell/) | `python plugins/php2shell/php2shell_cve_2026_109619_audit.py <target>` |
+| **WordPress Gravity Forms PHP Object Injection Audit** | **CVE-2026-103039** | `CRITICAL 9.8` | WordPress Gravity Forms `<= 3.1.2` | [`plugins/wp_gravityforms/`](plugins/wp_gravityforms/) | `python plugins/wp_gravityforms/wp_gravityforms_cve_2026_103039_audit.py <target>` |
 
 ---
 
@@ -36,13 +37,18 @@ rtms-public/
 │   │   ├── README.md                      # Detailed vulnerability analysis & guidance
 │   │   └── emudhra_weak_ca_audit.py       # Standalone CLI & RTMS BasePlugin script
 │   │
-│   └── php2shell/                         # PHP Core Stale Global State RCE (CVE-2026-109619)
+│   ├── php2shell/                         # PHP Core Stale Global State RCE (CVE-2026-109619)
+│   │   ├── README.md                      # Detailed vulnerability analysis & guidance
+│   │   └── php2shell_cve_2026_109619_audit.py # Standalone CLI & RTMS BasePlugin script
+│   │
+│   └── wp_gravityforms/                   # WordPress Gravity Forms PHP Object Injection (CVE-2026-103039)
 │       ├── README.md                      # Detailed vulnerability analysis & guidance
-│       └── php2shell_cve_2026_109619_audit.py # Standalone CLI & RTMS BasePlugin script
+│       └── wp_gravityforms_cve_2026_103039_audit.py # Standalone CLI & RTMS BasePlugin script
 │
 ├── tests/                                 # Automated unit test suite
 │   ├── test_audit.py                      # Tests for eMudhra CA auditor
-│   └── test_php2shell_audit.py            # Tests for PHP2Shell auditor
+│   ├── test_php2shell_audit.py            # Tests for PHP2Shell auditor
+│   └── test_wp_gravityforms_audit.py      # Tests for WordPress Gravity Forms auditor
 ```
 
 ---
@@ -69,6 +75,9 @@ python plugins/emudhra_weak_ca/emudhra_weak_ca_audit.py target-server.com -p 443
 
 # Audit a host for vulnerable PHP core runtime instances (CVE-2026-109619 / PHP2Shell)
 python plugins/php2shell/php2shell_cve_2026_109619_audit.py 192.168.1.10 -p 80 443 8080 9000
+
+# Audit a WordPress host for vulnerable Gravity Forms plugin versions (CVE-2026-103039)
+python plugins/wp_gravityforms/wp_gravityforms_cve_2026_103039_audit.py 192.168.1.20 -p 80 443
 ```
 
 ---
