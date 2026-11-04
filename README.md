@@ -23,6 +23,7 @@ Each plugin is developed to provide rapid, reliable, and non-destructive detecti
 | **SUSE Rancher Manager Meta-Proxy & Fleet Audit** | **CVE-2026-88811** | `CRITICAL 9.1` | SUSE Rancher `2.13`–`2.15` (`< 2.13.12`/`2.14.8`/`2.15.4`) | [`plugins/rancher/`](plugins/rancher/) | `python plugins/rancher/rancher_cve_2026_88811_audit.py <target>` |
 | **Zoho ManageEngine Log360 & EventLog Analyzer Audit** | **CVE-2026-13594** | `CRITICAL 9.1` | ManageEngine Log360 & EventLog Analyzer `<= 13062` | [`plugins/manageengine_log360/`](plugins/manageengine_log360/) | `python plugins/manageengine_log360/manageengine_cve_2026_13594_audit.py <target>` |
 | **Barracuda Email Security Gateway Auth Bypass Audit** | **CVE-2026-116606** | `CRITICAL 9.3` | Barracuda Email Security Gateway `< 9.4.0.030` | [`plugins/barracuda_esg/`](plugins/barracuda_esg/) | `python plugins/barracuda_esg/barracuda_esg_cve_2026_116606_audit.py <target>` |
+| **SonicWall GMS Unauthenticated Internal File Read Audit** | **CVE-2026-109593** | `CRITICAL 9.1` | SonicWall Global Management System `<= 9.5.2` | [`plugins/sonicwall_gms/`](plugins/sonicwall_gms/) | `python plugins/sonicwall_gms/sonicwall_gms_cve_2026_109593_audit.py <target>` |
 
 ---
 
