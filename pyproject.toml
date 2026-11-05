@@ -20,5 +20,5 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-pythonpath = [".", "plugins", "plugins/emudhra_weak_ca", "plugins/php2shell", "plugins/wp_gravityforms", "plugins/vsftpd", "plugins/pgadmin4", "plugins/rancher", "plugins/manageengine_log360", "plugins/barracuda_esg", "plugins/sonicwall_gms"]
+pythonpath = [".", "plugins", "plugins/emudhra_weak_ca", "plugins/php2shell", "plugins/wp_gravityforms", "plugins/vsftpd", "plugins/pgadmin4", "plugins/rancher", "plugins/manageengine_log360", "plugins/barracuda_esg", "plugins/sonicwall_gms", "plugins/glpi", "plugins/nexus_repository", "plugins/nomachine"]
 testpaths = ["tests"]
