@@ -17,7 +17,7 @@ Each plugin is developed to provide rapid, reliable, and non-destructive detecti
 |:---|:---:|:---:|:---|:---:|:---|
 | **eMudhra Weak Intermediate CA Audit** | **CVE-2026-91403** | `CRITICAL 9.1` | WebPKI, Java JSSE, TLS endpoints | [`plugins/emudhra_weak_ca/`](plugins/emudhra_weak_ca/) | `python plugins/emudhra_weak_ca/emudhra_weak_ca_audit.py <target>` |
 | **PHP Core Stale Global State RCE Audit (PHP2Shell)** | **CVE-2026-109619** | `CRITICAL 9.2` | PHP 5.4 to 8.5.11, FastCGI, PAN-OS | [`plugins/php2shell/`](plugins/php2shell/) | `python plugins/php2shell/php2shell_cve_2026_109619_audit.py <target>` |
-| **WordPress Gravity Forms PHP Object Injection Audit** | **CVE-2026-103039** | `CRITICAL 9.8` | WordPress Gravity Forms `<= 3.1.2` | [`plugins/wp_gravityforms/`](plugins/wp_gravityforms/) | `python plugins/wp_gravityforms/wp_gravityforms_cve_2026_103039_audit.py <target>` |
+| **WordPress Gravity Forms PHP Object Injection Audit** | **CVE-2026-103039** | `CRITICAL 9.8` | WordPress Gravity Forms `<= 3.1.2` | [`plugins/wordpress/wp_gravityforms/`](plugins/wordpress/wp_gravityforms/) | `python plugins/wordpress/wp_gravityforms/wp_gravityforms_cve_2026_103039_audit.py <target>` |
 | **vsftpd FTPS Data Channel Hijacking Audit** | **CVE-2026-119568** | `CRITICAL 9.1` | vsftpd `<= 3.0.5` (Ubuntu, Debian, RHEL) | [`plugins/vsftpd/`](plugins/vsftpd/) | `python plugins/vsftpd/vsftpd_cve_2026_119568_audit.py <target>` |
 | **pgAdmin 4 psql \copy RCE & Lockout Bypass Audit** | **CVE-2026-116241** | `CRITICAL 9.4` | pgAdmin 4 Server Mode `< 9.19` | [`plugins/pgadmin4/`](plugins/pgadmin4/) | `python plugins/pgadmin4/pgadmin4_cve_2026_116241_audit.py <target>` |
 | **SUSE Rancher Manager Meta-Proxy & Fleet Audit** | **CVE-2026-88811** | `CRITICAL 9.1` | SUSE Rancher `2.13`–`2.15` (`< 2.13.12`/`2.14.8`/`2.15.4`) | [`plugins/rancher/`](plugins/rancher/) | `python plugins/rancher/rancher_cve_2026_88811_audit.py <target>` |
@@ -30,6 +30,11 @@ Each plugin is developed to provide rapid, reliable, and non-destructive detecti
 | **Apache OFBiz Screen Descriptor & Login Key Audit** | **CVE-2026-83542** | `CRITICAL 9.8` | Apache OFBiz `< 24.09.08` | [`plugins/apache_ofbiz/`](plugins/apache_ofbiz/) | `python plugins/apache_ofbiz/apache_ofbiz_cve_2026_83542_audit.py <target>` |
 | **Keycloak SAML HTTP-Redirect Signature Verification Audit** | **CVE-2026-117691** | `CRITICAL 9.1` | Keycloak / RH-SSO `< 26.2.0` | [`plugins/keycloak/`](plugins/keycloak/) | `python plugins/keycloak/keycloak_cve_2026_117691_audit.py <target>` |
 | **FreeSWITCH SIP & WebRTC Stack Version Audit** | **CVE-2026-116779** | `CRITICAL 9.8` | FreeSWITCH `< 1.11.3` | [`plugins/freeswitch/`](plugins/freeswitch/) | `python plugins/freeswitch/freeswitch_cve_2026_116779_audit.py <target>` |
+| **WordPress Naimur Email OTP Verification Auth Bypass Audit** | **CVE-2026-104014** | `CRITICAL 9.8` | WordPress Naimur Email OTP Verification `<= 2.1.0` | [`plugins/wordpress/wp_naimur_email_otp/`](plugins/wordpress/wp_naimur_email_otp/) | `python plugins/wordpress/wp_naimur_email_otp/wp_naimur_email_otp_cve_2026_104014_audit.py <target>` |
+| **WordPress Registration Form for WooCommerce PrivEsc Audit** | **CVE-2026-119075** | `CRITICAL 9.8` | WordPress Registration Form for WooCommerce `<= 1.1.4` | [`plugins/wordpress/wp_registration_form_woocommerce/`](plugins/wordpress/wp_registration_form_woocommerce/) | `python plugins/wordpress/wp_registration_form_woocommerce/wp_registration_form_woocommerce_cve_2026_119075_audit.py <target>` |
+| **WordPress LatePoint Authentication Bypass Audit** | **CVE-2026-118066** | `CRITICAL 9.1` | WordPress LatePoint `<= 5.7.6` | [`plugins/wordpress/wp_latepoint/`](plugins/wordpress/wp_latepoint/) | `python plugins/wordpress/wp_latepoint/wp_latepoint_cve_2026_118066_audit.py <target>` |
+| **WordPress Printcart Product Designer File Upload Audit** | **CVE-2026-19803** | `CRITICAL 9.8` | WordPress Printcart Product Designer `<= 2.13.2` | [`plugins/wordpress/wp_printcart_designer/`](plugins/wordpress/wp_printcart_designer/) | `python plugins/wordpress/wp_printcart_designer/wp_printcart_designer_cve_2026_19803_audit.py <target>` |
+| **WordPress payever WooCommerce Gateway File Upload Audit** | **CVE-2026-93754** | `CRITICAL 9.8` | WordPress payever WooCommerce Gateway `<= 4.8.0` | [`plugins/wordpress/wp_payever_gateway/`](plugins/wordpress/wp_payever_gateway/) | `python plugins/wordpress/wp_payever_gateway/wp_payever_gateway_cve_2026_93754_audit.py <target>` |
 
 ---
 
@@ -53,9 +58,14 @@ rtms-public/
 │   │   ├── README.md                      # Detailed vulnerability analysis & guidance
 │   │   └── php2shell_cve_2026_109619_audit.py # Standalone CLI & RTMS BasePlugin script
 │   │
-│   ├── wp_gravityforms/                   # WordPress Gravity Forms PHP Object Injection (CVE-2026-103039)
-│   │   ├── README.md                      # Detailed vulnerability analysis & guidance
-│   │   └── wp_gravityforms_cve_2026_103039_audit.py # Standalone CLI & RTMS BasePlugin script
+│   ├── wordpress/                         # Dedicated WordPress & WooCommerce plugins directory
+│   │   ├── README.md                      # WordPress security plugins catalog
+│   │   ├── wp_gravityforms/               # Gravity Forms PHP Object Injection (CVE-2026-103039)
+│   │   ├── wp_naimur_email_otp/           # Naimur Email OTP Auth Bypass (CVE-2026-104014)
+│   │   ├── wp_registration_form_woocommerce/ # Registration Form for WooCommerce PrivEsc (CVE-2026-119075)
+│   │   ├── wp_latepoint/                  # LatePoint Authentication Bypass (CVE-2026-118066)
+│   │   ├── wp_printcart_designer/         # Printcart Product Designer File Upload (CVE-2026-19803)
+│   │   └── wp_payever_gateway/            # payever WooCommerce Gateway File Upload (CVE-2026-93754)
 │   │
 │   ├── vsftpd/                            # vsftpd FTPS Data Channel Hijacking (CVE-2026-119568)
 │   │   ├── README.md                      # Detailed vulnerability analysis & guidance
@@ -99,7 +109,7 @@ python plugins/emudhra_weak_ca/emudhra_weak_ca_audit.py target-server.com -p 443
 python plugins/php2shell/php2shell_cve_2026_109619_audit.py 192.168.1.10 -p 80 443 8080 9000
 
 # Audit a WordPress host for vulnerable Gravity Forms plugin versions (CVE-2026-103039)
-python plugins/wp_gravityforms/wp_gravityforms_cve_2026_103039_audit.py 192.168.1.20 -p 80 443
+python plugins/wordpress/wp_gravityforms/wp_gravityforms_cve_2026_103039_audit.py 192.168.1.20 -p 80 443
 
 # Audit an FTP/FTPS server for vsftpd data channel hijacking (CVE-2026-119568)
 python plugins/vsftpd/vsftpd_cve_2026_119568_audit.py 192.168.1.30 -p 21 990

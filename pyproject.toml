@@ -20,5 +20,29 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-pythonpath = [".", "plugins", "plugins/emudhra_weak_ca", "plugins/php2shell", "plugins/wp_gravityforms", "plugins/vsftpd", "plugins/pgadmin4", "plugins/rancher", "plugins/manageengine_log360", "plugins/barracuda_esg", "plugins/sonicwall_gms", "plugins/glpi", "plugins/nexus_repository", "plugins/nomachine"]
+pythonpath = [
+    ".",
+    "plugins",
+    "plugins/wordpress",
+    "plugins/emudhra_weak_ca",
+    "plugins/php2shell",
+    "plugins/vsftpd",
+    "plugins/pgadmin4",
+    "plugins/rancher",
+    "plugins/manageengine_log360",
+    "plugins/barracuda_esg",
+    "plugins/sonicwall_gms",
+    "plugins/glpi",
+    "plugins/nexus_repository",
+    "plugins/nomachine",
+    "plugins/apache_ofbiz",
+    "plugins/keycloak",
+    "plugins/freeswitch",
+    "plugins/wordpress/wp_gravityforms",
+    "plugins/wordpress/wp_naimur_email_otp",
+    "plugins/wordpress/wp_registration_form_woocommerce",
+    "plugins/wordpress/wp_latepoint",
+    "plugins/wordpress/wp_printcart_designer",
+    "plugins/wordpress/wp_payever_gateway",
+]
 testpaths = ["tests"]

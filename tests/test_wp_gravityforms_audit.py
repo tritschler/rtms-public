@@ -4,7 +4,7 @@ test_wp_gravityforms_audit.py - Unit tests for WordPress Gravity Forms PHP Objec
 
 import pytest
 
-from plugins.wp_gravityforms.wp_gravityforms_cve_2026_103039_audit import (
+from plugins.wordpress.wp_gravityforms.wp_gravityforms_cve_2026_103039_audit import (
     WPGravityFormsAuditPlugin,
     parse_gravityforms_version,
     is_gravityforms_version_vulnerable,
