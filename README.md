@@ -35,6 +35,9 @@ Each plugin is developed to provide rapid, reliable, and non-destructive detecti
 | **WordPress LatePoint Authentication Bypass Audit** | **CVE-2026-118066** | `CRITICAL 9.1` | WordPress LatePoint `<= 5.7.6` | [`plugins/wordpress/wp_latepoint/`](plugins/wordpress/wp_latepoint/) | `python plugins/wordpress/wp_latepoint/wp_latepoint_cve_2026_118066_audit.py <target>` |
 | **WordPress Printcart Product Designer File Upload Audit** | **CVE-2026-19803** | `CRITICAL 9.8` | WordPress Printcart Product Designer `<= 2.13.2` | [`plugins/wordpress/wp_printcart_designer/`](plugins/wordpress/wp_printcart_designer/) | `python plugins/wordpress/wp_printcart_designer/wp_printcart_designer_cve_2026_19803_audit.py <target>` |
 | **WordPress payever WooCommerce Gateway File Upload Audit** | **CVE-2026-93754** | `CRITICAL 9.8` | WordPress payever WooCommerce Gateway `<= 4.8.0` | [`plugins/wordpress/wp_payever_gateway/`](plugins/wordpress/wp_payever_gateway/) | `python plugins/wordpress/wp_payever_gateway/wp_payever_gateway_cve_2026_93754_audit.py <target>` |
+| **OpenAM Live Session Token Disclosure & Auth Bypass Audit** | **CVE-2026-123551** | `CRITICAL 10.0` | OpenAM `< 16.1.4` (`14.0.0`–`16.1.3`) | [`plugins/openam/`](plugins/openam/) | `python plugins/openam/openam_cve_2026_123551_audit.py <target>` |
+| **IBM API Connect Auth Bypass & RCE Audit** | **CVE-2026-17301** | `CRITICAL 9.8` | IBM API Connect `10.0.8.0`–`10.0.8.12`, `12.1.0.0`–`12.1.1.2` | [`plugins/ibm_api_connect/`](plugins/ibm_api_connect/) | `python plugins/ibm_api_connect/ibm_api_connect_cve_2026_17301_audit.py <target>` |
+| **Keycloak Client Management JS Policy Upload RCE Audit** | **CVE-2026-120984** | `CRITICAL 9.1` | Keycloak / RH-SSO `< 26.2.5` | [`plugins/keycloak_client_mgmt/`](plugins/keycloak_client_mgmt/) | `python plugins/keycloak_client_mgmt/keycloak_cve_2026_120984_audit.py <target>` |
 
 ---
 
