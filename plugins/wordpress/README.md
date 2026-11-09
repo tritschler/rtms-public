@@ -19,3 +19,4 @@ All plugins in this folder perform strictly **passive, non-intrusive** HTTP/HTTP
 | **LatePoint Authentication Bypass Audit** | **CVE-2026-118066** | `CRITICAL 9.1` | LatePoint – Appointment Booking & Scheduling `<= 5.7.6` | `5.7.7+` | [`wp_latepoint/`](wp_latepoint/) |
 | **Printcart Product Designer Arbitrary File Upload Audit** | **CVE-2026-19803** | `CRITICAL 9.8` | Printcart Store – Web to Print Product Designer `<= 2.13.2` | `2.13.3+` | [`wp_printcart_designer/`](wp_printcart_designer/) |
 | **payever WooCommerce Gateway Arbitrary File Upload Audit** | **CVE-2026-93754** | `CRITICAL 9.8` | payever – WooCommerce Gateway `<= 4.8.0` | `4.8.1+` | [`wp_payever_gateway/`](wp_payever_gateway/) |
+| **Contact Form 7 File Upload Validation Audit** | **CVE-2026-114432** | `CRITICAL 9.8` | Contact Form 7 `< 6.2.4` (`<= 6.2.3`) | `6.2.4+` | [`wp_contact_form_7/`](wp_contact_form_7/) |

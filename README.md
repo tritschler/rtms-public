@@ -38,6 +38,9 @@ Each plugin is developed to provide rapid, reliable, and non-destructive detecti
 | **OpenAM Live Session Token Disclosure & Auth Bypass Audit** | **CVE-2026-123551** | `CRITICAL 10.0` | OpenAM `< 16.1.4` (`14.0.0`–`16.1.3`) | [`plugins/openam/`](plugins/openam/) | `python plugins/openam/openam_cve_2026_123551_audit.py <target>` |
 | **IBM API Connect Auth Bypass & RCE Audit** | **CVE-2026-17301** | `CRITICAL 9.8` | IBM API Connect `10.0.8.0`–`10.0.8.12`, `12.1.0.0`–`12.1.1.2` | [`plugins/ibm_api_connect/`](plugins/ibm_api_connect/) | `python plugins/ibm_api_connect/ibm_api_connect_cve_2026_17301_audit.py <target>` |
 | **Keycloak Client Management JS Policy Upload RCE Audit** | **CVE-2026-120984** | `CRITICAL 9.1` | Keycloak / RH-SSO `< 26.2.5` | [`plugins/keycloak_client_mgmt/`](plugins/keycloak_client_mgmt/) | `python plugins/keycloak_client_mgmt/keycloak_cve_2026_120984_audit.py <target>` |
+| **WordPress Contact Form 7 File Upload Validation Audit** | **CVE-2026-114432** | `CRITICAL 9.8` | WordPress Contact Form 7 `< 6.2.4` | [`plugins/wordpress/wp_contact_form_7/`](plugins/wordpress/wp_contact_form_7/) | `python plugins/wordpress/wp_contact_form_7/wp_contact_form_7_cve_2026_114432_audit.py <target>` |
+| **OpenEMR Multi-CVE Version Compliance Audit** | **CVE-2026-124445** | `CRITICAL 9.4` | OpenEMR `< 8.4.0` (`< 8.3.0`) | [`plugins/openemr/`](plugins/openemr/) | `python plugins/openemr/openemr_cve_2026_124445_audit.py <target>` |
+| **imgproxy ICO Loader Version Compliance Audit** | **CVE-2026-123614** | `CRITICAL 9.3` | imgproxy `4.0.0`–`4.0.15` (`< 4.0.16`) | [`plugins/imgproxy/`](plugins/imgproxy/) | `python plugins/imgproxy/imgproxy_cve_2026_123614_audit.py <target>` |
 
 ---
 
