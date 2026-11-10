@@ -41,6 +41,9 @@ Each plugin is developed to provide rapid, reliable, and non-destructive detecti
 | **WordPress Contact Form 7 File Upload Validation Audit** | **CVE-2026-114432** | `CRITICAL 9.8` | WordPress Contact Form 7 `< 6.2.4` | [`plugins/wordpress/wp_contact_form_7/`](plugins/wordpress/wp_contact_form_7/) | `python plugins/wordpress/wp_contact_form_7/wp_contact_form_7_cve_2026_114432_audit.py <target>` |
 | **OpenEMR Multi-CVE Version Compliance Audit** | **CVE-2026-124445** | `CRITICAL 9.4` | OpenEMR `< 8.4.0` (`< 8.3.0`) | [`plugins/openemr/`](plugins/openemr/) | `python plugins/openemr/openemr_cve_2026_124445_audit.py <target>` |
 | **imgproxy ICO Loader Version Compliance Audit** | **CVE-2026-123614** | `CRITICAL 9.3` | imgproxy `4.0.0`–`4.0.15` (`< 4.0.16`) | [`plugins/imgproxy/`](plugins/imgproxy/) | `python plugins/imgproxy/imgproxy_cve_2026_123614_audit.py <target>` |
+| **SAP Web Dispatcher & NetWeaver Compliance Audit** | **CVE-2026-89126** | `CRITICAL 10.0` | SAP Web Dispatcher & ICM `7.22`–`9.21` | [`plugins/sap_netweaver/`](plugins/sap_netweaver/) | `python plugins/sap_netweaver/sap_netweaver_cve_2026_89126_audit.py <target>` |
+| **Craft CMS Version Compliance Audit** | **CVE-2026-115934** | `CRITICAL 9.3` | Craft CMS `< 4.18.9` & `< 5.11.2` | [`plugins/craft_cms/`](plugins/craft_cms/) | `python plugins/craft_cms/craft_cms_cve_2026_115934_audit.py <target>` |
+| **Redpanda Connect Version Compliance Audit** | **CVE-2026-123270** | `CRITICAL 9.8` | Redpanda Connect `4.39`–`4.110` (`< 4.111.0`) | [`plugins/redpanda_connect/`](plugins/redpanda_connect/) | `python plugins/redpanda_connect/redpanda_connect_cve_2026_123270_audit.py <target>` |
 
 ---
 
