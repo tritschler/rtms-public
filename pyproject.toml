@@ -47,5 +47,14 @@ pythonpath = [
     "plugins/wordpress/wp_latepoint",
     "plugins/wordpress/wp_printcart_designer",
     "plugins/wordpress/wp_payever_gateway",
+    "plugins/wordpress/wp_contact_form_7",
+    "plugins/openemr",
+    "plugins/imgproxy",
+    "plugins/sap_netweaver",
+    "plugins/craft_cms",
+    "plugins/redpanda_connect",
+    "plugins/fortimanager",
+    "plugins/ivanti_epm",
+    "plugins/sharepoint",
 ]
 testpaths = ["tests"]
