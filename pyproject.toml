@@ -56,5 +56,8 @@ pythonpath = [
     "plugins/fortimanager",
     "plugins/ivanti_epm",
     "plugins/sharepoint",
+    "plugins/fortios",
+    "plugins/synology_dsm",
+    "plugins/redhat_quay",
 ]
 testpaths = ["tests"]
