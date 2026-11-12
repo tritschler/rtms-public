@@ -50,6 +50,10 @@ Each plugin is developed to provide rapid, reliable, and non-destructive detecti
 | **Fortinet FortiOS Version Compliance Audit** | **CVE-2026-126259** | `CRITICAL 9.8` | FortiOS `7.0.0`–`7.0.19`, `7.2.0`–`7.2.13`, `7.4.0`–`7.4.12`, `7.6.0`–`7.6.7`, `8.0.0`–`8.0.1` | [`plugins/fortios/`](plugins/fortios/) | `python plugins/fortios/fortios_cve_2026_126259_audit.py <target>` |
 | **Synology DiskStation Manager Version Compliance Audit** | **CVE-2026-76954** | `CRITICAL 9.8` | Synology DSM `< 7.2.1-69057-13`, `< 7.2.2-72806-10`, `< 7.3.2-86009-5`, `< 7.4.1-90080-1` | [`plugins/synology_dsm/`](plugins/synology_dsm/) | `python plugins/synology_dsm/synology_dsm_cve_2026_76954_audit.py <target>` |
 | **Red Hat Quay Version Compliance Audit** | **CVE-2026-110697** | `CRITICAL 9.9` | Red Hat Quay `3.12`–`3.18` (`< 3.12.11` to `< 3.18.2`) | [`plugins/redhat_quay/`](plugins/redhat_quay/) | `python plugins/redhat_quay/redhat_quay_cve_2026_110697_audit.py <target>` |
+| **GitLab CE/EE Version Compliance Audit** | **CVE-2026-110264** | `CRITICAL 10.0` | GitLab CE/EE `< 19.2.6`, `< 19.3.4`, `< 19.4.2` | [`plugins/gitlab/`](plugins/gitlab/) | `python plugins/gitlab/gitlab_cve_2026_110264_audit.py <target>` |
+| **Citrix NetScaler Console & ADC Gateway Version Compliance Audit** | **CVE-2026-120869** | `CRITICAL 9.3` | NetScaler Console `< 14.1-66.58`, `< 13.1-62.29` | [`plugins/citrix_netscaler/`](plugins/citrix_netscaler/) | `python plugins/citrix_netscaler/citrix_netscaler_cve_2026_120869_audit.py <target>` |
+| **WatchGuard Fireware OS & SonicWall SMA1000 Compliance Audit** | **CVE-2026-93866** | `CRITICAL 10.0` | Fireware OS `< 12.11.9` / `< 2026.2.1`, SonicWall SMA1000 `< 12.4.3-03312` | [`plugins/watchguard_fireware/`](plugins/watchguard_fireware/) | `python plugins/watchguard_fireware/watchguard_fireware_cve_2026_93866_audit.py <target>` |
+| **Alinto SOGo Groupware SAML & Sieve Version Compliance Audit** | **CVE-2026-127131** | `CRITICAL 9.1` | Alinto SOGo `< 5.12.7` & `< 2.4.7` | [`plugins/sogo_groupware/`](plugins/sogo_groupware/) | `python plugins/sogo_groupware/sogo_cve_2026_127131_audit.py <target>` |
 
 ---
 
