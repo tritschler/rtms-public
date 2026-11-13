@@ -6,10 +6,19 @@ Performs passive, read-only HTTP/HTTPS banner and portal metadata verification f
 Citrix NetScaler Console / NetScaler ADC & Gateway appliances against:
   - CVE-2026-120869 (CVSS 9.3 Critical): Unauthenticated authentication bypass allowing
     access to restricted administrative resources on Citrix NetScaler Console appliances.
+  - CVE-2026-107412 (CVSS 9.5 Critical): Multiple memory overflow vulnerabilities in
+    Citrix NetScaler ADC and Citrix NetScaler Gateway.
+  - CVE-2026-107415 (CVSS 9.3 Critical): Memory overflow in Email OTP authentication in
+    Citrix NetScaler ADC and Citrix NetScaler Gateway.
+  - CVE-2026-107410 (CVSS 9.3 Critical): Memory overflow in NetScaler Push in Citrix NetScaler.
+  - CVE-2026-107409 (CVSS 9.3 Critical): Memory corruption in DNS-over-HTTPS (DoH) in Citrix NetScaler.
+  - CVE-2026-107408 (CVSS 9.3 Critical): Memory corruption in DNS / DNS-over-HTTPS (DoH) in Citrix NetScaler.
+  - CVE-2026-107407 (CVSS 9.3 Critical): Memory overflow in SMPP traffic in Citrix NetScaler.
+  - CVE-2026-120868 (CVSS 9.3 Critical): Memory overflow in Packet Processing in NetScaler ADC and Gateway.
 
 Affected Versions:
-  - Citrix NetScaler Console / ADM 14.1 prior to 14.1-38.53 (Fixed in 14.1-38.53+)
-  - Citrix NetScaler Console / ADM 13.1 prior to 13.1-56.18 (Fixed in 13.1-56.18+)
+  - Citrix NetScaler ADC & Gateway 14.1 prior to 14.1-73.57 (Console prior to 14.1-38.53)
+  - Citrix NetScaler ADC & Gateway 13.1 prior to 13.1-64.39 (Console prior to 13.1-56.18)
 
 License: MIT
 SPDX-License-Identifier: MIT
@@ -81,43 +90,68 @@ def parse_netscaler_version(text: str) -> Optional[Tuple[int, int, int, int, str
 
 def is_netscaler_version_vulnerable(major: int, minor: int, build: int, subbuild: int) -> Tuple[bool, str]:
     """
-    Evaluates whether a Citrix NetScaler Console version is affected by CVE-2026-120869 (CVSS 9.3).
-      - 14.1 < 14.1-38.53 -> Vulnerable
-      - 13.1 < 13.1-56.18 -> Vulnerable
+    Evaluates whether a Citrix NetScaler Console / ADC & Gateway version is affected by:
+      - CVE-2026-120869 (Console: 14.1 < 14.1-38.53, 13.1 < 13.1-56.18)
+      - CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, CVE-2026-107409,
+        CVE-2026-107408, CVE-2026-107407, CVE-2026-120868
+        (ADC & Gateway: 14.1 < 14.1-73.57, 13.1 < 13.1-64.39)
     """
     ver_str = f"{major}.{minor}-{build}.{subbuild}"
 
     if (major, minor) == (14, 1):
         if (build, subbuild) < (38, 53):
             return True, (
-                f"Citrix NetScaler Console {ver_str} is prior to 14.1-38.53 and is affected by "
-                f"CVE-2026-120869 (CVSS 9.3 Authentication Bypass)."
+                f"Citrix NetScaler {ver_str} is prior to 14.1-38.53 / 14.1-73.57 and is affected by "
+                f"CVE-2026-120869, CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, "
+                f"CVE-2026-107409, CVE-2026-107408, CVE-2026-107407, and CVE-2026-120868."
             )
-        return False, f"Citrix NetScaler Console {ver_str} is patched (>= 14.1-38.53) against CVE-2026-120869."
+        if (build, subbuild) < (73, 57):
+            return True, (
+                f"Citrix NetScaler ADC/Gateway {ver_str} is prior to 14.1-73.57 and is affected by "
+                f"CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, CVE-2026-107409, "
+                f"CVE-2026-107408, CVE-2026-107407, and CVE-2026-120868."
+            )
+        return False, (
+            f"Citrix NetScaler {ver_str} is patched (>= 14.1-73.57) against CVE-2026-120869 "
+            f"and CVE-2026-107412..CVE-2026-120868."
+        )
 
     if (major, minor) == (13, 1):
         if (build, subbuild) < (56, 18):
             return True, (
-                f"Citrix NetScaler Console {ver_str} is prior to 13.1-56.18 and is affected by "
-                f"CVE-2026-120869 (CVSS 9.3 Authentication Bypass)."
+                f"Citrix NetScaler {ver_str} is prior to 13.1-56.18 / 13.1-64.39 and is affected by "
+                f"CVE-2026-120869, CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, "
+                f"CVE-2026-107409, CVE-2026-107408, CVE-2026-107407, and CVE-2026-120868."
             )
-        return False, f"Citrix NetScaler Console {ver_str} is patched (>= 13.1-56.18) against CVE-2026-120869."
+        if (build, subbuild) < (64, 39):
+            return True, (
+                f"Citrix NetScaler ADC/Gateway {ver_str} is prior to 13.1-64.39 and is affected by "
+                f"CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, CVE-2026-107409, "
+                f"CVE-2026-107408, CVE-2026-107407, and CVE-2026-120868."
+            )
+        return False, (
+            f"Citrix NetScaler {ver_str} is patched (>= 13.1-64.39) against CVE-2026-120869 "
+            f"and CVE-2026-107412..CVE-2026-120868."
+        )
 
     return False, f"Citrix NetScaler {ver_str} is outside the affected 13.1 / 14.1 branches."
 
 
 class CitrixNetScalerAuditPlugin(BasePlugin):
     """
-    RTMS Security Plugin: Citrix NetScaler Console Version Compliance Audit (CVE-2026-120869).
+    RTMS Security Plugin: Citrix NetScaler Console & ADC/Gateway Version Compliance Audit
+    (CVE-2026-120869, CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, CVE-2026-107409,
+    CVE-2026-107408, CVE-2026-107407, CVE-2026-120868).
     """
 
     def __init__(self):
         super().__init__()
         self.info = {
-            "name": "Citrix NetScaler Console Auth Bypass Audit (CVE-2026-120869)",
+            "name": "Citrix NetScaler Console & ADC/Gateway Compliance Audit (CVE-2026-120869 / CVE-2026-107412)",
             "description": (
-                "Passive version compliance check for Citrix NetScaler Console & Gateway appliances "
-                "against CVE-2026-120869 (CVSS 9.3 Unauthenticated Authentication Bypass)."
+                "Passive version compliance check for Citrix NetScaler Console, ADC & Gateway appliances "
+                "against CVE-2026-120869, CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, "
+                "CVE-2026-107409, CVE-2026-107408, CVE-2026-107407, and CVE-2026-120868 (CVSS 9.3-9.5)."
             ),
             "severity": "CRITICAL",
             "cve": "CVE-2026-120869",
@@ -269,7 +303,7 @@ class CitrixNetScalerAuditPlugin(BasePlugin):
                 "concealed": True,
                 "reason": (
                     "Citrix NetScaler Console / Gateway interface is active, but exact firmware build is concealed. "
-                    "Verify build >= 14.1-38.53 or >= 13.1-56.18 for CVE-2026-120869 compliance."
+                    "Verify build >= 14.1-73.57 or >= 13.1-64.39 for CVE-2026-120869 & CVE-2026-107412 compliance."
                 ),
             }
 
@@ -304,19 +338,22 @@ class CitrixNetScalerAuditPlugin(BasePlugin):
 
         if vulnerable_findings:
             proof = (
-                f"CVE-2026-120869 affected Citrix NetScaler Console version detected on {target_ip}.\n"
+                f"CVE-2026-120869 / CVE-2026-107412 affected Citrix NetScaler version detected on {target_ip}.\n"
                 + "\n".join(vulnerable_findings)
             )
             details = (
-                f"CRITICAL COMPLIANCE FINDING (CVE-2026-120869 - CVSS 9.3):\n"
-                f"The target host {target_ip} runs an affected Citrix NetScaler Console appliance build.\n\n"
+                f"CRITICAL COMPLIANCE FINDING (CVE-2026-120869 / CVE-2026-107412 - CVSS 9.3-9.5):\n"
+                f"The target host {target_ip} runs an affected Citrix NetScaler appliance build.\n\n"
                 f"Advisory Summary:\n"
-                f"- CVE-2026-120869 (CVSS 9.3): Unauthenticated authentication bypass allowing access to restricted "
-                f"resources on Citrix NetScaler Console.\n\n"
+                f"- CVE-2026-120869 (CVSS 9.3): Unauthenticated authentication bypass on Citrix NetScaler Console.\n"
+                f"- CVE-2026-107412 (CVSS 9.5) & CVE-2026-107415 / CVE-2026-107410 / CVE-2026-107409 / "
+                f"CVE-2026-107408 / CVE-2026-107407 / CVE-2026-120868 (CVSS 9.3): Memory overflow and corruption "
+                f"vulnerabilities in NetScaler ADC and NetScaler Gateway (Email OTP, Push, DoH, SMPP, Packet Processing).\n\n"
                 f"Affected Endpoints:\n" + "\n".join(vulnerable_findings) + "\n\n"
                 f"Remediation:\n"
-                f"1. Upgrade Citrix NetScaler Console to >= 14.1-38.53 or >= 13.1-56.18.\n"
-                f"2. Restrict management plane access (/admin_ui/) to dedicated administrative jump hosts."
+                f"1. Upgrade Citrix NetScaler ADC & Gateway to >= 14.1-73.57 or >= 13.1-64.39 "
+                f"(and NetScaler Console to >= 14.1-38.53 or >= 13.1-56.18).\n"
+                f"2. Restrict management plane access (/admin_ui/, NSIP) to dedicated administrative jump hosts."
             )
             return self.format_result("Vulnerable", proof=proof, details=details)
 
@@ -339,7 +376,7 @@ class CitrixNetScalerAuditPlugin(BasePlugin):
         return self.format_result(
             "OK",
             proof=f"Audited ports: {ports_to_scan}",
-            details="No affected Citrix NetScaler Console services detected on target ports.",
+            details="No affected Citrix NetScaler Console / ADC Gateway services detected on target ports.",
         )
 
 
@@ -348,7 +385,7 @@ if __name__ == "__main__":
     import sys
 
     parser = argparse.ArgumentParser(
-        description="Passive version compliance check for Citrix NetScaler Console (CVE-2026-120869)."
+        description="Passive version compliance check for Citrix NetScaler Console & ADC/Gateway (CVE-2026-120869 / CVE-2026-107412)."
     )
     parser.add_argument("target", help="Target hostname or IP address")
     parser.add_argument(
@@ -372,7 +409,7 @@ if __name__ == "__main__":
     status = res.get("status", "Unknown")
 
     if status == "Vulnerable":
-        print(f"[VULNERABLE] {args.target} runs a Citrix NetScaler version affected by CVE-2026-120869.\n")
+        print(f"[VULNERABLE] {args.target} runs a Citrix NetScaler version affected by CVE-2026-120869 / CVE-2026-107412.\n")
         print(res.get("details", ""))
         sys.exit(1)
     elif status == "Warning":

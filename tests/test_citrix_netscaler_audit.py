@@ -1,5 +1,6 @@
 """
-test_citrix_netscaler_audit.py - Unit tests for Citrix NetScaler Console & ADC Gateway Version Compliance Audit (CVE-2026-120869).
+test_citrix_netscaler_audit.py - Unit tests for Citrix NetScaler Console & ADC Gateway Version Compliance Audit
+(CVE-2026-120869, CVE-2026-107412, CVE-2026-107415, CVE-2026-120868).
 """
 
 from plugins.citrix_netscaler.citrix_netscaler_cve_2026_120869_audit import (
@@ -27,14 +28,19 @@ def test_version_vulnerability_logic():
     vuln_141, reason_141 = is_netscaler_version_vulnerable(14, 1, 34, 42)
     assert vuln_141 is True
     assert "CVE-2026-120869" in reason_141
+    assert "CVE-2026-107412" in reason_141
 
-    safe_141, _ = is_netscaler_version_vulnerable(14, 1, 38, 53)
+    vuln_adc_141, reason_adc_141 = is_netscaler_version_vulnerable(14, 1, 66, 58)
+    assert vuln_adc_141 is True
+    assert "CVE-2026-107412" in reason_adc_141
+
+    safe_141, _ = is_netscaler_version_vulnerable(14, 1, 73, 57)
     assert safe_141 is False
 
     vuln_131, _ = is_netscaler_version_vulnerable(13, 1, 52, 19)
     assert vuln_131 is True
 
-    safe_131, _ = is_netscaler_version_vulnerable(13, 1, 56, 18)
+    safe_131, _ = is_netscaler_version_vulnerable(13, 1, 64, 39)
     assert safe_131 is False
 
 
@@ -51,7 +57,7 @@ def test_run_audit_vulnerable_and_safe(mocker):
             "version": "14.1-34.42",
             "source": "Citrix NITRO v1 config/nsversion endpoint",
             "is_vulnerable": True,
-            "reason": "Affected by CVE-2026-120869",
+            "reason": "Affected by CVE-2026-120869 & CVE-2026-107412",
         },
     )
     res = plugin.run_audit("10.0.0.20", [443])
@@ -64,10 +70,10 @@ def test_run_audit_vulnerable_and_safe(mocker):
         return_value={
             "port": 443,
             "service_detected": True,
-            "version": "14.1-38.53",
+            "version": "14.1-73.57",
             "source": "Citrix NITRO v1 config/nsversion endpoint",
             "is_vulnerable": False,
-            "reason": "Patched >= 14.1-38.53",
+            "reason": "Patched >= 14.1-73.57",
         },
     )
     res_safe = plugin.run_audit("10.0.0.20", [443])

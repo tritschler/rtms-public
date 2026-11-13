@@ -59,5 +59,15 @@ pythonpath = [
     "plugins/fortios",
     "plugins/synology_dsm",
     "plugins/redhat_quay",
+    "plugins/citrix_netscaler",
+    "plugins/gitlab",
+    "plugins/sogo_groupware",
+    "plugins/watchguard_fireware",
+    "plugins/azul_payara",
+    "plugins/manageengine_itsm",
+    "plugins/google_chrome",
+    "plugins/wordpress/wp_clockinator_lite",
+    "plugins/wordpress/wp_uae_forms",
+    "plugins/wordpress/wp_descope",
 ]
 testpaths = ["tests"]

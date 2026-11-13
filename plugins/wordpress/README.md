@@ -20,3 +20,6 @@ All plugins in this folder perform strictly **passive, non-intrusive** HTTP/HTTP
 | **Printcart Product Designer Arbitrary File Upload Audit** | **CVE-2026-19803** | `CRITICAL 9.8` | Printcart Store – Web to Print Product Designer `<= 2.13.2` | `2.13.3+` | [`wp_printcart_designer/`](wp_printcart_designer/) |
 | **payever WooCommerce Gateway Arbitrary File Upload Audit** | **CVE-2026-93754** | `CRITICAL 9.8` | payever – WooCommerce Gateway `<= 4.8.0` | `4.8.1+` | [`wp_payever_gateway/`](wp_payever_gateway/) |
 | **Contact Form 7 File Upload Validation Audit** | **CVE-2026-114432** | `CRITICAL 9.8` | Contact Form 7 `< 6.2.4` (`<= 6.2.3`) | `6.2.4+` | [`wp_contact_form_7/`](wp_contact_form_7/) |
+| **Clockinator Lite SQL Injection & Access Control Audit** | **CVE-2026-124815** | `CRITICAL 10.0` | Clockinator Lite `< 1.1.0` (`<= 1.0.9`) | `1.1.0+` | [`wp_clockinator_lite/`](wp_clockinator_lite/) |
+| **Ultimate Addons for Elementor Forms File Upload Audit** | **CVE-2026-124814** | `CRITICAL 9.8` | Ultimate Addons for Elementor Forms `< 1.0.8` (`<= 1.0.7`) | `1.0.8+` | [`wp_uae_forms/`](wp_uae_forms/) |
+| **Descope Authentication Bypass Audit** | **CVE-2026-110959** | `CRITICAL 9.8` | Descope `< 1.2.0` (`<= 1.1.x`) | `1.2.0+` | [`wp_descope/`](wp_descope/) |
