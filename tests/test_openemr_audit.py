@@ -11,6 +11,7 @@ from plugins.openemr.openemr_cve_2026_124445_audit import (
 
 def test_plugin_metadata():
     plugin = OpenEMRAuditPlugin()
+    assert "CVE-2026-126473" in plugin.info["cve"]
     assert "CVE-2026-124445" in plugin.info["cve"]
     assert "CVE-2026-124490" in plugin.info["cve"]
     assert plugin.info["severity"] == "CRITICAL"
@@ -29,10 +30,12 @@ def test_version_vulnerability_logic():
     assert vuln_82 is True
     assert "CVE-2026-124490" in reason_82
     assert "CVE-2026-124445" in reason_82
+    assert "CVE-2026-126473" in reason_82
 
     vuln_83, reason_83 = is_openemr_version_vulnerable(8, 3, 1)
     assert vuln_83 is True
     assert "CVE-2026-124445" in reason_83
+    assert "CVE-2026-126473" in reason_83
     assert "CVE-2026-124490" not in reason_83
 
     vuln_84, reason_84 = is_openemr_version_vulnerable(8, 4, 0)

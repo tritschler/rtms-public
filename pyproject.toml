@@ -69,5 +69,6 @@ pythonpath = [
     "plugins/wordpress/wp_clockinator_lite",
     "plugins/wordpress/wp_uae_forms",
     "plugins/wordpress/wp_descope",
+    "plugins/frankenphp",
 ]
 testpaths = ["tests"]

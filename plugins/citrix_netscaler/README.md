@@ -5,7 +5,7 @@
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
 [![Target](https://img.shields.io/badge/Vulnerability-CVE--2026--120869_&_CVE--2026--107412-orange.svg)]()
 
-A passive, read-only version compliance tool and official plugin for **[RTMS Suite](https://3ts.ai)** to verify **Citrix NetScaler Console / ADC & Gateway** appliances against **CVE-2026-120869** (`CVSS 9.3`) and the November 2026 NetScaler ADC/Gateway security bulletin (`CVE-2026-107412`, `CVE-2026-107415`, `CVE-2026-107410`, `CVE-2026-107409`, `CVE-2026-107408`, `CVE-2026-107407`, `CVE-2026-120868` — `CVSS 9.3–9.5`).
+A passive, read-only version compliance tool and official plugin for **[RTMS Suite](https://3ts.ai)** to verify **Citrix NetScaler Console / ADC & Gateway** appliances against **CVE-2026-120869** (`CVSS 9.3`) and the November 2026 NetScaler ADC/Gateway security bulletin (`CVE-2026-107412`, `CVE-2026-107415`, `CVE-2026-107410`, `CVE-2026-107409`, `CVE-2026-107408`, `CVE-2026-107407`, `CVE-2026-120868`, `CVE-2026-120864`, `CVE-2026-111334` — `CVSS 9.3–9.5`).
 
 ---
 
@@ -13,7 +13,7 @@ A passive, read-only version compliance tool and official plugin for **[RTMS Sui
 
 * **CVE-2026-120869** (`CVSS 9.3 Critical` — `CWE-287`): Authentication bypass on the Citrix NetScaler Console appliance.
 * **CVE-2026-107412** (`CVSS 9.5 Critical`): Multiple memory overflow vulnerabilities in Citrix NetScaler ADC and NetScaler Gateway.
-* **CVE-2026-107415**, **CVE-2026-107410**, **CVE-2026-107409**, **CVE-2026-107408**, **CVE-2026-107407**, **CVE-2026-120868** (`CVSS 9.3 Critical`): Memory overflow and memory corruption flaws in Email OTP, NetScaler Push, DNS-over-HTTPS (DoH), SMPP traffic, and Packet Processing.
+* **CVE-2026-107415**, **CVE-2026-107410**, **CVE-2026-107409**, **CVE-2026-107408**, **CVE-2026-107407**, **CVE-2026-120868**, **CVE-2026-120864**, **CVE-2026-111334** (`CVSS 9.3 Critical`): Memory overflow and memory corruption flaws in Email OTP, NetScaler Push, DNS-over-HTTPS (DoH), SMPP traffic, Packet Processing, ICA Proxy, and Endpoint Analysis (EPA/EPAS).
 
 ---
 

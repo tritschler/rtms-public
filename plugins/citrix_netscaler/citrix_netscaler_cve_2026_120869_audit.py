@@ -15,6 +15,8 @@ Citrix NetScaler Console / NetScaler ADC & Gateway appliances against:
   - CVE-2026-107408 (CVSS 9.3 Critical): Memory corruption in DNS / DNS-over-HTTPS (DoH) in Citrix NetScaler.
   - CVE-2026-107407 (CVSS 9.3 Critical): Memory overflow in SMPP traffic in Citrix NetScaler.
   - CVE-2026-120868 (CVSS 9.3 Critical): Memory overflow in Packet Processing in NetScaler ADC and Gateway.
+  - CVE-2026-120864 (CVSS 9.3 Critical): Memory overflow in ICA proxy in Citrix NetScaler ADC and Gateway.
+  - CVE-2026-111334 (CVSS 9.3 Critical): Memory overflow in Endpoint Analysis (EPA/EPAS) in Citrix NetScaler ADC and Gateway.
 
 Affected Versions:
   - Citrix NetScaler ADC & Gateway 14.1 prior to 14.1-73.57 (Console prior to 14.1-38.53)
@@ -93,7 +95,7 @@ def is_netscaler_version_vulnerable(major: int, minor: int, build: int, subbuild
     Evaluates whether a Citrix NetScaler Console / ADC & Gateway version is affected by:
       - CVE-2026-120869 (Console: 14.1 < 14.1-38.53, 13.1 < 13.1-56.18)
       - CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, CVE-2026-107409,
-        CVE-2026-107408, CVE-2026-107407, CVE-2026-120868
+        CVE-2026-107408, CVE-2026-107407, CVE-2026-120868, CVE-2026-120864, CVE-2026-111334
         (ADC & Gateway: 14.1 < 14.1-73.57, 13.1 < 13.1-64.39)
     """
     ver_str = f"{major}.{minor}-{build}.{subbuild}"
@@ -103,17 +105,18 @@ def is_netscaler_version_vulnerable(major: int, minor: int, build: int, subbuild
             return True, (
                 f"Citrix NetScaler {ver_str} is prior to 14.1-38.53 / 14.1-73.57 and is affected by "
                 f"CVE-2026-120869, CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, "
-                f"CVE-2026-107409, CVE-2026-107408, CVE-2026-107407, and CVE-2026-120868."
+                f"CVE-2026-107409, CVE-2026-107408, CVE-2026-107407, CVE-2026-120868, "
+                f"CVE-2026-120864, and CVE-2026-111334."
             )
         if (build, subbuild) < (73, 57):
             return True, (
                 f"Citrix NetScaler ADC/Gateway {ver_str} is prior to 14.1-73.57 and is affected by "
                 f"CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, CVE-2026-107409, "
-                f"CVE-2026-107408, CVE-2026-107407, and CVE-2026-120868."
+                f"CVE-2026-107408, CVE-2026-107407, CVE-2026-120868, CVE-2026-120864, and CVE-2026-111334."
             )
         return False, (
             f"Citrix NetScaler {ver_str} is patched (>= 14.1-73.57) against CVE-2026-120869 "
-            f"and CVE-2026-107412..CVE-2026-120868."
+            f"and CVE-2026-107412..CVE-2026-111334."
         )
 
     if (major, minor) == (13, 1):
@@ -121,17 +124,18 @@ def is_netscaler_version_vulnerable(major: int, minor: int, build: int, subbuild
             return True, (
                 f"Citrix NetScaler {ver_str} is prior to 13.1-56.18 / 13.1-64.39 and is affected by "
                 f"CVE-2026-120869, CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, "
-                f"CVE-2026-107409, CVE-2026-107408, CVE-2026-107407, and CVE-2026-120868."
+                f"CVE-2026-107409, CVE-2026-107408, CVE-2026-107407, CVE-2026-120868, "
+                f"CVE-2026-120864, and CVE-2026-111334."
             )
         if (build, subbuild) < (64, 39):
             return True, (
                 f"Citrix NetScaler ADC/Gateway {ver_str} is prior to 13.1-64.39 and is affected by "
                 f"CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, CVE-2026-107409, "
-                f"CVE-2026-107408, CVE-2026-107407, and CVE-2026-120868."
+                f"CVE-2026-107408, CVE-2026-107407, CVE-2026-120868, CVE-2026-120864, and CVE-2026-111334."
             )
         return False, (
             f"Citrix NetScaler {ver_str} is patched (>= 13.1-64.39) against CVE-2026-120869 "
-            f"and CVE-2026-107412..CVE-2026-120868."
+            f"and CVE-2026-107412..CVE-2026-111334."
         )
 
     return False, f"Citrix NetScaler {ver_str} is outside the affected 13.1 / 14.1 branches."
@@ -141,7 +145,7 @@ class CitrixNetScalerAuditPlugin(BasePlugin):
     """
     RTMS Security Plugin: Citrix NetScaler Console & ADC/Gateway Version Compliance Audit
     (CVE-2026-120869, CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, CVE-2026-107409,
-    CVE-2026-107408, CVE-2026-107407, CVE-2026-120868).
+    CVE-2026-107408, CVE-2026-107407, CVE-2026-120868, CVE-2026-120864, CVE-2026-111334).
     """
 
     def __init__(self):
@@ -151,7 +155,8 @@ class CitrixNetScalerAuditPlugin(BasePlugin):
             "description": (
                 "Passive version compliance check for Citrix NetScaler Console, ADC & Gateway appliances "
                 "against CVE-2026-120869, CVE-2026-107412, CVE-2026-107415, CVE-2026-107410, "
-                "CVE-2026-107409, CVE-2026-107408, CVE-2026-107407, and CVE-2026-120868 (CVSS 9.3-9.5)."
+                "CVE-2026-107409, CVE-2026-107408, CVE-2026-107407, CVE-2026-120868, "
+                "CVE-2026-120864, and CVE-2026-111334 (CVSS 9.3-9.5)."
             ),
             "severity": "CRITICAL",
             "cve": "CVE-2026-120869",
@@ -347,8 +352,9 @@ class CitrixNetScalerAuditPlugin(BasePlugin):
                 f"Advisory Summary:\n"
                 f"- CVE-2026-120869 (CVSS 9.3): Unauthenticated authentication bypass on Citrix NetScaler Console.\n"
                 f"- CVE-2026-107412 (CVSS 9.5) & CVE-2026-107415 / CVE-2026-107410 / CVE-2026-107409 / "
-                f"CVE-2026-107408 / CVE-2026-107407 / CVE-2026-120868 (CVSS 9.3): Memory overflow and corruption "
-                f"vulnerabilities in NetScaler ADC and NetScaler Gateway (Email OTP, Push, DoH, SMPP, Packet Processing).\n\n"
+                f"CVE-2026-107408 / CVE-2026-107407 / CVE-2026-120868 / CVE-2026-120864 / CVE-2026-111334 (CVSS 9.3): "
+                f"Memory overflow and corruption vulnerabilities in NetScaler ADC and NetScaler Gateway "
+                f"(Email OTP, Push, DoH, SMPP, Packet Processing, ICA Proxy, Endpoint Analysis EPA/EPAS).\n\n"
                 f"Affected Endpoints:\n" + "\n".join(vulnerable_findings) + "\n\n"
                 f"Remediation:\n"
                 f"1. Upgrade Citrix NetScaler ADC & Gateway to >= 14.1-73.57 or >= 13.1-64.39 "

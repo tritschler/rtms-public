@@ -29,10 +29,14 @@ def test_version_vulnerability_logic():
     assert vuln_141 is True
     assert "CVE-2026-120869" in reason_141
     assert "CVE-2026-107412" in reason_141
+    assert "CVE-2026-120864" in reason_141
+    assert "CVE-2026-111334" in reason_141
 
     vuln_adc_141, reason_adc_141 = is_netscaler_version_vulnerable(14, 1, 66, 58)
     assert vuln_adc_141 is True
     assert "CVE-2026-107412" in reason_adc_141
+    assert "CVE-2026-120864" in reason_adc_141
+    assert "CVE-2026-111334" in reason_adc_141
 
     safe_141, _ = is_netscaler_version_vulnerable(14, 1, 73, 57)
     assert safe_141 is False

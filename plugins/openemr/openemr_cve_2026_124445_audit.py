@@ -4,6 +4,7 @@ openemr_cve_2026_124445_audit.py
 Standalone Defensive Version Compliance Tool & External Plugin for RTMS Suite.
 Performs passive, read-only HTTP/HTTPS version verification for OpenEMR installations
 to check patch compliance against:
+  - CVE-2026-126473 (CVSS 9.3, affected: < 8.4.0)
   - CVE-2026-124445 (CVSS 9.3, affected: >= 7.0.1 and < 8.4.0)
   - CVE-2026-124490 (CVSS 9.4, affected: < 8.3.0)
   - CVE-2026-124469 (CVSS 9.4, affected: < 8.3.0)
@@ -86,6 +87,7 @@ def is_openemr_version_vulnerable(major: int, minor: int, patch: int) -> Tuple[b
     """
     Evaluates whether an OpenEMR version tuple (major, minor, patch) is affected by:
       - CVE-2026-124490, CVE-2026-124469, CVE-2026-124463, CVE-2026-124450 (< 8.3.0)
+      - CVE-2026-126473 (< 8.4.0)
       - CVE-2026-124445 (>= 7.0.1 and < 8.4.0)
     """
     ver_tuple = (major, minor, patch)
@@ -101,6 +103,8 @@ def is_openemr_version_vulnerable(major: int, minor: int, patch: int) -> Tuple[b
         ])
     if (7, 0, 1) <= ver_tuple < (8, 4, 0):
         applicable_cves.append("CVE-2026-124445")
+    if ver_tuple < (8, 4, 0):
+        applicable_cves.append("CVE-2026-126473")
 
     if applicable_cves:
         cve_list_str = ", ".join(applicable_cves)
@@ -110,7 +114,7 @@ def is_openemr_version_vulnerable(major: int, minor: int, patch: int) -> Tuple[b
         )
 
     return False, (
-        f"OpenEMR {ver_str} is patched against CVE-2026-124445, CVE-2026-124490, "
+        f"OpenEMR {ver_str} is patched against CVE-2026-126473, CVE-2026-124445, CVE-2026-124490, "
         f"CVE-2026-124469, CVE-2026-124463, and CVE-2026-124450 (running >= 8.4.0)."
     )
 
@@ -118,19 +122,19 @@ def is_openemr_version_vulnerable(major: int, minor: int, patch: int) -> Tuple[b
 class OpenEMRAuditPlugin(BasePlugin):
     """
     RTMS Security Plugin: OpenEMR Version Compliance Audit
-    (CVE-2026-124445, CVE-2026-124490, CVE-2026-124469, CVE-2026-124463, CVE-2026-124450).
+    (CVE-2026-126473, CVE-2026-124445, CVE-2026-124490, CVE-2026-124469, CVE-2026-124463, CVE-2026-124450).
     """
 
     def __init__(self):
         super().__init__()
         self.info = {
-            "name": "OpenEMR Multi-CVE Version Compliance Audit (CVE-2026-124445 / CVE-2026-124490)",
+            "name": "OpenEMR Multi-CVE Version Compliance Audit (CVE-2026-126473 / CVE-2026-124445)",
             "description": (
                 "Passive version compliance check for OpenEMR < 8.4.0 "
-                "(CVE-2026-124445, CVE-2026-124490, CVE-2026-124469, CVE-2026-124463, CVE-2026-124450)."
+                "(CVE-2026-126473, CVE-2026-124445, CVE-2026-124490, CVE-2026-124469, CVE-2026-124463, CVE-2026-124450)."
             ),
             "severity": "CRITICAL",
-            "cve": "CVE-2026-124445, CVE-2026-124490, CVE-2026-124469, CVE-2026-124463, CVE-2026-124450",
+            "cve": "CVE-2026-126473, CVE-2026-124445, CVE-2026-124490, CVE-2026-124469, CVE-2026-124463, CVE-2026-124450",
             "version": "1.0.0",
         }
         self.target_ports = DEFAULT_WEB_PORTS.copy()
@@ -314,7 +318,7 @@ class OpenEMRAuditPlugin(BasePlugin):
         if vulnerable_findings:
             proof = (
                 f"Outdated OpenEMR version detected on {target_ip} "
-                f"(CVE-2026-124445 / CVE-2026-124490 / CVE-2026-124469 / CVE-2026-124463 / CVE-2026-124450).\n"
+                f"(CVE-2026-126473 / CVE-2026-124445 / CVE-2026-124490 / CVE-2026-124469 / CVE-2026-124463 / CVE-2026-124450).\n"
                 + "\n".join(vulnerable_findings)
             )
             details = (
