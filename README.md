@@ -3,121 +3,127 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Ecosystem](https://img.shields.io/badge/Ecosystem-Open_Source_Security-orange.svg)]()
+[![Plugins](https://img.shields.io/badge/Plugins-57-brightgreen.svg)](CATALOG.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-117%2B-red.svg)](CATALOG.md)
 
 Welcome to the official **RTMS Community Plugins** repository. This open-source hub contains standalone security audit tools and modular detection plugins engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
 
-Each plugin is developed to provide rapid, reliable, and non-destructive detection of critical emerging vulnerabilities, zero-days, and cryptographic flaws across enterprise networks.
+Each plugin is developed to provide rapid, reliable, and strictly non-destructive detection of critical emerging vulnerabilities (`CVSS >= 9.0`) across enterprise networks.
 
 ---
 
-## 📚 Available Security Plugins
+## 📚 Security Plugins Catalog
 
-| Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory | Quick Audit Command |
-|:---|:---:|:---:|:---|:---:|:---|
-| **eMudhra Weak Intermediate CA Audit** | **CVE-2026-91403** | `CRITICAL 9.1` | WebPKI, Java JSSE, TLS endpoints | [`plugins/emudhra_weak_ca/`](plugins/emudhra_weak_ca/) | `python plugins/emudhra_weak_ca/emudhra_weak_ca_audit.py <target>` |
-| **PHP Core Stale Global State RCE Audit (PHP2Shell)** | **CVE-2026-109619** | `CRITICAL 9.2` | PHP 5.4 to 8.5.11, FastCGI, PAN-OS | [`plugins/php2shell/`](plugins/php2shell/) | `python plugins/php2shell/php2shell_cve_2026_109619_audit.py <target>` |
-| **WordPress Gravity Forms PHP Object Injection Audit** | **CVE-2026-103039** | `CRITICAL 9.8` | WordPress Gravity Forms `<= 3.1.2` | [`plugins/wordpress/wp_gravityforms/`](plugins/wordpress/wp_gravityforms/) | `python plugins/wordpress/wp_gravityforms/wp_gravityforms_cve_2026_103039_audit.py <target>` |
-| **vsftpd FTPS Data Channel Hijacking Audit** | **CVE-2026-119568** | `CRITICAL 9.1` | vsftpd `<= 3.0.5` (Ubuntu, Debian, RHEL) | [`plugins/vsftpd/`](plugins/vsftpd/) | `python plugins/vsftpd/vsftpd_cve_2026_119568_audit.py <target>` |
-| **pgAdmin 4 psql \copy RCE & Lockout Bypass Audit** | **CVE-2026-116241** | `CRITICAL 9.4` | pgAdmin 4 Server Mode `< 9.19` | [`plugins/pgadmin4/`](plugins/pgadmin4/) | `python plugins/pgadmin4/pgadmin4_cve_2026_116241_audit.py <target>` |
-| **SUSE Rancher Manager Meta-Proxy & Fleet Audit** | **CVE-2026-88811** | `CRITICAL 9.1` | SUSE Rancher `2.13`–`2.15` (`< 2.13.12`/`2.14.8`/`2.15.4`) | [`plugins/rancher/`](plugins/rancher/) | `python plugins/rancher/rancher_cve_2026_88811_audit.py <target>` |
-| **Zoho ManageEngine Log360 & EventLog Analyzer Audit** | **CVE-2026-13594** | `CRITICAL 9.1` | ManageEngine Log360 & EventLog Analyzer `<= 13062` | [`plugins/manageengine_log360/`](plugins/manageengine_log360/) | `python plugins/manageengine_log360/manageengine_cve_2026_13594_audit.py <target>` |
-| **Barracuda Email Security Gateway Auth Bypass Audit** | **CVE-2026-116606** | `CRITICAL 9.3` | Barracuda Email Security Gateway `< 9.4.0.030` | [`plugins/barracuda_esg/`](plugins/barracuda_esg/) | `python plugins/barracuda_esg/barracuda_esg_cve_2026_116606_audit.py <target>` |
-| **SonicWall GMS Unauthenticated Internal File Read Audit** | **CVE-2026-109593** | `CRITICAL 9.1` | SonicWall Global Management System `<= 9.5.2` | [`plugins/sonicwall_gms/`](plugins/sonicwall_gms/) | `python plugins/sonicwall_gms/sonicwall_gms_cve_2026_109593_audit.py <target>` |
-| **GLPI Two-Factor Authentication Bypass Audit** | **CVE-2026-52848** | `CRITICAL 9.2` | GLPI `11.0.0` to `11.0.7` (`< 11.0.8`) | [`plugins/glpi/`](plugins/glpi/) | `python plugins/glpi/glpi_cve_2026_52848_audit.py <target>` |
-| **Sonatype Nexus Repository 3 SAML/OIDC Account Bypass Audit** | **CVE-2026-113373** | `CRITICAL 9.1` | Sonatype Nexus Repository 3 `3.86.0`–`3.97.1` (`< 3.98.0`) | [`plugins/nexus_repository/`](plugins/nexus_repository/) | `python plugins/nexus_repository/nexus_cve_2026_113373_audit.py <target>` |
-| **NoMachine nxwebrunner Web Service Audit** | **CVE-2026-114549** | `CRITICAL 9.8` | NoMachine `nxwebrunner` `<= 9.7.3` | [`plugins/nomachine/`](plugins/nomachine/) | `python plugins/nomachine/nomachine_cve_2026_114549_audit.py <target>` |
-| **Apache OFBiz Screen Descriptor & Login Key Audit** | **CVE-2026-83542** | `CRITICAL 9.8` | Apache OFBiz `< 24.09.08` | [`plugins/apache_ofbiz/`](plugins/apache_ofbiz/) | `python plugins/apache_ofbiz/apache_ofbiz_cve_2026_83542_audit.py <target>` |
-| **Keycloak SAML HTTP-Redirect Signature Verification Audit** | **CVE-2026-117691** | `CRITICAL 9.1` | Keycloak / RH-SSO `< 26.2.0` | [`plugins/keycloak/`](plugins/keycloak/) | `python plugins/keycloak/keycloak_cve_2026_117691_audit.py <target>` |
-| **FreeSWITCH SIP & WebRTC Stack Version Audit** | **CVE-2026-116779** | `CRITICAL 9.8` | FreeSWITCH `< 1.11.3` | [`plugins/freeswitch/`](plugins/freeswitch/) | `python plugins/freeswitch/freeswitch_cve_2026_116779_audit.py <target>` |
-| **WordPress Naimur Email OTP Verification Auth Bypass Audit** | **CVE-2026-104014** | `CRITICAL 9.8` | WordPress Naimur Email OTP Verification `<= 2.1.0` | [`plugins/wordpress/wp_naimur_email_otp/`](plugins/wordpress/wp_naimur_email_otp/) | `python plugins/wordpress/wp_naimur_email_otp/wp_naimur_email_otp_cve_2026_104014_audit.py <target>` |
-| **WordPress Registration Form for WooCommerce PrivEsc Audit** | **CVE-2026-119075** | `CRITICAL 9.8` | WordPress Registration Form for WooCommerce `<= 1.1.4` | [`plugins/wordpress/wp_registration_form_woocommerce/`](plugins/wordpress/wp_registration_form_woocommerce/) | `python plugins/wordpress/wp_registration_form_woocommerce/wp_registration_form_woocommerce_cve_2026_119075_audit.py <target>` |
-| **WordPress LatePoint Authentication Bypass Audit** | **CVE-2026-118066** | `CRITICAL 9.1` | WordPress LatePoint `<= 5.7.6` | [`plugins/wordpress/wp_latepoint/`](plugins/wordpress/wp_latepoint/) | `python plugins/wordpress/wp_latepoint/wp_latepoint_cve_2026_118066_audit.py <target>` |
-| **WordPress Printcart Product Designer File Upload Audit** | **CVE-2026-19803** | `CRITICAL 9.8` | WordPress Printcart Product Designer `<= 2.13.2` | [`plugins/wordpress/wp_printcart_designer/`](plugins/wordpress/wp_printcart_designer/) | `python plugins/wordpress/wp_printcart_designer/wp_printcart_designer_cve_2026_19803_audit.py <target>` |
-| **WordPress payever WooCommerce Gateway File Upload Audit** | **CVE-2026-93754** | `CRITICAL 9.8` | WordPress payever WooCommerce Gateway `<= 4.8.0` | [`plugins/wordpress/wp_payever_gateway/`](plugins/wordpress/wp_payever_gateway/) | `python plugins/wordpress/wp_payever_gateway/wp_payever_gateway_cve_2026_93754_audit.py <target>` |
-| **OpenAM Live Session Token Disclosure & Auth Bypass Audit** | **CVE-2026-123551** | `CRITICAL 10.0` | OpenAM `< 16.1.4` (`14.0.0`–`16.1.3`) | [`plugins/openam/`](plugins/openam/) | `python plugins/openam/openam_cve_2026_123551_audit.py <target>` |
-| **IBM API Connect Auth Bypass & RCE Audit** | **CVE-2026-17301** | `CRITICAL 9.8` | IBM API Connect `10.0.8.0`–`10.0.8.12`, `12.1.0.0`–`12.1.1.2` | [`plugins/ibm_api_connect/`](plugins/ibm_api_connect/) | `python plugins/ibm_api_connect/ibm_api_connect_cve_2026_17301_audit.py <target>` |
-| **Keycloak Client Management JS Policy Upload RCE Audit** | **CVE-2026-120984** | `CRITICAL 9.1` | Keycloak / RH-SSO `< 26.2.5` | [`plugins/keycloak_client_mgmt/`](plugins/keycloak_client_mgmt/) | `python plugins/keycloak_client_mgmt/keycloak_cve_2026_120984_audit.py <target>` |
-| **WordPress Contact Form 7 File Upload Validation Audit** | **CVE-2026-114432** | `CRITICAL 9.8` | WordPress Contact Form 7 `< 6.2.4` | [`plugins/wordpress/wp_contact_form_7/`](plugins/wordpress/wp_contact_form_7/) | `python plugins/wordpress/wp_contact_form_7/wp_contact_form_7_cve_2026_114432_audit.py <target>` |
-| **OpenEMR Multi-CVE Version Compliance Audit** | **CVE-2026-126473** / **CVE-2026-124445** | `CRITICAL 9.4` | OpenEMR `< 8.4.0` (`< 8.3.0`) | [`plugins/openemr/`](plugins/openemr/) | `python plugins/openemr/openemr_cve_2026_124445_audit.py <target>` |
-| **imgproxy ICO Loader Version Compliance Audit** | **CVE-2026-123614** | `CRITICAL 9.3` | imgproxy `4.0.0`–`4.0.15` (`< 4.0.16`) | [`plugins/imgproxy/`](plugins/imgproxy/) | `python plugins/imgproxy/imgproxy_cve_2026_123614_audit.py <target>` |
-| **SAP Web Dispatcher & NetWeaver Compliance Audit** | **CVE-2026-89126** | `CRITICAL 10.0` | SAP Web Dispatcher & ICM `7.22`–`9.21` | [`plugins/sap_netweaver/`](plugins/sap_netweaver/) | `python plugins/sap_netweaver/sap_netweaver_cve_2026_89126_audit.py <target>` |
-| **Craft CMS Version Compliance Audit** | **CVE-2026-115934** | `CRITICAL 9.3` | Craft CMS `< 4.18.9` & `< 5.11.2` | [`plugins/craft_cms/`](plugins/craft_cms/) | `python plugins/craft_cms/craft_cms_cve_2026_115934_audit.py <target>` |
-| **Redpanda Connect Version Compliance Audit** | **CVE-2026-123270** | `CRITICAL 9.8` | Redpanda Connect `4.39`–`4.110` (`< 4.111.0`) | [`plugins/redpanda_connect/`](plugins/redpanda_connect/) | `python plugins/redpanda_connect/redpanda_connect_cve_2026_123270_audit.py <target>` |
-| **Fortinet FortiManager Version Compliance Audit** | **CVE-2026-126261** | `CRITICAL 9.8` | FortiManager `7.2.0`–`7.2.8`, `7.4.0`–`7.4.5`, `7.6.0`–`7.6.7`, `8.0.0` | [`plugins/fortimanager/`](plugins/fortimanager/) | `python plugins/fortimanager/fortimanager_cve_2026_126261_audit.py <target>` |
-| **Ivanti Endpoint Manager Version Compliance Audit** | **CVE-2026-121653** | `CRITICAL 9.8` | Ivanti Endpoint Manager `< 2024 SU8` (`< 11.0.6.8`) | [`plugins/ivanti_epm/`](plugins/ivanti_epm/) | `python plugins/ivanti_epm/ivanti_epm_cve_2026_121653_audit.py <target>` |
-| **Microsoft SharePoint Server Version Compliance Audit** | **CVE-2026-120002** | `CRITICAL 9.9` | SharePoint Server Subscription / 2019 / 2016 (Nov 2026 PU) | [`plugins/sharepoint/`](plugins/sharepoint/) | `python plugins/sharepoint/sharepoint_cve_2026_120002_audit.py <target>` |
-| **Fortinet FortiOS Version Compliance Audit** | **CVE-2026-126259** | `CRITICAL 9.8` | FortiOS `7.0.0`–`7.0.19`, `7.2.0`–`7.2.13`, `7.4.0`–`7.4.12`, `7.6.0`–`7.6.7`, `8.0.0`–`8.0.1` | [`plugins/fortios/`](plugins/fortios/) | `python plugins/fortios/fortios_cve_2026_126259_audit.py <target>` |
-| **Synology DiskStation Manager Version Compliance Audit** | **CVE-2026-76954** | `CRITICAL 9.8` | Synology DSM `< 7.2.1-69057-13`, `< 7.2.2-72806-10`, `< 7.3.2-86009-5`, `< 7.4.1-90080-1` | [`plugins/synology_dsm/`](plugins/synology_dsm/) | `python plugins/synology_dsm/synology_dsm_cve_2026_76954_audit.py <target>` |
-| **Red Hat Quay Version Compliance Audit** | **CVE-2026-110697** | `CRITICAL 9.9` | Red Hat Quay `3.12`–`3.18` (`< 3.12.11` to `< 3.18.2`) | [`plugins/redhat_quay/`](plugins/redhat_quay/) | `python plugins/redhat_quay/redhat_quay_cve_2026_110697_audit.py <target>` |
-| **GitLab CE/EE Version Compliance Audit** | **CVE-2026-110264** | `CRITICAL 10.0` | GitLab CE/EE `< 19.2.6`, `< 19.3.4`, `< 19.4.2` | [`plugins/gitlab/`](plugins/gitlab/) | `python plugins/gitlab/gitlab_cve_2026_110264_audit.py <target>` |
-| **Citrix NetScaler Console & ADC Gateway Version Compliance Audit** | **CVE-2026-120869** / **CVE-2026-120864** | `CRITICAL 9.5` | NetScaler ADC/Gateway `< 14.1-73.57`, `< 13.1-64.39` | [`plugins/citrix_netscaler/`](plugins/citrix_netscaler/) | `python plugins/citrix_netscaler/citrix_netscaler_cve_2026_120869_audit.py <target>` |
-| **WatchGuard Fireware OS & SonicWall SMA1000 Compliance Audit** | **CVE-2026-93866** | `CRITICAL 10.0` | Fireware OS `< 12.11.9` / `< 2026.2.1`, SonicWall SMA1000 `< 12.4.3-03312` | [`plugins/watchguard_fireware/`](plugins/watchguard_fireware/) | `python plugins/watchguard_fireware/watchguard_fireware_cve_2026_93866_audit.py <target>` |
-| **Alinto SOGo Groupware SAML & Sieve Version Compliance Audit** | **CVE-2026-127131** | `CRITICAL 9.1` | Alinto SOGo `< 5.12.7` & `< 2.4.7` | [`plugins/sogo_groupware/`](plugins/sogo_groupware/) | `python plugins/sogo_groupware/sogo_cve_2026_127131_audit.py <target>` |
-| **Azul Payara Server & Payara Micro Admin Auth Bypass Audit** | **CVE-2026-110003** / **CVE-2026-90908** | `CRITICAL 9.3` | Payara `< 7.6.0` / `< 7.2026.11`, `< 6.44.0`, `< 5.93.0` | [`plugins/azul_payara/`](plugins/azul_payara/) | `python plugins/azul_payara/azul_payara_cve_2026_110003_audit.py <target>` |
-| **Zoho ManageEngine ITSM, M365 Manager Plus & DDI Central Audit** | **CVE-2026-12591** / **CVE-2026-12507** | `CRITICAL 9.9` | M365 Manager Plus `< 4818`, ServiceDesk Plus `< 15290`, DDI Central `< 6301` | [`plugins/manageengine_itsm/`](plugins/manageengine_itsm/) | `python plugins/manageengine_itsm/manageengine_itsm_cve_2026_12591_audit.py <target>` |
-| **Google Chrome & Headless Chromium Sandbox Escape Audit** | **CVE-2026-126885** | `CRITICAL 9.6` | Google Chrome / Headless Chromium `< 157.0.8103.78` | [`plugins/google_chrome/`](plugins/google_chrome/) | `python plugins/google_chrome/google_chrome_cve_2026_126885_audit.py <target>` |
-| **WordPress Clockinator Lite SQL Injection Audit** | **CVE-2026-124815** | `CRITICAL 10.0` | WordPress Clockinator Lite `< 1.1.0` | [`plugins/wordpress/wp_clockinator_lite/`](plugins/wordpress/wp_clockinator_lite/) | `python plugins/wordpress/wp_clockinator_lite/wp_clockinator_lite_cve_2026_124815_audit.py <target>` |
-| **WordPress Ultimate Addons for Elementor Forms File Upload Audit** | **CVE-2026-124814** | `CRITICAL 9.8` | WordPress Ultimate Addons for Elementor Forms `< 1.0.8` | [`plugins/wordpress/wp_uae_forms/`](plugins/wordpress/wp_uae_forms/) | `python plugins/wordpress/wp_uae_forms/wp_uae_forms_cve_2026_124814_audit.py <target>` |
-| **WordPress Descope Authentication Bypass Audit** | **CVE-2026-110959** | `CRITICAL 9.8` | WordPress Descope `< 1.2.0` | [`plugins/wordpress/wp_descope/`](plugins/wordpress/wp_descope/) | `python plugins/wordpress/wp_descope/wp_descope_cve_2026_110959_audit.py <target>` |
-| **FrankenPHP Application Server Version Compliance Audit** | **CVE-2026-128014** / **CVE-2026-128023** | `CRITICAL 9.3` | FrankenPHP `< 1.13.2` (`< 1.13.0`, `< 1.1.11`) | [`plugins/frankenphp/`](plugins/frankenphp/) | `python plugins/frankenphp/frankenphp_cve_2026_128014_audit.py <target>` |
-| **WordPress AutomatorWP Pro Webhook Auth Bypass Audit** | **CVE-2026-126173** | `CRITICAL 9.8` | WordPress AutomatorWP Pro `<= 1.4.4` | [`plugins/wordpress/wp_automatorwp_pro/`](plugins/wordpress/wp_automatorwp_pro/) | `python plugins/wordpress/wp_automatorwp_pro/wp_automatorwp_pro_cve_2026_126173_audit.py <target>` |
-| **WordPress ELEX HelpDesk PHP Object Injection Audit** | **CVE-2026-119077** / **CVE-2026-125855** | `CRITICAL 9.8` | WordPress ELEX HelpDesk `<= 3.3.9` | [`plugins/wordpress/wp_elex_helpdesk/`](plugins/wordpress/wp_elex_helpdesk/) | `python plugins/wordpress/wp_elex_helpdesk/wp_elex_helpdesk_cve_2026_119077_audit.py <target>` |
-| **WordPress Advance Guest Post File Upload Validation Audit** | **CVE-2026-118063** / **CVE-2026-118064** | `CRITICAL 9.8` | WordPress Advance Guest Post `<= 1.9` | [`plugins/wordpress/wp_advance_guest_post/`](plugins/wordpress/wp_advance_guest_post/) | `python plugins/wordpress/wp_advance_guest_post/wp_advance_guest_post_cve_2026_118063_audit.py <target>` |
-| **WordPress Easy DragDrop File Uploader File Deletion Audit** | **CVE-2026-124822** | `CRITICAL 10.0` | WordPress Easy DragDrop File Uploader `< 1.1.10` | [`plugins/wordpress/wp_easy_dragdrop_uploader/`](plugins/wordpress/wp_easy_dragdrop_uploader/) | `python plugins/wordpress/wp_easy_dragdrop_uploader/wp_easy_dragdrop_uploader_cve_2026_124822_audit.py <target>` |
-| **WordPress Hotel Booking Lite File Upload Audit** | **CVE-2026-125851** | `CRITICAL 9.9` | WordPress Hotel Booking Lite `<= 2.5.1` | [`plugins/wordpress/wp_hotel_booking_lite/`](plugins/wordpress/wp_hotel_booking_lite/) | `python plugins/wordpress/wp_hotel_booking_lite/wp_hotel_booking_lite_cve_2026_125851_audit.py <target>` |
-| **WordPress Streamit Unauthenticated AJAX Auth Audit** | **CVE-2026-126119** | `CRITICAL 9.8` | WordPress Streamit `< 1.3.10` | [`plugins/wordpress/wp_streamit/`](plugins/wordpress/wp_streamit/) | `python plugins/wordpress/wp_streamit/wp_streamit_cve_2026_126119_audit.py <target>` |
-| **WordPress Chatterbug Forms File Upload Validation Audit** | **CVE-2026-125055** | `CRITICAL 9.8` | WordPress Chatterbug Forms `<= 1.0.2` | [`plugins/wordpress/wp_chatterbug_forms/`](plugins/wordpress/wp_chatterbug_forms/) | `python plugins/wordpress/wp_chatterbug_forms/wp_chatterbug_forms_cve_2026_125055_audit.py <target>` |
-| **WordPress Ahime Image Printer File Upload Audit** | **CVE-2026-124833** | `CRITICAL 9.8` | WordPress Ahime Image Printer `<= 1.0.0` | [`plugins/wordpress/wp_ahime_image_printer/`](plugins/wordpress/wp_ahime_image_printer/) | `python plugins/wordpress/wp_ahime_image_printer/wp_ahime_image_printer_cve_2026_124833_audit.py <target>` |
-| **WordPress Alex Reservations SQL Injection Audit** | **CVE-2026-124415** | `CRITICAL 9.3` | WordPress Alex Reservations `<= 2.4.8` | [`plugins/wordpress/wp_alex_reservations/`](plugins/wordpress/wp_alex_reservations/) | `python plugins/wordpress/wp_alex_reservations/wp_alex_reservations_cve_2026_124415_audit.py <target>` |
-| **WordPress WP BASE Booking SQL Injection Audit** | **CVE-2026-124970** | `CRITICAL 9.3` | WordPress WP BASE Booking `<= 6.5.2` | [`plugins/wordpress/wp_base_booking/`](plugins/wordpress/wp_base_booking/) | `python plugins/wordpress/wp_base_booking/wp_base_booking_cve_2026_124970_audit.py <target>` |
-| **WordPress Woocommerce Wishlist Authorization & CSRF Audit** | **CVE-2026-124763** | `CRITICAL 9.1` | WordPress Woocommerce Wishlist `<= 1.1.0` | [`plugins/wordpress/wp_woocommerce_wishlist/`](plugins/wordpress/wp_woocommerce_wishlist/) | `python plugins/wordpress/wp_woocommerce_wishlist/wp_woocommerce_wishlist_cve_2026_124763_audit.py <target>` |
+> 💡 **Full Searchable Index:** Browse **[`CATALOG.md`](CATALOG.md)** for the single-page master table, or expand a domain below.
+
+| Technology Domain | Modules | Representative Targets | Sub-Catalog / Reference |
+|:---|:---:|:---|:---|
+| **🛡️ Network, Firewalls & VPN Appliances** | `7` | Citrix NetScaler, FortiOS, FortiManager, WatchGuard, SonicWall, Barracuda, Synology DSM | [View in `CATALOG.md`](CATALOG.md#-1-network-appliances-firewalls--vpn-gateways) |
+| **🔑 Identity, IAM, SSO & PKI** | `5` | Keycloak, OpenAM, IBM API Connect, eMudhra Weak CA | [View in `CATALOG.md`](CATALOG.md#-2-identity-iam-sso--pki-infrastructure) |
+| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `11` | FrankenPHP, PHP2Shell, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Redpanda, imgproxy, vsftpd, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
+| **🏢 Enterprise Apps, ERP, ITSM & Healthcare** | `13` | SAP NetWeaver, SharePoint, OpenEMR, GLPI, ManageEngine, Ivanti EPM, Apache OFBiz, Craft CMS, SOGo, Payara, FreeSWITCH, NoMachine | [View in `CATALOG.md`](CATALOG.md#-4-enterprise-apps-erp-itsm-groupware--healthcare) |
+| **🌐 WordPress & WooCommerce Ecosystem** | `21` | Gravity Forms, Contact Form 7, AutomatorWP Pro, ELEX HelpDesk, LatePoint, Elementor UAE, Descope, Streamit & 13 more | 👉 **[`plugins/wordpress/README.md`](plugins/wordpress/README.md)** |
+
+<details>
+<summary><b>🛡️ 1. Network Appliances, Firewalls & VPN Gateways (Click to expand — 7 plugins)</b></summary>
+
+<br>
+
+| Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
+|:---|:---:|:---:|:---|:---:|
+| **Citrix NetScaler Console & ADC Gateway Audit** | **CVE-2026-120869** / **CVE-2026-120864** | `CRITICAL 9.5` | NetScaler ADC/Gateway `< 14.1-73.57`, `< 13.1-64.39` | [`plugins/citrix_netscaler/`](plugins/citrix_netscaler/) |
+| **Fortinet FortiOS Version Compliance Audit** | **CVE-2026-126259** | `CRITICAL 9.8` | FortiOS `7.0.0`–`7.0.19`, `7.2.0`–`7.2.13`, `7.4.0`–`7.4.12`, `7.6.0`–`7.6.7`, `8.0.0`–`8.0.1` | [`plugins/fortios/`](plugins/fortios/) |
+| **Fortinet FortiManager Version Compliance Audit** | **CVE-2026-126261** | `CRITICAL 9.8` | FortiManager `7.2.0`–`7.2.8`, `7.4.0`–`7.4.5`, `7.6.0`–`7.6.7`, `8.0.0` | [`plugins/fortimanager/`](plugins/fortimanager/) |
+| **WatchGuard Fireware OS & SonicWall SMA1000 Audit** | **CVE-2026-93866** | `CRITICAL 10.0` | Fireware OS `< 12.11.9` / `< 2026.2.1`, SonicWall SMA1000 `< 12.4.3-03312` | [`plugins/watchguard_fireware/`](plugins/watchguard_fireware/) |
+| **SonicWall GMS Internal File Read Audit** | **CVE-2026-109593** | `CRITICAL 9.1` | SonicWall Global Management System `<= 9.5.2` | [`plugins/sonicwall_gms/`](plugins/sonicwall_gms/) |
+| **Barracuda Email Security Gateway Auth Bypass Audit** | **CVE-2026-116606** | `CRITICAL 9.3` | Barracuda Email Security Gateway `< 9.4.0.030` | [`plugins/barracuda_esg/`](plugins/barracuda_esg/) |
+| **Synology DiskStation Manager Version Audit** | **CVE-2026-76954** | `CRITICAL 9.8` | Synology DSM `< 7.2.1-69057-13`, `< 7.2.2-72806-10`, `< 7.3.2-86009-5`, `< 7.4.1-90080-1` | [`plugins/synology_dsm/`](plugins/synology_dsm/) |
+
+</details>
+
+<details>
+<summary><b>🔑 2. Identity, IAM, SSO & PKI Infrastructure (Click to expand — 5 plugins)</b></summary>
+
+<br>
+
+| Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
+|:---|:---:|:---:|:---|:---:|
+| **OpenAM Live Session Token & Auth Bypass Audit** | **CVE-2026-123551** | `CRITICAL 10.0` | OpenAM `< 16.1.4` (`14.0.0`–`16.1.3`) | [`plugins/openam/`](plugins/openam/) |
+| **Keycloak SAML HTTP-Redirect Signature Audit** | **CVE-2026-117691** | `CRITICAL 9.1` | Keycloak / RH-SSO `< 26.2.0` | [`plugins/keycloak/`](plugins/keycloak/) |
+| **Keycloak Client Management JS Policy RCE Audit** | **CVE-2026-120984** | `CRITICAL 9.1` | Keycloak / RH-SSO `< 26.2.5` | [`plugins/keycloak_client_mgmt/`](plugins/keycloak_client_mgmt/) |
+| **IBM API Connect Auth Bypass & RCE Audit** | **CVE-2026-17301** | `CRITICAL 9.8` | IBM API Connect `10.0.8.0`–`10.0.8.12`, `12.1.0.0`–`12.1.1.2` | [`plugins/ibm_api_connect/`](plugins/ibm_api_connect/) |
+| **eMudhra Weak Intermediate CA Audit** | **CVE-2026-91403** | `CRITICAL 9.1` | WebPKI, Java JSSE, TLS endpoints | [`plugins/emudhra_weak_ca/`](plugins/emudhra_weak_ca/) |
+
+</details>
+
+<details>
+<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 11 plugins)</b></summary>
+
+<br>
+
+| Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
+|:---|:---:|:---:|:---|:---:|
+| **FrankenPHP Application Server Compliance Audit** | **CVE-2026-128014** / **CVE-2026-128023** | `CRITICAL 9.3` | FrankenPHP `< 1.13.2` (`< 1.13.0`, `< 1.1.11`) | [`plugins/frankenphp/`](plugins/frankenphp/) |
+| **PHP Core Stale Global State RCE Audit (PHP2Shell)** | **CVE-2026-109619** | `CRITICAL 9.2` | PHP 5.4 to 8.5.11, FastCGI, PAN-OS | [`plugins/php2shell/`](plugins/php2shell/) |
+| **GitLab CE/EE Version Compliance Audit** | **CVE-2026-110264** | `CRITICAL 10.0` | GitLab CE/EE `< 19.2.6`, `< 19.3.4`, `< 19.4.2` | [`plugins/gitlab/`](plugins/gitlab/) |
+| **Red Hat Quay Version Compliance Audit** | **CVE-2026-110697** | `CRITICAL 9.9` | Red Hat Quay `3.12`–`3.18` (`< 3.12.11` to `< 3.18.2`) | [`plugins/redhat_quay/`](plugins/redhat_quay/) |
+| **SUSE Rancher Manager Meta-Proxy & Fleet Audit** | **CVE-2026-88811** | `CRITICAL 9.1` | SUSE Rancher `2.13`–`2.15` (`< 2.13.12`/`2.14.8`/`2.15.4`) | [`plugins/rancher/`](plugins/rancher/) |
+| **Sonatype Nexus Repository 3 SAML/OIDC Bypass Audit** | **CVE-2026-113373** | `CRITICAL 9.1` | Sonatype Nexus Repository 3 `3.86.0`–`3.97.1` (`< 3.98.0`) | [`plugins/nexus_repository/`](plugins/nexus_repository/) |
+| **pgAdmin 4 psql \copy RCE & Lockout Bypass Audit** | **CVE-2026-116241** | `CRITICAL 9.4` | pgAdmin 4 Server Mode `< 9.19` | [`plugins/pgadmin4/`](plugins/pgadmin4/) |
+| **Redpanda Connect Version Compliance Audit** | **CVE-2026-123270** | `CRITICAL 9.8` | Redpanda Connect `4.39`–`4.110` (`< 4.111.0`) | [`plugins/redpanda_connect/`](plugins/redpanda_connect/) |
+| **imgproxy ICO Loader Version Compliance Audit** | **CVE-2026-123614** | `CRITICAL 9.3` | imgproxy `4.0.0`–`4.0.15` (`< 4.0.16`) | [`plugins/imgproxy/`](plugins/imgproxy/) |
+| **vsftpd FTPS Data Channel Hijacking Audit** | **CVE-2026-119568** | `CRITICAL 9.1` | vsftpd `<= 3.0.5` (Ubuntu, Debian, RHEL) | [`plugins/vsftpd/`](plugins/vsftpd/) |
+| **Google Chrome & Headless Chromium Sandbox Audit** | **CVE-2026-126885** | `CRITICAL 9.6` | Google Chrome / Headless Chromium `< 157.0.8103.78` | [`plugins/google_chrome/`](plugins/google_chrome/) |
+
+</details>
+
+<details>
+<summary><b>🏢 4. Enterprise Apps, ERP, ITSM, Groupware & Healthcare (Click to expand — 13 plugins)</b></summary>
+
+<br>
+
+| Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
+|:---|:---:|:---:|:---|:---:|
+| **SAP Web Dispatcher & NetWeaver Compliance Audit** | **CVE-2026-89126** | `CRITICAL 10.0` | SAP Web Dispatcher & ICM `7.22`–`9.21` | [`plugins/sap_netweaver/`](plugins/sap_netweaver/) |
+| **Microsoft SharePoint Server Version Compliance Audit** | **CVE-2026-120002** | `CRITICAL 9.9` | SharePoint Server Subscription / 2019 / 2016 (Nov 2026 PU) | [`plugins/sharepoint/`](plugins/sharepoint/) |
+| **OpenEMR Multi-CVE Version Compliance Audit** | **CVE-2026-126473** / **CVE-2026-124445** | `CRITICAL 9.4` | OpenEMR `< 8.4.0` (`< 8.3.0`) | [`plugins/openemr/`](plugins/openemr/) |
+| **GLPI Two-Factor Authentication Bypass Audit** | **CVE-2026-52848** | `CRITICAL 9.2` | GLPI `11.0.0` to `11.0.7` (`< 11.0.8`) | [`plugins/glpi/`](plugins/glpi/) |
+| **Zoho ManageEngine ITSM, M365 Manager & DDI Audit** | **CVE-2026-12591** / **CVE-2026-12507** | `CRITICAL 9.9` | M365 Manager Plus `< 4818`, ServiceDesk Plus `< 15290`, DDI Central `< 6301` | [`plugins/manageengine_itsm/`](plugins/manageengine_itsm/) |
+| **Zoho ManageEngine Log360 & EventLog Analyzer Audit** | **CVE-2026-13594** | `CRITICAL 9.1` | ManageEngine Log360 & EventLog Analyzer `<= 13062` | [`plugins/manageengine_log360/`](plugins/manageengine_log360/) |
+| **Ivanti Endpoint Manager Version Compliance Audit** | **CVE-2026-121653** | `CRITICAL 9.8` | Ivanti Endpoint Manager `< 2024 SU8` (`< 11.0.6.8`) | [`plugins/ivanti_epm/`](plugins/ivanti_epm/) |
+| **Apache OFBiz Screen Descriptor & Login Key Audit** | **CVE-2026-83542** | `CRITICAL 9.8` | Apache OFBiz `< 24.09.08` | [`plugins/apache_ofbiz/`](plugins/apache_ofbiz/) |
+| **Craft CMS Version Compliance Audit** | **CVE-2026-115934** | `CRITICAL 9.3` | Craft CMS `< 4.18.9` & `< 5.11.2` | [`plugins/craft_cms/`](plugins/craft_cms/) |
+| **Alinto SOGo Groupware SAML & Sieve Audit** | **CVE-2026-127131** | `CRITICAL 9.1` | Alinto SOGo `< 5.12.7` & `< 2.4.7` | [`plugins/sogo_groupware/`](plugins/sogo_groupware/) |
+| **Azul Payara Server & Payara Micro Admin Auth Audit** | **CVE-2026-110003** / **CVE-2026-90908** | `CRITICAL 9.3` | Payara `< 7.6.0` / `< 7.2026.11`, `< 6.44.0`, `< 5.93.0` | [`plugins/azul_payara/`](plugins/azul_payara/) |
+| **FreeSWITCH SIP & WebRTC Stack Version Audit** | **CVE-2026-116779** | `CRITICAL 9.8` | FreeSWITCH `< 1.11.3` | [`plugins/freeswitch/`](plugins/freeswitch/) |
+| **NoMachine nxwebrunner Web Service Audit** | **CVE-2026-114549** | `CRITICAL 9.8` | NoMachine `nxwebrunner` `<= 9.7.3` | [`plugins/nomachine/`](plugins/nomachine/) |
+
+</details>
 
 ---
 
 ## 🗂️ Repository Structure
 
-The repository follows a clean, modular structure where each plugin is self-contained with its dedicated technical documentation:
-
 ```text
 rtms-public/
 ├── LICENSE                                # MIT Open-Source License
-├── README.md                              # This catalog & community guide
+├── README.md                              # Main overview & categorized plugin directory
+├── CATALOG.md                             # Complete single-page master plugin catalog
+├── CONTRIBUTING.md                        # Developer specification & AST security guardrails
 ├── pyproject.toml                         # Unified test & package configuration
 ├── requirements.txt                       # Consolidated Python dependencies
 │
 ├── plugins/                               # Dedicated security plugins directory
-│   ├── emudhra_weak_ca/                   # eMudhra Weak Intermediate CA Audit (CVE-2026-91403)
-│   │   ├── README.md                      # Detailed vulnerability analysis & guidance
-│   │   └── emudhra_weak_ca_audit.py       # Standalone CLI & RTMS BasePlugin script
-│   │
-│   ├── php2shell/                         # PHP Core Stale Global State RCE (CVE-2026-109619)
-│   │   ├── README.md                      # Detailed vulnerability analysis & guidance
-│   │   └── php2shell_cve_2026_109619_audit.py # Standalone CLI & RTMS BasePlugin script
-│   │
-│   ├── wordpress/                         # Dedicated WordPress & WooCommerce plugins directory
+│   ├── citrix_netscaler/                  # Citrix NetScaler Console & ADC/Gateway (10 CVEs)
+│   ├── fortios/                           # Fortinet FortiOS compliance auditor
+│   ├── frankenphp/                        # FrankenPHP Application Server compliance auditor
+│   ├── openemr/                           # OpenEMR healthcare EHR compliance auditor (6 CVEs)
+│   ├── wordpress/                         # Dedicated WordPress & WooCommerce plugins hub (21 plugins)
 │   │   ├── README.md                      # WordPress security plugins catalog
-│   │   ├── wp_gravityforms/               # Gravity Forms PHP Object Injection (CVE-2026-103039)
-│   │   ├── wp_naimur_email_otp/           # Naimur Email OTP Auth Bypass (CVE-2026-104014)
-│   │   ├── wp_registration_form_woocommerce/ # Registration Form for WooCommerce PrivEsc (CVE-2026-119075)
-│   │   ├── wp_latepoint/                  # LatePoint Authentication Bypass (CVE-2026-118066)
-│   │   ├── wp_printcart_designer/         # Printcart Product Designer File Upload (CVE-2026-19803)
-│   │   └── wp_payever_gateway/            # payever WooCommerce Gateway File Upload (CVE-2026-93754)
-│   │
-│   ├── vsftpd/                            # vsftpd FTPS Data Channel Hijacking (CVE-2026-119568)
-│   │   ├── README.md                      # Detailed vulnerability analysis & guidance
-│   │   └── vsftpd_cve_2026_119568_audit.py # Standalone CLI & RTMS BasePlugin script
-│   │
-│   └── pgadmin4/                          # pgAdmin 4 psql \copy RCE & Lockout Bypass (CVE-2026-116241)
-│       ├── README.md                      # Detailed vulnerability analysis & guidance
-│       └── pgadmin4_cve_2026_116241_audit.py # Standalone CLI & RTMS BasePlugin script
+│   │   └── wp_*/                          # Individual WordPress plugin auditors
+│   └── ...                                # 36 enterprise & infrastructure plugin directories
 │
-├── tests/                                 # Automated unit test suite
-│   ├── test_audit.py                      # Tests for eMudhra CA auditor
-│   ├── test_php2shell_audit.py            # Tests for PHP2Shell auditor
-│   ├── test_wp_gravityforms_audit.py      # Tests for WordPress Gravity Forms auditor
-│   ├── test_vsftpd_audit.py               # Tests for vsftpd FTPS auditor
-│   └── test_pgadmin4_audit.py             # Tests for pgAdmin 4 auditor
+└── tests/                                 # Automated unit test suite (321 tests)
 ```
 
 ---
@@ -136,85 +142,43 @@ pip install -r requirements.txt
 
 ### 2. Running an Audit
 
-You can execute plugins directly from their respective directory or from the repository root:
-
 ```bash
-# Audit a host for compromised eMudhra intermediate TLS certificates (CVE-2026-91403)
-python plugins/emudhra_weak_ca/emudhra_weak_ca_audit.py target-server.com -p 443 8443
+# Audit Citrix NetScaler Console / ADC & Gateway appliances
+python plugins/citrix_netscaler/citrix_netscaler_cve_2026_120869_audit.py 192.168.1.10 -p 443 8443
 
-# Audit a host for vulnerable PHP core runtime instances (CVE-2026-109619 / PHP2Shell)
-python plugins/php2shell/php2shell_cve_2026_109619_audit.py 192.168.1.10 -p 80 443 8080 9000
+# Audit FrankenPHP Application Server instances
+python plugins/frankenphp/frankenphp_cve_2026_128014_audit.py 192.168.1.20 -p 80 443 8080
 
-# Audit a WordPress host for vulnerable Gravity Forms plugin versions (CVE-2026-103039)
-python plugins/wordpress/wp_gravityforms/wp_gravityforms_cve_2026_103039_audit.py 192.168.1.20 -p 80 443
+# Audit OpenEMR healthcare installations
+python plugins/openemr/openemr_cve_2026_124445_audit.py 192.168.1.30 -p 80 443
 
-# Audit an FTP/FTPS server for vsftpd data channel hijacking (CVE-2026-119568)
-python plugins/vsftpd/vsftpd_cve_2026_119568_audit.py 192.168.1.30 -p 21 990
-
-# Audit a pgAdmin 4 server for psql \copy RCE & lockout bypass (CVE-2026-116241 / CVE-2026-116238)
-python plugins/pgadmin4/pgadmin4_cve_2026_116241_audit.py 192.168.1.40 -p 80 443 5050
+# Audit a WordPress installation for a specific plugin
+python plugins/wordpress/wp_automatorwp_pro/wp_automatorwp_pro_cve_2026_126173_audit.py 192.168.1.40 -p 80 443
 ```
 
 ---
 
 ## 🔌 Integration with RTMS Cybersecurity Suite
 
-Plugins from this repository integrate natively with **RTMS Suite**:
-
-### Option 1: File Drop into RTMS Scanner Probe
-1. Copy desired plugin scripts into the `external_plugins/` directory of your scanner probe:
-   ```bash
-   cp plugins/php2shell/php2shell_cve_2026_109619_audit.py /opt/rtms-scanner/external_plugins/
-   ```
-2. The dynamic RTMS plugin loader automatically analyzes code via AST security guardrails and activates the plugin.
-3. Every **Deep Scan** cycle across monitored subnets will automatically execute the checks and post findings to your dashboard.
-
-### Option 2: Upload via RTMS Web UI
-1. Navigate to **Administration > Plugins** in the RTMS Web Console.
-2. Upload the Python plugin file.
-3. The plugin immediately becomes available for:
-   * **Automated subnet discovery cycles**
-   * **Targeted Plugin Audits (Surgical IP Verification)** directly from **Asset Management** or the **Plugins Catalog**.
+1. **File Drop into RTMS Scanner Probe**: Copy desired plugin scripts into `/opt/rtms-scanner/external_plugins/`. The dynamic RTMS plugin loader automatically validates the AST security guardrails and activates the plugin.
+2. **Upload via RTMS Web UI**: Navigate to **Administration > Plugins** in the RTMS Web Console and upload the Python plugin file for automated subnet discovery or surgical IP verification.
 
 ---
 
 ## 🛠️ Contributing a New Plugin
 
-We welcome contributions from security researchers, network engineers, and system administrators! 
+Please read our full **[`CONTRIBUTING.md`](CONTRIBUTING.md)** for detailed specifications, AST security guardrails (`BasePlugin` contract, read-only network operations), and unit test guidelines:
 
-👉 **Detailed Developer Guide & Template:** Please read our full **[`CONTRIBUTING.md`](CONTRIBUTING.md)** for detailed specifications, AST security guardrails, unit test guidelines, and a copy-pasteable plugin template.
-
-### Quick Checklist:
-1. **Directory Structure**: Create a dedicated subfolder `plugins/<plugin_slug>/` containing `<plugin_slug>_audit.py` and a comprehensive `README.md`.
-2. **Contract Compliance**:
-   * Inherit from `BasePlugin` (with standalone fallback).
-   * Declare metadata in `self.info` (`name`, `description`, `severity`, `cve`, `version`).
-   * Implement `check_requirements(target_ip, target_services) -> bool`.
-   * Implement `run_audit(target_ip, target_services, credentials=None) -> Dict[str, Any]` returning `self.format_result(status, proof, details)`.
-3. **AST Security**: Strictly read-only; no `subprocess`, `os.system`, `ctypes`, `eval`, `exec`, or file writing/tampering operations.
-4. **Automated Tests**: Add unit tests in `tests/test_<plugin_slug>.py` and verify with:
-   ```bash
-   uv run --extra dev pytest
-   ```
+```bash
+uv run --extra dev pytest
+```
 
 ---
 
 ## 🛡️ About RTMS (Real-Time Monitoring & Security)
 
-Published with ❤️ by **[3TS Consulting SRL](https://3ts.ai)**, the team behind **RTMS**.
+Published with ❤️ by **[3TS Consulting SRL](https://3ts.ai)**, the team behind **RTMS** — a sovereign European cybersecurity and network posture management platform engineered for continuous asset visibility, threat detection, and **NIS 2 / CRA** regulatory compliance.
 
-**RTMS** is a sovereign European cybersecurity and network posture management platform engineered for continuous asset visibility, threat detection, and regulatory compliance:
-* **Zero Telemetry Leakage**: On-premise air-gapped vulnerability correlation.
-* **Continuous Asset Discovery**: Passive ARP auditing, rogue AP (*Evil Twin*) detection, and non-disruptive fingerprinting.
-* **Compliance Assurance**: Automated evidence collection and governance workflows for **NIS 2 Directive (EU 2022/2555)** and **Cyber Resilience Act (CRA - EU 2024/2847)**.
-
-👉 **Explore the full enterprise platform:** [https://3ts.ai](https://3ts.ai)  
-📧 **Contact & Security Inquiries:** [contact@3ts.ai](mailto:contact@3ts.ai)
-
----
-
-## ⚖️ License
-
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
-
-Copyright &copy; 2026 **RTMS Project Contributors / 3TS Consulting SRL**.
+* 🌐 **Website:** [https://3ts.ai](https://3ts.ai)
+* 📧 **Contact:** [contact@3ts.ai](mailto:contact@3ts.ai)
+* ⚖️ **License:** Distributed under the **MIT License** (see [`LICENSE`](LICENSE)).
