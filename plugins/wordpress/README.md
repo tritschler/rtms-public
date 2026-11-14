@@ -23,3 +23,14 @@ All plugins in this folder perform strictly **passive, non-intrusive** HTTP/HTTP
 | **Clockinator Lite SQL Injection & Access Control Audit** | **CVE-2026-124815** | `CRITICAL 10.0` | Clockinator Lite `< 1.1.0` (`<= 1.0.9`) | `1.1.0+` | [`wp_clockinator_lite/`](wp_clockinator_lite/) |
 | **Ultimate Addons for Elementor Forms File Upload Audit** | **CVE-2026-124814** | `CRITICAL 9.8` | Ultimate Addons for Elementor Forms `< 1.0.8` (`<= 1.0.7`) | `1.0.8+` | [`wp_uae_forms/`](wp_uae_forms/) |
 | **Descope Authentication Bypass Audit** | **CVE-2026-110959** | `CRITICAL 9.8` | Descope `< 1.2.0` (`<= 1.1.x`) | `1.2.0+` | [`wp_descope/`](wp_descope/) |
+| **AutomatorWP Pro Webhook Auth Bypass Audit** | **CVE-2026-126173** | `CRITICAL 9.8` | AutomatorWP Pro Webhooks Addon `<= 1.4.4` | `1.4.5+` | [`wp_automatorwp_pro/`](wp_automatorwp_pro/) |
+| **ELEX HelpDesk PHP Object Injection Audit** | **CVE-2026-119077** / **CVE-2026-125855** | `CRITICAL 9.8` | ELEX WordPress HelpDesk & Customer Ticketing `<= 3.3.9` | `3.3.10+` | [`wp_elex_helpdesk/`](wp_elex_helpdesk/) |
+| **Advance Guest Post File Upload Validation Audit** | **CVE-2026-118063** / **CVE-2026-118064** | `CRITICAL 9.8` | Advance Guest Post `<= 1.9` | `1.9.1+` | [`wp_advance_guest_post/`](wp_advance_guest_post/) |
+| **Easy DragDrop File Uploader Arbitrary File Deletion Audit** | **CVE-2026-124822** | `CRITICAL 10.0` | Easy DragDrop File Uploader `< 1.1.10` (`<= 1.1.9`) | `1.1.10+` | [`wp_easy_dragdrop_uploader/`](wp_easy_dragdrop_uploader/) |
+| **Hotel Booking Lite Unrestricted File Upload Audit** | **CVE-2026-125851** | `CRITICAL 9.9` | Hotel Booking Lite `<= 2.5.1` | `2.5.2+` | [`wp_hotel_booking_lite/`](wp_hotel_booking_lite/) |
+| **Streamit Unauthenticated AJAX Authorization Audit** | **CVE-2026-126119** | `CRITICAL 9.8` | Streamit `< 1.3.10` (`<= 1.3.9`) | `1.3.10+` | [`wp_streamit/`](wp_streamit/) |
+| **Chatterbug Forms File Upload Validation Audit** | **CVE-2026-125055** | `CRITICAL 9.8` | Chatterbug Forms `<= 1.0.2` | `1.0.3+` | [`wp_chatterbug_forms/`](wp_chatterbug_forms/) |
+| **Ahime Image Printer File Upload Validation Audit** | **CVE-2026-124833** | `CRITICAL 9.8` | Ahime Image Printer `<= 1.0.0` | `1.0.1+` | [`wp_ahime_image_printer/`](wp_ahime_image_printer/) |
+| **Alex Reservations SQL Injection Compliance Audit** | **CVE-2026-124415** | `CRITICAL 9.3` | Alex Reservations `<= 2.4.8` | `2.4.9+` | [`wp_alex_reservations/`](wp_alex_reservations/) |
+| **WP BASE Booking SQL Injection Compliance Audit** | **CVE-2026-124970** | `CRITICAL 9.3` | WP BASE Booking `<= 6.5.2` | `6.5.3+` | [`wp_base_booking/`](wp_base_booking/) |
+| **Woocommerce Wishlist Missing Authorization & CSRF Audit** | **CVE-2026-124763** | `CRITICAL 9.1` | Woocommerce Wishlist `<= 1.1.0` | `1.1.1+` | [`wp_woocommerce_wishlist/`](wp_woocommerce_wishlist/) |

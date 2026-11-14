@@ -70,5 +70,16 @@ pythonpath = [
     "plugins/wordpress/wp_uae_forms",
     "plugins/wordpress/wp_descope",
     "plugins/frankenphp",
+    "plugins/wordpress/wp_automatorwp_pro",
+    "plugins/wordpress/wp_elex_helpdesk",
+    "plugins/wordpress/wp_advance_guest_post",
+    "plugins/wordpress/wp_easy_dragdrop_uploader",
+    "plugins/wordpress/wp_hotel_booking_lite",
+    "plugins/wordpress/wp_streamit",
+    "plugins/wordpress/wp_chatterbug_forms",
+    "plugins/wordpress/wp_ahime_image_printer",
+    "plugins/wordpress/wp_alex_reservations",
+    "plugins/wordpress/wp_base_booking",
+    "plugins/wordpress/wp_woocommerce_wishlist",
 ]
 testpaths = ["tests"]
