@@ -6,13 +6,13 @@
 [![Plugins](https://img.shields.io/badge/Plugins-57-brightgreen.svg)](CATALOG.md)
 [![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-117%2B-red.svg)](CATALOG.md)
 
-Welcome to the official **RTMS Community Plugins** repository. This open-source hub contains standalone security audit tools and modular detection plugins engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
+Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **57 standalone security audit plugins** covering **117 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
 
 Each plugin is developed to provide rapid, reliable, and strictly non-destructive detection of critical emerging vulnerabilities (`CVSS >= 9.0`) across enterprise networks.
 
 ---
 
-## 📚 Security Plugins Catalog
+## 📚 Security Plugins Catalog (57 Plugins | 117 Critical CVEs)
 
 > 💡 **Full Searchable Index:** Browse **[`CATALOG.md`](CATALOG.md)** for the single-page master table, or expand a domain below.
 
@@ -23,6 +23,7 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 | **⚙️ Web Servers, Runtimes, DevOps & Containers** | `11` | FrankenPHP, PHP2Shell, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Redpanda, imgproxy, vsftpd, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
 | **🏢 Enterprise Apps, ERP, ITSM & Healthcare** | `13` | SAP NetWeaver, SharePoint, OpenEMR, GLPI, ManageEngine, Ivanti EPM, Apache OFBiz, Craft CMS, SOGo, Payara, FreeSWITCH, NoMachine | [View in `CATALOG.md`](CATALOG.md#-4-enterprise-apps-erp-itsm-groupware--healthcare) |
 | **🌐 WordPress & WooCommerce Ecosystem** | `21` | Gravity Forms, Contact Form 7, AutomatorWP Pro, ELEX HelpDesk, LatePoint, Elementor UAE, Descope, Streamit & 13 more | 👉 **[`plugins/wordpress/README.md`](plugins/wordpress/README.md)** |
+| **📊 Total Public Repository** | **`57`** | **117 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
 
 <details>
 <summary><b>🛡️ 1. Network Appliances, Firewalls & VPN Gateways (Click to expand — 7 plugins)</b></summary>
