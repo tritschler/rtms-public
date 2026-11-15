@@ -81,5 +81,8 @@ pythonpath = [
     "plugins/wordpress/wp_alex_reservations",
     "plugins/wordpress/wp_base_booking",
     "plugins/wordpress/wp_woocommerce_wishlist",
+    "plugins/dokploy",
+    "plugins/wordpress/wp_fluent_forms_cloud_storage",
+    "plugins/wordpress/wp_shipo",
 ]
 testpaths = ["tests"]

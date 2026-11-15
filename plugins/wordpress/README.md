@@ -34,3 +34,5 @@ All plugins in this folder perform strictly **passive, non-intrusive** HTTP/HTTP
 | **Alex Reservations SQL Injection Compliance Audit** | **CVE-2026-124415** | `CRITICAL 9.3` | Alex Reservations `<= 2.4.8` | `2.4.9+` | [`wp_alex_reservations/`](wp_alex_reservations/) |
 | **WP BASE Booking SQL Injection Compliance Audit** | **CVE-2026-124970** | `CRITICAL 9.3` | WP BASE Booking `<= 6.5.2` | `6.5.3+` | [`wp_base_booking/`](wp_base_booking/) |
 | **Woocommerce Wishlist Missing Authorization & CSRF Audit** | **CVE-2026-124763** | `CRITICAL 9.1` | Woocommerce Wishlist `<= 1.1.0` | `1.1.1+` | [`wp_woocommerce_wishlist/`](wp_woocommerce_wishlist/) |
+| **Cloud Storage Manager for Fluent Forms File Write Audit** | **CVE-2026-120522** | `CRITICAL 9.8` | Cloud Storage Manager for Fluent Forms `<= 1.2.0` | `1.2.1+` | [`wp_fluent_forms_cloud_storage/`](wp_fluent_forms_cloud_storage/) |
+| **Shipo Authentication Bypass Audit** | **CVE-2026-19907** | `CRITICAL 9.8` | Shipo `1.6` through `1.8.0` | `1.8.1+` | [`wp_shipo/`](wp_shipo/) |
