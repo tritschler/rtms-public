@@ -36,3 +36,6 @@ All plugins in this folder perform strictly **passive, non-intrusive** HTTP/HTTP
 | **Woocommerce Wishlist Missing Authorization & CSRF Audit** | **CVE-2026-124763** | `CRITICAL 9.1` | Woocommerce Wishlist `<= 1.1.0` | `1.1.1+` | [`wp_woocommerce_wishlist/`](wp_woocommerce_wishlist/) |
 | **Cloud Storage Manager for Fluent Forms File Write Audit** | **CVE-2026-120522** | `CRITICAL 9.8` | Cloud Storage Manager for Fluent Forms `<= 1.2.0` | `1.2.1+` | [`wp_fluent_forms_cloud_storage/`](wp_fluent_forms_cloud_storage/) |
 | **Shipo Authentication Bypass Audit** | **CVE-2026-19907** | `CRITICAL 9.8` | Shipo `1.6` through `1.8.0` | `1.8.1+` | [`wp_shipo/`](wp_shipo/) |
+| **Advanced Form Integration Privilege Escalation Audit** | **CVE-2026-125769** | `CRITICAL 9.8` | Advanced Form Integration `<= 2.11.3` | `2.11.4+` | [`wp_advanced_form_integration/`](wp_advanced_form_integration/) |
+| **Document Library Pro Object Injection Audit** | **CVE-2026-122662** | `CRITICAL 9.8` | Document Library Pro `< 4.2.2` (`<= 4.2.1`) | `4.2.2+` | [`wp_document_library_pro/`](wp_document_library_pro/) |
+| **Estatik Local File Inclusion Audit** | **CVE-2026-125795** | `CRITICAL 9.8` | Estatik `<= 4.3.6` | `4.3.7+` | [`wp_estatik/`](wp_estatik/) |
