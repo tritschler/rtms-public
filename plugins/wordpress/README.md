@@ -39,3 +39,5 @@ All plugins in this folder perform strictly **passive, non-intrusive** HTTP/HTTP
 | **Advanced Form Integration Privilege Escalation Audit** | **CVE-2026-125769** | `CRITICAL 9.8` | Advanced Form Integration `<= 2.11.3` | `2.11.4+` | [`wp_advanced_form_integration/`](wp_advanced_form_integration/) |
 | **Document Library Pro Object Injection Audit** | **CVE-2026-122662** | `CRITICAL 9.8` | Document Library Pro `< 4.2.2` (`<= 4.2.1`) | `4.2.2+` | [`wp_document_library_pro/`](wp_document_library_pro/) |
 | **Estatik Local File Inclusion Audit** | **CVE-2026-125795** | `CRITICAL 9.8` | Estatik `<= 4.3.6` | `4.3.7+` | [`wp_estatik/`](wp_estatik/) |
+| **Custom Block Builder REST Authorization Audit** | **CVE-2026-127048** | `CRITICAL 9.8` | Custom Block Builder `< 3.0.0` | `3.0.0+` | [`wp_custom_block_builder/`](wp_custom_block_builder/) |
+| **Auth Armor Missing Authentication Audit** | **CVE-2026-110960** | `CRITICAL 9.8` | Auth Armor `<= 1.0.3` | `1.0.4+` | [`wp_auth_armor/`](wp_auth_armor/) |

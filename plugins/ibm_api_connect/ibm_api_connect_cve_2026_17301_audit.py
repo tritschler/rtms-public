@@ -5,6 +5,8 @@ Standalone Security Audit Tool & External Plugin for RTMS Suite.
 Audits HTTP/HTTPS endpoints (ports 443, 8443, 9443, 3000, 8080, 80) for
 IBM API Connect instances (10.0.8.0 - 10.0.8.12 and 12.1.0.0 - 12.1.1.2)
 affected by the critical November 2026 security bulletin, including:
+  - CVE-2026-17410 (CVSS 9.9 Critical): Multi-tenant portal data access and
+    modification due to improper neutralization of argument delimiters.
   - CVE-2026-17301 (CVSS 9.8 Critical): Unauthenticated authentication bypass
     due to improper verification of a cryptographic signature.
   - CVE-2026-17408 (CVSS 9.8 Critical): Unauthenticated remote OS command
@@ -16,7 +18,7 @@ affected by the critical November 2026 security bulletin, including:
   - CVE-2026-17313 / CVE-2026-17340 (CVSS 9.8 Critical): Unauthenticated gateway
     configuration takeover and path traversal RCE.
 
-CVSS Score: 9.8 (Critical) - CWE-347 / CWE-78 / CWE-798 / CWE-287
+CVSS Score: 9.9 (Critical) - CWE-88 / CWE-347 / CWE-78 / CWE-798 / CWE-287
 Affected Components: IBM API Connect 10.0.8.0 - 10.0.8.12 and 12.1.0.0 - 12.1.1.2.
 Fixed in: IBM API Connect 10.0.8.13+ and 12.1.1.3+.
 
@@ -97,8 +99,8 @@ def parse_ibm_apic_version(text: str) -> Optional[Tuple[int, int, int, int, str]
 
 def is_ibm_apic_vulnerable(major: int, minor: int, mod: int, fix: int, raw_str: str = "") -> Tuple[bool, str]:
     """
-    Evaluates IBM API Connect version against CVE-2026-17301, CVE-2026-17408, CVE-2026-17360,
-    CVE-2026-17403, and CVE-2026-16720:
+    Evaluates IBM API Connect version against CVE-2026-17410, CVE-2026-17301, CVE-2026-17408,
+    CVE-2026-17360, CVE-2026-17403, and CVE-2026-16720:
       - 10.0.8.0 through 10.0.8.12 (and legacy < 10.0.8.0) -> Vulnerable (Fixed in >= 10.0.8.13)
       - 12.1.0.0 through 12.1.1.2 -> Vulnerable (Fixed in >= 12.1.1.3)
     """
@@ -107,10 +109,10 @@ def is_ibm_apic_vulnerable(major: int, minor: int, mod: int, fix: int, raw_str: 
     if major == 10:
         if (minor, mod, fix) <= (0, 8, 12):
             return True, (
-                f"IBM API Connect {ver_display} is affected by CVE-2026-17301 (CVSS 9.8 signature verification "
-                f"auth bypass), CVE-2026-17408 (CVSS 9.8 remote OS command injection), CVE-2026-17403 "
-                f"(CVSS 9.0 hard-coded credentials), and CVE-2026-16720 (CVSS 9.8 token impersonation). "
-                f"Fixed in 10.0.8.13+."
+                f"IBM API Connect {ver_display} is affected by CVE-2026-17410 (CVSS 9.9 argument delimiter "
+                f"injection), CVE-2026-17301 (CVSS 9.8 signature verification auth bypass), CVE-2026-17408 "
+                f"(CVSS 9.8 remote OS command injection), CVE-2026-17403 (CVSS 9.0 hard-coded credentials), "
+                f"and CVE-2026-16720 (CVSS 9.8 token impersonation). Fixed in 10.0.8.13+."
             )
         return False, (
             f"IBM API Connect {ver_display} is patched in the 10.0.8.x branch (>= 10.0.8.13)."
@@ -119,10 +121,10 @@ def is_ibm_apic_vulnerable(major: int, minor: int, mod: int, fix: int, raw_str: 
     if major == 12:
         if (minor, mod, fix) <= (1, 1, 2):
             return True, (
-                f"IBM API Connect {ver_display} is affected by CVE-2026-17301 (CVSS 9.8 signature verification "
-                f"auth bypass), CVE-2026-17408 (CVSS 9.8 remote OS command injection), CVE-2026-17360 "
-                f"(CVSS 9.8 hard-coded administrative credentials), and CVE-2026-16720 (CVSS 9.8 token impersonation). "
-                f"Fixed in 12.1.1.3+."
+                f"IBM API Connect {ver_display} is affected by CVE-2026-17410 (CVSS 9.9 argument delimiter "
+                f"injection), CVE-2026-17301 (CVSS 9.8 signature verification auth bypass), CVE-2026-17408 "
+                f"(CVSS 9.8 remote OS command injection), CVE-2026-17360 (CVSS 9.8 hard-coded administrative "
+                f"credentials), and CVE-2026-16720 (CVSS 9.8 token impersonation). Fixed in 12.1.1.3+."
             )
         return False, (
             f"IBM API Connect {ver_display} is patched in the 12.1.x branch (>= 12.1.1.3)."
