@@ -99,6 +99,9 @@ def parse_openjdk_version(text: str) -> Optional[Tuple[Tuple[int, int, int, int,
         if match:
             raw_ver = match.group(1).strip()
             parts = [int(x) for x in raw_ver.split(".")]
+            # Handle 4-part notation where interim & security were written as 17.0.0.21 -> 17.0.21
+            if len(parts) == 4 and parts[1] == 0 and parts[2] == 0 and parts[3] > 0:
+                parts = [parts[0], 0, parts[3], 0, 0]
             while len(parts) < 5:
                 parts.append(0)
             norm_tuple = (parts[0], parts[1], parts[2], parts[3], parts[4])
