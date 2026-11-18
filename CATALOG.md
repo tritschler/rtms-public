@@ -1,8 +1,8 @@
 # RTMS Community Security Plugins — Full Catalog
 
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-71-brightgreen.svg)](README.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-142%2B-red.svg)](https://nvd.nist.gov/)
+[![Plugins](https://img.shields.io/badge/Plugins-73-brightgreen.svg)](README.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-161%2B-red.svg)](https://nvd.nist.gov/)
 
 This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecurity Suite](https://3ts.ai)** plugins available in this repository, grouped by technology domain.
 
@@ -52,11 +52,13 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Redpanda Connect Version Compliance Audit** | **CVE-2026-123270** | `CRITICAL 9.8` | Redpanda Connect `4.39`–`4.110` (`< 4.111.0`) | [`plugins/redpanda_connect/`](plugins/redpanda_connect/) | `python plugins/redpanda_connect/redpanda_connect_cve_2026_123270_audit.py <target>` |
 | **imgproxy ICO Loader Version Compliance Audit** | **CVE-2026-123614** | `CRITICAL 9.3` | imgproxy `4.0.0`–`4.0.15` (`< 4.0.16`) | [`plugins/imgproxy/`](plugins/imgproxy/) | `python plugins/imgproxy/imgproxy_cve_2026_123614_audit.py <target>` |
 | **vsftpd FTPS Data Channel Hijacking Audit** | **CVE-2026-119568** | `CRITICAL 9.1` | vsftpd `<= 3.0.5` (Ubuntu, Debian, RHEL) | [`plugins/vsftpd/`](plugins/vsftpd/) | `python plugins/vsftpd/vsftpd_cve_2026_119568_audit.py <target>` |
-| **Google Chrome & Headless Chromium Sandbox Audit** | **CVE-2026-126885** | `CRITICAL 9.6` | Google Chrome / Headless Chromium `< 157.0.8103.78` | [`plugins/google_chrome/`](plugins/google_chrome/) | `python plugins/google_chrome/google_chrome_cve_2026_126885_audit.py <target>` |
+| **Google Chrome & Headless Chromium Sandbox Audit** | **CVE-2026-131088** / **CVE-2026-126885** | `CRITICAL 9.6` | Google Chrome / Headless Chromium `< 158.0.8127.36` (18 CVEs) | [`plugins/google_chrome/`](plugins/google_chrome/) | `python plugins/google_chrome/google_chrome_cve_2026_126885_audit.py <target>` |
 | **Dokploy PaaS Version Compliance Audit** | **CVE-2026-129433** | `CRITICAL 9.4` | Dokploy `< 0.31.1` (`<= 0.31.0`) | [`plugins/dokploy/`](plugins/dokploy/) | `python plugins/dokploy/dokploy_cve_2026_129433_audit.py <target>` |
 | **Apache TomEE & OpenEJB Version Compliance Audit** | **CVE-2026-87756** | `CRITICAL 9.8` | Apache TomEE / OpenEJB `< 10.3.0`, `11.0.0-M1` (9 CVEs) | [`plugins/apache_tomee/`](plugins/apache_tomee/) | `python plugins/apache_tomee/apache_tomee_cve_2026_87756_audit.py <target>` |
 | **AdminNeo Database Manager Compliance Audit** | **CVE-2026-130366** / **CVE-2026-130380** | `CRITICAL 9.2` | AdminNeo `< 5.9.1` | [`plugins/adminneo/`](plugins/adminneo/) | `python plugins/adminneo/adminneo_cve_2026_130366_audit.py <target>` |
 | **Arize AI Phoenix Version Compliance Audit** | **CVE-2026-53998** | `CRITICAL 10.0` | Arize AI Phoenix `>= 13.0.0, < 15.7.0` | [`plugins/arize_phoenix/`](plugins/arize_phoenix/) | `python plugins/arize_phoenix/arize_phoenix_cve_2026_53998_audit.py <target>` |
+| **Oracle MySQL Server & Cluster Compliance Audit** | **CVE-2026-114952** | `CRITICAL 9.1` | MySQL Server `8.4.0`–`8.4.13`, `9.7.0`–`9.7.4`, `26.10` & Cluster `8.0.0`–`8.0.50` | [`plugins/mysql/`](plugins/mysql/) | `python plugins/mysql/mysql_cve_2026_114952_audit.py <target>` |
+| **Oracle WebLogic Server Version Compliance Audit** | **CVE-2026-91569** | `CRITICAL 10.0` | Oracle WebLogic Server `12.2.1.4.0`, `14.1.1.0.0`, `14.1.2.0.0`, `15.1.1.0.0` (7 CVEs) | [`plugins/oracle_weblogic/`](plugins/oracle_weblogic/) | `python plugins/oracle_weblogic/oracle_weblogic_cve_2026_91569_audit.py <target>` |
 
 ---
 

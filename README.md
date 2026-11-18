@@ -3,16 +3,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-71-brightgreen.svg)](CATALOG.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-142%2B-red.svg)](CATALOG.md)
+[![Plugins](https://img.shields.io/badge/Plugins-73-brightgreen.svg)](CATALOG.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-161%2B-red.svg)](CATALOG.md)
 
-Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **71 standalone security audit plugins** covering **142 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
+Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **73 standalone security audit plugins** covering **161 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
 
 Each plugin is developed to provide rapid, reliable, and strictly non-destructive detection of critical emerging vulnerabilities (`CVSS >= 9.0`) across enterprise networks.
 
 ---
 
-## 📚 Security Plugins Catalog (71 Plugins | 142 Critical CVEs)
+## 📚 Security Plugins Catalog (73 Plugins | 161 Critical CVEs)
 
 > 💡 **Full Searchable Index:** Browse **[`CATALOG.md`](CATALOG.md)** for the single-page master table, or expand a domain below.
 
@@ -20,10 +20,10 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 |:---|:---:|:---|:---|
 | **🛡️ Network, Firewalls & VPN Appliances** | `7` | Citrix NetScaler, FortiOS, FortiManager, WatchGuard, SonicWall, Barracuda, Synology DSM | [View in `CATALOG.md`](CATALOG.md#-1-network-appliances-firewalls--vpn-gateways) |
 | **🔑 Identity, IAM, SSO & PKI** | `6` | Keycloak, OpenAM, IBM API Connect, Cyrus SASL, eMudhra Weak CA | [View in `CATALOG.md`](CATALOG.md#-2-identity-iam-sso--pki-infrastructure) |
-| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `15` | Apache TomEE, AdminNeo, Arize Phoenix, FrankenPHP, Dokploy, PHP2Shell, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Redpanda, imgproxy, vsftpd, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
+| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `17` | Oracle MySQL, Oracle WebLogic, Apache TomEE, AdminNeo, Arize Phoenix, FrankenPHP, Dokploy, PHP2Shell, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Redpanda, imgproxy, vsftpd, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
 | **🏢 Enterprise Apps, ERP, ITSM & Healthcare** | `15` | OpenCTI, phpMyFAQ, SAP NetWeaver, SharePoint, OpenEMR, GLPI, ManageEngine, Ivanti EPM, Apache OFBiz, Craft CMS, SOGo, Payara, FreeSWITCH, NoMachine | [View in `CATALOG.md`](CATALOG.md#-4-enterprise-apps-erp-itsm-groupware--healthcare) |
 | **🌐 WordPress & WooCommerce Ecosystem** | `28` | Custom Block Builder, Auth Armor, Gravity Forms, Contact Form 7, Advanced Form Integration, Document Library Pro, Estatik & 21 more | 👉 **[`plugins/wordpress/README.md`](plugins/wordpress/README.md)** |
-| **📊 Total Public Repository** | **`71`** | **142 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
+| **📊 Total Public Repository** | **`73`** | **161 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
 
 <details>
 <summary><b>🛡️ 1. Network Appliances, Firewalls & VPN Gateways (Click to expand — 7 plugins)</b></summary>
@@ -59,12 +59,14 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 </details>
 
 <details>
-<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 15 plugins)</b></summary>
+<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 17 plugins)</b></summary>
 
 <br>
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
 |:---|:---:|:---:|:---|:---:|
+| **Oracle MySQL Server & Cluster Compliance Audit** | **CVE-2026-114952** | `CRITICAL 9.1` | MySQL Server `8.4.0`–`8.4.13`, `9.7.0`–`9.7.4`, `26.10` & Cluster `8.0.0`–`8.0.50` | [`plugins/mysql/`](plugins/mysql/) |
+| **Oracle WebLogic Server Version Compliance Audit** | **CVE-2026-91569** | `CRITICAL 10.0` | Oracle WebLogic Server `12.2.1.4.0`, `14.1.1.0.0`, `14.1.2.0.0`, `15.1.1.0.0` (7 CVEs) | [`plugins/oracle_weblogic/`](plugins/oracle_weblogic/) |
 | **Apache TomEE & OpenEJB Version Compliance Audit** | **CVE-2026-87756** | `CRITICAL 9.8` | Apache TomEE / OpenEJB `< 10.3.0`, `11.0.0-M1` (9 CVEs) | [`plugins/apache_tomee/`](plugins/apache_tomee/) |
 | **AdminNeo Database Manager Compliance Audit** | **CVE-2026-130366** / **CVE-2026-130380** | `CRITICAL 9.2` | AdminNeo `< 5.9.1` | [`plugins/adminneo/`](plugins/adminneo/) |
 | **Arize AI Phoenix Version Compliance Audit** | **CVE-2026-53998** | `CRITICAL 10.0` | Arize AI Phoenix `>= 13.0.0, < 15.7.0` | [`plugins/arize_phoenix/`](plugins/arize_phoenix/) |
@@ -79,7 +81,7 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 | **Redpanda Connect Version Compliance Audit** | **CVE-2026-123270** | `CRITICAL 9.8` | Redpanda Connect `4.39`–`4.110` (`< 4.111.0`) | [`plugins/redpanda_connect/`](plugins/redpanda_connect/) |
 | **imgproxy ICO Loader Version Compliance Audit** | **CVE-2026-123614** | `CRITICAL 9.3` | imgproxy `4.0.0`–`4.0.15` (`< 4.0.16`) | [`plugins/imgproxy/`](plugins/imgproxy/) |
 | **vsftpd FTPS Data Channel Hijacking Audit** | **CVE-2026-119568** | `CRITICAL 9.1` | vsftpd `<= 3.0.5` (Ubuntu, Debian, RHEL) | [`plugins/vsftpd/`](plugins/vsftpd/) |
-| **Google Chrome & Headless Chromium Sandbox Audit** | **CVE-2026-126885** | `CRITICAL 9.6` | Google Chrome / Headless Chromium `< 157.0.8103.78` | [`plugins/google_chrome/`](plugins/google_chrome/) |
+| **Google Chrome & Headless Chromium Sandbox Audit** | **CVE-2026-131088** / **CVE-2026-126885** | `CRITICAL 9.6` | Google Chrome / Headless Chromium `< 158.0.8127.36` (18 CVEs) | [`plugins/google_chrome/`](plugins/google_chrome/) |
 
 </details>
 

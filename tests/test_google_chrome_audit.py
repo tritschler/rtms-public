@@ -1,6 +1,6 @@
 """
 test_google_chrome_audit.py - Unit tests for Google Chrome / Headless Chromium Version Compliance Audit
-(CVE-2026-126885, CVE-2026-126846, CVE-2026-126872, CVE-2026-126842, CVE-2026-126909, CVE-2026-126912, CVE-2026-126859).
+(CVE-2026-131088..CVE-2026-130910 and CVE-2026-126885..CVE-2026-126912).
 """
 
 from plugins.google_chrome.google_chrome_cve_2026_126885_audit import (
@@ -15,28 +15,30 @@ def test_plugin_metadata():
     assert plugin.info["cve"] == "CVE-2026-126885"
     assert plugin.info["severity"] == "CRITICAL"
     assert "Chrome" in plugin.info["name"]
-    assert plugin.info["version"] == "1.0.0"
+    assert plugin.info["version"] == "1.1.0"
 
 
 def test_version_parsing():
     cdp_json = '{"Browser": "HeadlessChrome/157.0.8103.50", "Protocol-Version": "1.3"}'
     assert parse_chrome_version(cdp_json) == (157, 0, 8103, 50, "157.0.8103.50")
 
-    selenium_json = '{"value": {"nodes": [{"stereotypes": [{"capabilities": {"browserVersion": "157.0.8103.78"}}]}]}}'
-    assert parse_chrome_version(selenium_json) == (157, 0, 8103, 78, "157.0.8103.78")
+    selenium_json = '{"value": {"nodes": [{"stereotypes": [{"capabilities": {"browserVersion": "158.0.8127.36"}}]}]}}'
+    assert parse_chrome_version(selenium_json) == (158, 0, 8127, 36, "158.0.8127.36")
     assert parse_chrome_version("nginx/1.26.0") is None
 
 
 def test_version_vulnerability_logic():
-    vuln, reason = is_chrome_version_vulnerable(157, 0, 8103, 50)
-    assert vuln is True
-    assert "CVE-2026-126885" in reason
-    assert "CVE-2026-126912" in reason
+    vuln_157, reason_157 = is_chrome_version_vulnerable(157, 0, 8103, 50)
+    assert vuln_157 is True
+    assert "CVE-2026-126885" in reason_157
+    assert "CVE-2026-131088" in reason_157
 
-    vuln_older, _ = is_chrome_version_vulnerable(156, 0, 7990, 120)
-    assert vuln_older is True
+    vuln_158_old, reason_158 = is_chrome_version_vulnerable(158, 0, 8127, 10)
+    assert vuln_158_old is True
+    assert "CVE-2026-131088" in reason_158
+    assert "CVE-2026-130910" in reason_158
 
-    safe, _ = is_chrome_version_vulnerable(157, 0, 8103, 78)
+    safe, _ = is_chrome_version_vulnerable(158, 0, 8127, 36)
     assert safe is False
 
 
@@ -50,15 +52,15 @@ def test_run_audit_vulnerable_and_safe(mocker):
         return_value={
             "port": 9222,
             "service_detected": True,
-            "version": "157.0.8103.50",
+            "version": "158.0.8127.10",
             "source": "Chrome DevTools Protocol /json/version",
             "is_vulnerable": True,
-            "reason": "Affected by CVE-2026-126885",
+            "reason": "Affected by CVE-2026-131088",
         },
     )
     res = plugin.run_audit("10.0.0.92", [9222])
     assert res["status"] == "Vulnerable"
-    assert "157.0.8103.50" in res["proof"]
+    assert "158.0.8127.10" in res["proof"]
 
     mocker.patch.object(
         plugin,
@@ -66,10 +68,10 @@ def test_run_audit_vulnerable_and_safe(mocker):
         return_value={
             "port": 9222,
             "service_detected": True,
-            "version": "157.0.8103.78",
+            "version": "158.0.8127.36",
             "source": "Chrome DevTools Protocol /json/version",
             "is_vulnerable": False,
-            "reason": "Patched >= 157.0.8103.78",
+            "reason": "Patched >= 158.0.8127.36",
         },
     )
     res_safe = plugin.run_audit("10.0.0.92", [9222])
