@@ -149,12 +149,14 @@ def is_openjdk_version_vulnerable(ver_tuple: Tuple[int, int, int, int, int], raw
 
 def _has_avx_mitigation_flag(cmdline_args: List[str]) -> bool:
     """
-    Returns True if the JVM command line includes a flag capping AVX usage at <= 2
-    (e.g., -XX:UseAVX=2, -XX:UseAVX=1, -XX:UseAVX=0), which disables AVX-512 intrinsics.
+    Returns True if the JVM command line includes an official workaround flag for CVE-2026-114938:
+      1. -XX:UseAVX=2 (or 0 / 1) — caps AVX at AVX2, disabling AVX-512 VBMI
+      2. -XX:-UseBASE64Intrinsics — disables Base64 hardware intrinsics completely
+      3. -XX:DisableIntrinsic=_decodeBlock — disables the specific Base64 decodeBlock intrinsic
     """
     for arg in cmdline_args or []:
         arg_str = str(arg).strip()
-        if re.search(r"-XX:UseAVX=[012]\b", arg_str):
+        if re.search(r"(-XX:UseAVX=[012]\b|-XX:-UseBASE64Intrinsics\b|DisableIntrinsic=.*decodeBlock)", arg_str, re.IGNORECASE):
             return True
     return False
 
@@ -399,6 +401,7 @@ class OpenJDKCVE2026114938AuditPlugin(BasePlugin):
                 for pkg_name, pkg_ver in (pkg_res.get("packages") or {}).items():
                     detected_versions.append((f"agent package ({pkg_name})", str(pkg_ver)))
                 for proc in jvm_res.get("processes") or []:
+                    proc["has_arg"] = bool(proc.get("has_arg")) or _has_avx_mitigation_flag(proc.get("cmdline") or [])
                     pver = proc.get("version")
                     if pver and pver != "local/untracked":
                         detected_versions.append((f"running process ({proc.get('process')})", str(pver)))
