@@ -3,35 +3,36 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-73-brightgreen.svg)](CATALOG.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-161%2B-red.svg)](CATALOG.md)
+[![Plugins](https://img.shields.io/badge/Plugins-76-brightgreen.svg)](CATALOG.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-177%2B-red.svg)](CATALOG.md)
 
-Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **73 standalone security audit plugins** covering **161 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
+Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **76 standalone security audit plugins** covering **177 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
 
 Each plugin is developed to provide rapid, reliable, and strictly non-destructive detection of critical emerging vulnerabilities (`CVSS >= 9.0`) across enterprise networks.
 
 ---
 
-## 📚 Security Plugins Catalog (73 Plugins | 161 Critical CVEs)
+## 📚 Security Plugins Catalog (76 Plugins | 177 Critical CVEs)
 
 > 💡 **Full Searchable Index:** Browse **[`CATALOG.md`](CATALOG.md)** for the single-page master table, or expand a domain below.
 
 | Technology Domain | Modules | Representative Targets | Sub-Catalog / Reference |
 |:---|:---:|:---|:---|
-| **🛡️ Network, Firewalls & VPN Appliances** | `7` | Citrix NetScaler, FortiOS, FortiManager, WatchGuard, SonicWall, Barracuda, Synology DSM | [View in `CATALOG.md`](CATALOG.md#-1-network-appliances-firewalls--vpn-gateways) |
+| **🛡️ Network, Firewalls & VPN Appliances** | `8` | F5 BIG-IP, Citrix NetScaler, FortiOS, FortiManager, WatchGuard, SonicWall, Barracuda, Synology DSM | [View in `CATALOG.md`](CATALOG.md#-1-network-appliances-firewalls--vpn-gateways) |
 | **🔑 Identity, IAM, SSO & PKI** | `6` | Keycloak, OpenAM, IBM API Connect, Cyrus SASL, eMudhra Weak CA | [View in `CATALOG.md`](CATALOG.md#-2-identity-iam-sso--pki-infrastructure) |
-| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `17` | Oracle MySQL, Oracle WebLogic, Apache TomEE, AdminNeo, Arize Phoenix, FrankenPHP, Dokploy, PHP2Shell, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Redpanda, imgproxy, vsftpd, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
+| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `19` | NGINX, JetBrains TeamCity, Oracle MySQL, Oracle WebLogic, Apache TomEE, AdminNeo, Arize Phoenix, FrankenPHP, Dokploy, PHP2Shell, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Redpanda, imgproxy, vsftpd, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
 | **🏢 Enterprise Apps, ERP, ITSM & Healthcare** | `15` | OpenCTI, phpMyFAQ, SAP NetWeaver, SharePoint, OpenEMR, GLPI, ManageEngine, Ivanti EPM, Apache OFBiz, Craft CMS, SOGo, Payara, FreeSWITCH, NoMachine | [View in `CATALOG.md`](CATALOG.md#-4-enterprise-apps-erp-itsm-groupware--healthcare) |
 | **🌐 WordPress & WooCommerce Ecosystem** | `28` | Custom Block Builder, Auth Armor, Gravity Forms, Contact Form 7, Advanced Form Integration, Document Library Pro, Estatik & 21 more | 👉 **[`plugins/wordpress/README.md`](plugins/wordpress/README.md)** |
-| **📊 Total Public Repository** | **`73`** | **161 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
+| **📊 Total Public Repository** | **`76`** | **177 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
 
 <details>
-<summary><b>🛡️ 1. Network Appliances, Firewalls & VPN Gateways (Click to expand — 7 plugins)</b></summary>
+<summary><b>🛡️ 1. Network Appliances, Firewalls & VPN Gateways (Click to expand — 8 plugins)</b></summary>
 
 <br>
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
 |:---|:---:|:---:|:---|:---:|
+| **F5 BIG-IP TMOS & APM Version Compliance Audit** | **CVE-2026-123637** | `CRITICAL 9.3` | F5 BIG-IP `17.1.x < 17.1.3.6`, `17.5.x < 17.5.1.10`, `21.1.x < 21.1.0.2` (7 CVEs) | [`plugins/f5_bigip/`](plugins/f5_bigip/) |
 | **Citrix NetScaler Console & ADC Gateway Audit** | **CVE-2026-120869** / **CVE-2026-120864** | `CRITICAL 9.5` | NetScaler ADC/Gateway `< 14.1-73.57`, `< 13.1-64.39` | [`plugins/citrix_netscaler/`](plugins/citrix_netscaler/) |
 | **Fortinet FortiOS Version Compliance Audit** | **CVE-2026-126259** | `CRITICAL 9.8` | FortiOS `7.0.0`–`7.0.19`, `7.2.0`–`7.2.13`, `7.4.0`–`7.4.12`, `7.6.0`–`7.6.7`, `8.0.0`–`8.0.1` | [`plugins/fortios/`](plugins/fortios/) |
 | **Fortinet FortiManager Version Compliance Audit** | **CVE-2026-126261** | `CRITICAL 9.8` | FortiManager `7.2.0`–`7.2.8`, `7.4.0`–`7.4.5`, `7.6.0`–`7.6.7`, `8.0.0` | [`plugins/fortimanager/`](plugins/fortimanager/) |
@@ -59,12 +60,14 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 </details>
 
 <details>
-<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 17 plugins)</b></summary>
+<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 19 plugins)</b></summary>
 
 <br>
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
 |:---|:---:|:---:|:---|:---:|
+| **NGINX Open Source & NGINX Plus Version Compliance Audit** | **CVE-2026-121810** | `CRITICAL 9.2` | NGINX Open Source `< 1.30.7`, `1.31.0`–`1.31.8` (`< 1.31.9`) & NGINX Plus (5 CVEs) | [`plugins/nginx/`](plugins/nginx/) |
+| **JetBrains TeamCity Version Compliance Audit** | **CVE-2026-132234** | `CRITICAL 9.9` | JetBrains TeamCity `< 2025.11.7` & `2026.1.0`–`2026.1.2` (`< 2026.1.3`) (4 CVEs) | [`plugins/jetbrains_teamcity/`](plugins/jetbrains_teamcity/) |
 | **Oracle MySQL Server & Cluster Compliance Audit** | **CVE-2026-114952** | `CRITICAL 9.1` | MySQL Server `8.4.0`–`8.4.13`, `9.7.0`–`9.7.4`, `26.10` & Cluster `8.0.0`–`8.0.50` | [`plugins/mysql/`](plugins/mysql/) |
 | **Oracle WebLogic Server Version Compliance Audit** | **CVE-2026-91569** | `CRITICAL 10.0` | Oracle WebLogic Server `12.2.1.4.0`, `14.1.1.0.0`, `14.1.2.0.0`, `15.1.1.0.0` (7 CVEs) | [`plugins/oracle_weblogic/`](plugins/oracle_weblogic/) |
 | **Apache TomEE & OpenEJB Version Compliance Audit** | **CVE-2026-87756** | `CRITICAL 9.8` | Apache TomEE / OpenEJB `< 10.3.0`, `11.0.0-M1` (9 CVEs) | [`plugins/apache_tomee/`](plugins/apache_tomee/) |

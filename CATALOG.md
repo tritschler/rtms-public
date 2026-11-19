@@ -1,8 +1,8 @@
 # RTMS Community Security Plugins — Full Catalog
 
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-73-brightgreen.svg)](README.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-161%2B-red.svg)](https://nvd.nist.gov/)
+[![Plugins](https://img.shields.io/badge/Plugins-76-brightgreen.svg)](README.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-177%2B-red.svg)](https://nvd.nist.gov/)
 
 This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecurity Suite](https://3ts.ai)** plugins available in this repository, grouped by technology domain.
 
@@ -22,6 +22,7 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **SonicWall GMS Internal File Read Audit** | **CVE-2026-109593** | `CRITICAL 9.1` | SonicWall Global Management System `<= 9.5.2` | [`plugins/sonicwall_gms/`](plugins/sonicwall_gms/) | `python plugins/sonicwall_gms/sonicwall_gms_cve_2026_109593_audit.py <target>` |
 | **Barracuda Email Security Gateway Auth Bypass Audit** | **CVE-2026-116606** | `CRITICAL 9.3` | Barracuda Email Security Gateway `< 9.4.0.030` | [`plugins/barracuda_esg/`](plugins/barracuda_esg/) | `python plugins/barracuda_esg/barracuda_esg_cve_2026_116606_audit.py <target>` |
 | **Synology DiskStation Manager Version Audit** | **CVE-2026-76954** | `CRITICAL 9.8` | Synology DSM `< 7.2.1-69057-13`, `< 7.2.2-72806-10`, `< 7.3.2-86009-5`, `< 7.4.1-90080-1` | [`plugins/synology_dsm/`](plugins/synology_dsm/) | `python plugins/synology_dsm/synology_dsm_cve_2026_76954_audit.py <target>` |
+| **F5 BIG-IP TMOS & APM Version Compliance Audit** | **CVE-2026-123637** | `CRITICAL 9.3` | F5 BIG-IP `17.1.x < 17.1.3.6`, `17.5.x < 17.5.1.10`, `21.1.x < 21.1.0.2` (7 CVEs) | [`plugins/f5_bigip/`](plugins/f5_bigip/) | `python plugins/f5_bigip/f5_bigip_cve_2026_123637_audit.py <target>` |
 
 ---
 
@@ -59,6 +60,8 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Arize AI Phoenix Version Compliance Audit** | **CVE-2026-53998** | `CRITICAL 10.0` | Arize AI Phoenix `>= 13.0.0, < 15.7.0` | [`plugins/arize_phoenix/`](plugins/arize_phoenix/) | `python plugins/arize_phoenix/arize_phoenix_cve_2026_53998_audit.py <target>` |
 | **Oracle MySQL Server & Cluster Compliance Audit** | **CVE-2026-114952** | `CRITICAL 9.1` | MySQL Server `8.4.0`–`8.4.13`, `9.7.0`–`9.7.4`, `26.10` & Cluster `8.0.0`–`8.0.50` | [`plugins/mysql/`](plugins/mysql/) | `python plugins/mysql/mysql_cve_2026_114952_audit.py <target>` |
 | **Oracle WebLogic Server Version Compliance Audit** | **CVE-2026-91569** | `CRITICAL 10.0` | Oracle WebLogic Server `12.2.1.4.0`, `14.1.1.0.0`, `14.1.2.0.0`, `15.1.1.0.0` (7 CVEs) | [`plugins/oracle_weblogic/`](plugins/oracle_weblogic/) | `python plugins/oracle_weblogic/oracle_weblogic_cve_2026_91569_audit.py <target>` |
+| **NGINX Open Source & NGINX Plus Version Compliance Audit** | **CVE-2026-121810** | `CRITICAL 9.2` | NGINX Open Source `< 1.30.7`, `1.31.0`–`1.31.8` (`< 1.31.9`) & NGINX Plus (5 CVEs) | [`plugins/nginx/`](plugins/nginx/) | `python plugins/nginx/nginx_cve_2026_121810_audit.py <target>` |
+| **JetBrains TeamCity Version Compliance Audit** | **CVE-2026-132234** | `CRITICAL 9.9` | JetBrains TeamCity `< 2025.11.7` & `2026.1.0`–`2026.1.2` (`< 2026.1.3`) (4 CVEs) | [`plugins/jetbrains_teamcity/`](plugins/jetbrains_teamcity/) | `python plugins/jetbrains_teamcity/jetbrains_teamcity_cve_2026_132234_audit.py <target>` |
 
 ---
 
