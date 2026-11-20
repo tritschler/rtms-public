@@ -3,16 +3,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-76-brightgreen.svg)](CATALOG.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-177%2B-red.svg)](CATALOG.md)
+[![Plugins](https://img.shields.io/badge/Plugins-81-brightgreen.svg)](CATALOG.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-193%2B-red.svg)](CATALOG.md)
 
-Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **76 standalone security audit plugins** covering **177 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
+Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **81 standalone security audit plugins** covering **193 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
 
 Each plugin is developed to provide rapid, reliable, and strictly non-destructive detection of critical emerging vulnerabilities (`CVSS >= 9.0`) across enterprise networks.
 
 ---
 
-## 📚 Security Plugins Catalog (76 Plugins | 177 Critical CVEs)
+## 📚 Security Plugins Catalog (81 Plugins | 193 Critical CVEs)
 
 > 💡 **Full Searchable Index:** Browse **[`CATALOG.md`](CATALOG.md)** for the single-page master table, or expand a domain below.
 
@@ -20,10 +20,10 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 |:---|:---:|:---|:---|
 | **🛡️ Network, Firewalls & VPN Appliances** | `8` | F5 BIG-IP, Citrix NetScaler, FortiOS, FortiManager, WatchGuard, SonicWall, Barracuda, Synology DSM | [View in `CATALOG.md`](CATALOG.md#-1-network-appliances-firewalls--vpn-gateways) |
 | **🔑 Identity, IAM, SSO & PKI** | `6` | Keycloak, OpenAM, IBM API Connect, Cyrus SASL, eMudhra Weak CA | [View in `CATALOG.md`](CATALOG.md#-2-identity-iam-sso--pki-infrastructure) |
-| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `19` | NGINX, JetBrains TeamCity, Oracle MySQL, Oracle WebLogic, Apache TomEE, AdminNeo, Arize Phoenix, FrankenPHP, Dokploy, PHP2Shell, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Redpanda, imgproxy, vsftpd, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
-| **🏢 Enterprise Apps, ERP, ITSM & Healthcare** | `15` | OpenCTI, phpMyFAQ, SAP NetWeaver, SharePoint, OpenEMR, GLPI, ManageEngine, Ivanti EPM, Apache OFBiz, Craft CMS, SOGo, Payara, FreeSWITCH, NoMachine | [View in `CATALOG.md`](CATALOG.md#-4-enterprise-apps-erp-itsm-groupware--healthcare) |
-| **🌐 WordPress & WooCommerce Ecosystem** | `28` | Custom Block Builder, Auth Armor, Gravity Forms, Contact Form 7, Advanced Form Integration, Document Library Pro, Estatik & 21 more | 👉 **[`plugins/wordpress/README.md`](plugins/wordpress/README.md)** |
-| **📊 Total Public Repository** | **`76`** | **177 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
+| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `20` | PHP / PHP-FPM, NGINX, JetBrains TeamCity, Oracle MySQL, Oracle WebLogic, Apache TomEE, AdminNeo, Arize Phoenix, FrankenPHP, Dokploy, PHP2Shell, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Redpanda, imgproxy, vsftpd, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
+| **🏢 Enterprise Apps, ERP, ITSM & Healthcare** | `17` | Splunk Enterprise & SOAR, VMware vCenter, OpenCTI, phpMyFAQ, SAP NetWeaver, SharePoint, OpenEMR, GLPI, ManageEngine, Ivanti EPM, Apache OFBiz, Craft CMS, SOGo, Payara, FreeSWITCH, NoMachine | [View in `CATALOG.md`](CATALOG.md#-4-enterprise-apps-erp-itsm-groupware--healthcare) |
+| **🌐 WordPress & WooCommerce Ecosystem** | `30` | WP Duplicate, WP Photo Album Plus, Custom Block Builder, Auth Armor, Gravity Forms, Contact Form 7, Advanced Form Integration, Document Library Pro, Estatik & 21 more | 👉 **[`plugins/wordpress/README.md`](plugins/wordpress/README.md)** |
+| **📊 Total Public Repository** | **`81`** | **193 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
 
 <details>
 <summary><b>🛡️ 1. Network Appliances, Firewalls & VPN Gateways (Click to expand — 8 plugins)</b></summary>
@@ -60,14 +60,15 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 </details>
 
 <details>
-<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 19 plugins)</b></summary>
+<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 20 plugins)</b></summary>
 
 <br>
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
 |:---|:---:|:---:|:---|:---:|
+| **PHP & PHP-FPM Multi-CVE Version Compliance Audit** | **CVE-2026-129289** | `CRITICAL 9.2` | PHP / PHP-FPM `8.2 < 8.2.36`, `8.3 < 8.3.37`, `8.4 < 8.4.28`, `8.5 < 8.5.13` (7 CVEs) | [`plugins/php_fpm/`](plugins/php_fpm/) |
 | **NGINX Open Source & NGINX Plus Version Compliance Audit** | **CVE-2026-121810** | `CRITICAL 9.2` | NGINX Open Source `< 1.30.7`, `1.31.0`–`1.31.8` (`< 1.31.9`) & NGINX Plus (5 CVEs) | [`plugins/nginx/`](plugins/nginx/) |
-| **JetBrains TeamCity Version Compliance Audit** | **CVE-2026-132234** | `CRITICAL 9.9` | JetBrains TeamCity `< 2025.11.7` & `2026.1.0`–`2026.1.2` (`< 2026.1.3`) (4 CVEs) | [`plugins/jetbrains_teamcity/`](plugins/jetbrains_teamcity/) |
+| **JetBrains TeamCity Version Compliance Audit** | **CVE-2026-132234** / **CVE-2026-132891** | `CRITICAL 9.9` | JetBrains TeamCity `< 2025.11.8` & `2026.1.0`–`2026.1.3` (`< 2026.1.4`) (5 CVEs) | [`plugins/jetbrains_teamcity/`](plugins/jetbrains_teamcity/) |
 | **Oracle MySQL Server & Cluster Compliance Audit** | **CVE-2026-114952** | `CRITICAL 9.1` | MySQL Server `8.4.0`–`8.4.13`, `9.7.0`–`9.7.4`, `26.10` & Cluster `8.0.0`–`8.0.50` | [`plugins/mysql/`](plugins/mysql/) |
 | **Oracle WebLogic Server Version Compliance Audit** | **CVE-2026-91569** | `CRITICAL 10.0` | Oracle WebLogic Server `12.2.1.4.0`, `14.1.1.0.0`, `14.1.2.0.0`, `15.1.1.0.0` (7 CVEs) | [`plugins/oracle_weblogic/`](plugins/oracle_weblogic/) |
 | **Apache TomEE & OpenEJB Version Compliance Audit** | **CVE-2026-87756** | `CRITICAL 9.8` | Apache TomEE / OpenEJB `< 10.3.0`, `11.0.0-M1` (9 CVEs) | [`plugins/apache_tomee/`](plugins/apache_tomee/) |
@@ -89,12 +90,14 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 </details>
 
 <details>
-<summary><b>🏢 4. Enterprise Apps, ERP, ITSM, Groupware & Healthcare (Click to expand — 15 plugins)</b></summary>
+<summary><b>🏢 4. Enterprise Apps, ERP, ITSM, Groupware & Healthcare (Click to expand — 17 plugins)</b></summary>
 
 <br>
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
 |:---|:---:|:---:|:---|:---:|
+| **Splunk Enterprise & SOAR Multi-CVE Compliance Audit** | **CVE-2026-76536** / **CVE-2026-131253** | `CRITICAL 9.9` | Splunk Enterprise `< 9.4.17`/`10.0.12`/`10.2.9`/`10.4.5`/`10.6.1`, SOAR `< 8.8.0`, ES `< 8.7.0` (5 CVEs) | [`plugins/splunk_enterprise/`](plugins/splunk_enterprise/) |
+| **VMware vCenter Server Directory Service Auth Bypass Audit** | **CVE-2026-123890** | `CRITICAL 9.8` | VMware vCenter Server `9.1 < 9.1.1.0200`, `9.0 < 9.0.2.0200`, `8.0 < 8.0 U3m`, `5.x < 5.2.5` | [`plugins/vmware_vcenter/`](plugins/vmware_vcenter/) |
 | **OpenCTI Platform Version Compliance Audit** | **CVE-2026-104840** | `CRITICAL 9.2` | OpenCTI `< 7.260428.0` | [`plugins/opencti/`](plugins/opencti/) |
 | **phpMyFAQ Version Compliance Audit** | **CVE-2026-130369** / **CVE-2026-130371** | `CRITICAL 9.2` | phpMyFAQ `< 4.1.12`, `4.2.0-alpha`–`< 4.2.0-RC.2` | [`plugins/phpmyfaq/`](plugins/phpmyfaq/) |
 | **SAP Web Dispatcher & NetWeaver Compliance Audit** | **CVE-2026-89126** | `CRITICAL 10.0` | SAP Web Dispatcher & ICM `7.22`–`9.21` | [`plugins/sap_netweaver/`](plugins/sap_netweaver/) |

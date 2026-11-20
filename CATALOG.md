@@ -1,8 +1,8 @@
 # RTMS Community Security Plugins — Full Catalog
 
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-76-brightgreen.svg)](README.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-177%2B-red.svg)](https://nvd.nist.gov/)
+[![Plugins](https://img.shields.io/badge/Plugins-81-brightgreen.svg)](README.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-193%2B-red.svg)](https://nvd.nist.gov/)
 
 This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecurity Suite](https://3ts.ai)** plugins available in this repository, grouped by technology domain.
 
@@ -61,7 +61,8 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Oracle MySQL Server & Cluster Compliance Audit** | **CVE-2026-114952** | `CRITICAL 9.1` | MySQL Server `8.4.0`–`8.4.13`, `9.7.0`–`9.7.4`, `26.10` & Cluster `8.0.0`–`8.0.50` | [`plugins/mysql/`](plugins/mysql/) | `python plugins/mysql/mysql_cve_2026_114952_audit.py <target>` |
 | **Oracle WebLogic Server Version Compliance Audit** | **CVE-2026-91569** | `CRITICAL 10.0` | Oracle WebLogic Server `12.2.1.4.0`, `14.1.1.0.0`, `14.1.2.0.0`, `15.1.1.0.0` (7 CVEs) | [`plugins/oracle_weblogic/`](plugins/oracle_weblogic/) | `python plugins/oracle_weblogic/oracle_weblogic_cve_2026_91569_audit.py <target>` |
 | **NGINX Open Source & NGINX Plus Version Compliance Audit** | **CVE-2026-121810** | `CRITICAL 9.2` | NGINX Open Source `< 1.30.7`, `1.31.0`–`1.31.8` (`< 1.31.9`) & NGINX Plus (5 CVEs) | [`plugins/nginx/`](plugins/nginx/) | `python plugins/nginx/nginx_cve_2026_121810_audit.py <target>` |
-| **JetBrains TeamCity Version Compliance Audit** | **CVE-2026-132234** | `CRITICAL 9.9` | JetBrains TeamCity `< 2025.11.7` & `2026.1.0`–`2026.1.2` (`< 2026.1.3`) (4 CVEs) | [`plugins/jetbrains_teamcity/`](plugins/jetbrains_teamcity/) | `python plugins/jetbrains_teamcity/jetbrains_teamcity_cve_2026_132234_audit.py <target>` |
+| **JetBrains TeamCity Version Compliance Audit** | **CVE-2026-132234** / **CVE-2026-132891** | `CRITICAL 9.9` | JetBrains TeamCity `< 2025.11.8` & `2026.1.0`–`2026.1.3` (`< 2026.1.4`) (5 CVEs) | [`plugins/jetbrains_teamcity/`](plugins/jetbrains_teamcity/) | `python plugins/jetbrains_teamcity/jetbrains_teamcity_cve_2026_132234_audit.py <target>` |
+| **PHP & PHP-FPM Multi-CVE Version Compliance Audit** | **CVE-2026-129289** | `CRITICAL 9.2` | PHP / PHP-FPM `8.2 < 8.2.36`, `8.3 < 8.3.37`, `8.4 < 8.4.28`, `8.5 < 8.5.13` (7 CVEs) | [`plugins/php_fpm/`](plugins/php_fpm/) | `python plugins/php_fpm/php_fpm_cve_2026_129289_audit.py <target>` |
 
 ---
 
@@ -69,6 +70,8 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory | Quick Audit Command |
 |:---|:---:|:---:|:---|:---:|:---|
+| **Splunk Enterprise & SOAR Multi-CVE Compliance Audit** | **CVE-2026-76536** / **CVE-2026-131253** | `CRITICAL 9.9` | Splunk Enterprise `< 9.4.17`/`10.0.12`/`10.2.9`/`10.4.5`/`10.6.1`, SOAR `< 8.8.0`, ES `< 8.7.0` (5 CVEs) | [`plugins/splunk_enterprise/`](plugins/splunk_enterprise/) | `python plugins/splunk_enterprise/splunk_enterprise_cve_2026_76536_audit.py <target>` |
+| **VMware vCenter Server Directory Service Auth Bypass Audit** | **CVE-2026-123890** | `CRITICAL 9.8` | VMware vCenter Server `9.1 < 9.1.1.0200`, `9.0 < 9.0.2.0200`, `8.0 < 8.0 U3m`, `5.x < 5.2.5` | [`plugins/vmware_vcenter/`](plugins/vmware_vcenter/) | `python plugins/vmware_vcenter/vmware_vcenter_cve_2026_123890_audit.py <target>` |
 | **SAP Web Dispatcher & NetWeaver Compliance Audit** | **CVE-2026-89126** | `CRITICAL 10.0` | SAP Web Dispatcher & ICM `7.22`–`9.21` | [`plugins/sap_netweaver/`](plugins/sap_netweaver/) | `python plugins/sap_netweaver/sap_netweaver_cve_2026_89126_audit.py <target>` |
 | **Microsoft SharePoint Server Version Compliance Audit** | **CVE-2026-120002** | `CRITICAL 9.9` | SharePoint Server Subscription / 2019 / 2016 (Nov 2026 PU) | [`plugins/sharepoint/`](plugins/sharepoint/) | `python plugins/sharepoint/sharepoint_cve_2026_120002_audit.py <target>` |
 | **OpenEMR Multi-CVE Version Compliance Audit** | **CVE-2026-126473** / **CVE-2026-124445** | `CRITICAL 9.4` | OpenEMR `< 8.4.0` (`< 8.3.0`) (6 CVEs) | [`plugins/openemr/`](plugins/openemr/) | `python plugins/openemr/openemr_cve_2026_124445_audit.py <target>` |
@@ -87,8 +90,8 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 
 ---
 
-## 🌐 5. WordPress & WooCommerce Ecosystem (28 Plugins)
+## 🌐 5. WordPress & WooCommerce Ecosystem (30 Plugins)
 
-All 28 WordPress and WooCommerce plugins are indexed in their dedicated catalog:
+All 30 WordPress and WooCommerce plugins are indexed in their dedicated catalog:
 
 👉 **[Open the WordPress & WooCommerce Security Plugins Catalog (`plugins/wordpress/README.md`)](plugins/wordpress/README.md)**

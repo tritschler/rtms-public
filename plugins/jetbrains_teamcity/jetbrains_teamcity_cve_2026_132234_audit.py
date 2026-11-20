@@ -3,14 +3,15 @@ jetbrains_teamcity_cve_2026_132234_audit.py
 
 Standalone Defensive Version Compliance Tool & External Plugin for RTMS Suite.
 Performs passive, read-only HTTP/HTTPS login page and REST metadata version verification
-for JetBrains TeamCity Server against the November 2026 Security Advisory (4 CVEs):
+for JetBrains TeamCity Server against the November 2026 Security Advisories (5 CVEs):
   - CVE-2026-132234 (CVSS 9.9 Critical): Remote Code Execution via argument injection in Mercurial VCS root settings.
   - CVE-2026-132233 (CVSS 9.9 Critical): Remote Code Execution via build attribute injection.
   - CVE-2026-132232 (CVSS 9.9 Critical): Remote Code Execution via argument injection in Perforce settings.
   - CVE-2026-132231 (CVSS 9.9 Critical): Remote Code Execution via best-fit character mapping in Perforce settings.
+  - CVE-2026-132891 (CVSS 9.8 Critical): Remote Code Execution via external pull requests (< 2025.11.8, 2026.1.x < 2026.1.4).
 
 Affected Versions:
-  - JetBrains TeamCity: all versions < 2025.11.7, and 2026.1.x prior to 2026.1.3 (2026.1.0 - 2026.1.2)
+  - JetBrains TeamCity: all versions < 2025.11.8, and 2026.1.x prior to 2026.1.4 (2026.1.0 - 2026.1.3)
 
 License: MIT
 SPDX-License-Identifier: MIT
@@ -92,11 +93,8 @@ def is_teamcity_version_vulnerable(
 ) -> Tuple[bool, str]:
     """
     Evaluates whether a JetBrains TeamCity version is affected by:
-      - CVE-2026-132234 (CVSS 9.9)
-      - CVE-2026-132233 (CVSS 9.9)
-      - CVE-2026-132232 (CVSS 9.9)
-      - CVE-2026-132231 (CVSS 9.9)
-    Affected: < 2025.11.7 and 2026.1.0 .. 2026.1.2 (< 2026.1.3).
+      - CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, CVE-2026-132231 (CVSS 9.9): < 2025.11.7, 2026.1.0..2026.1.2
+      - CVE-2026-132891 (CVSS 9.8): < 2025.11.8, 2026.1.0..2026.1.3
     """
     ver = (year, minor, patch)
     ver_display = raw_str or f"{year}.{minor}.{patch}"
@@ -104,40 +102,55 @@ def is_teamcity_version_vulnerable(
     if ver < (2025, 11, 7):
         return True, (
             f"JetBrains TeamCity {ver_display} is prior to 2025.11.7 and is affected by "
-            f"CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, and CVE-2026-132231 (CVSS 9.9)."
+            f"CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, CVE-2026-132231 (CVSS 9.9), "
+            f"and CVE-2026-132891 (CVSS 9.8)."
         )
 
-    if (2025, 11, 7) <= ver < (2026, 1, 0):
+    if ver == (2025, 11, 7):
+        return True, (
+            f"JetBrains TeamCity {ver_display} is prior to 2025.11.8 and is affected by "
+            f"CVE-2026-132891 (CVSS 9.8)."
+        )
+
+    if (2025, 11, 8) <= ver < (2026, 1, 0):
         return False, (
-            f"JetBrains TeamCity {ver_display} is patched in the 2025.11.x branch (>= 2025.11.7) against "
-            f"CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, and CVE-2026-132231."
+            f"JetBrains TeamCity {ver_display} is patched in the 2025.11.x branch (>= 2025.11.8) against "
+            f"CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, CVE-2026-132231, and CVE-2026-132891."
         )
 
     if (2026, 1, 0) <= ver < (2026, 1, 3):
         return True, (
             f"JetBrains TeamCity {ver_display} is prior to 2026.1.3 and is affected by "
-            f"CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, and CVE-2026-132231 (CVSS 9.9)."
+            f"CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, CVE-2026-132231 (CVSS 9.9), "
+            f"and CVE-2026-132891 (CVSS 9.8)."
+        )
+
+    if ver == (2026, 1, 3):
+        return True, (
+            f"JetBrains TeamCity {ver_display} is prior to 2026.1.4 and is affected by "
+            f"CVE-2026-132891 (CVSS 9.8)."
         )
 
     return False, (
-        f"JetBrains TeamCity {ver_display} is patched (>= 2026.1.3) against "
-        f"CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, and CVE-2026-132231."
+        f"JetBrains TeamCity {ver_display} is patched (>= 2026.1.4) against "
+        f"CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, CVE-2026-132231, and CVE-2026-132891."
     )
 
 
 class JetBrainsTeamCityAuditPlugin(BasePlugin):
     """
     RTMS Security Plugin: JetBrains TeamCity Version Compliance Audit
-    (CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, CVE-2026-132231 - CVSS 9.9 Critical).
+    (CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, CVE-2026-132231, CVE-2026-132891).
     """
 
     def __init__(self):
         super().__init__()
         self.info = {
-            "name": "JetBrains TeamCity Version Compliance Audit (CVE-2026-132234)",
+            "name": "JetBrains TeamCity Version Compliance Audit (CVE-2026-132234 / CVE-2026-132891)",
             "description": (
-                "Passive version compliance check for JetBrains TeamCity (< 2025.11.7 and 2026.1.x < 2026.1.3) "
-                "against CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, and CVE-2026-132231 (CVSS 9.9)."
+                "Passive version compliance check for JetBrains TeamCity (< 2025.11.8 and 2026.1.x < 2026.1.4) "
+                "against CVE-2026-132234, CVE-2026-132233, CVE-2026-132232, CVE-2026-132231 (CVSS 9.9), "
+                "and CVE-2026-132891 (CVSS 9.8)."
             ),
             "severity": "CRITICAL",
             "cve": "CVE-2026-132234",
@@ -280,20 +293,21 @@ class JetBrainsTeamCityAuditPlugin(BasePlugin):
 
         if vulnerable_findings:
             proof = (
-                f"CVE-2026-132231..CVE-2026-132234 affected JetBrains TeamCity detected on {target_ip}.\n"
+                f"CVE-2026-132231..CVE-2026-132234 / CVE-2026-132891 affected JetBrains TeamCity detected on {target_ip}.\n"
                 + "\n".join(vulnerable_findings)
             )
             details = (
-                f"CRITICAL COMPLIANCE FINDING (CVE-2026-132234 & Related Advisories - CVSS 9.9):\n"
+                f"CRITICAL COMPLIANCE FINDING (CVE-2026-132234, CVE-2026-132891 & Related Advisories - CVSS 9.8–9.9):\n"
                 f"The target host {target_ip} exposes an unpatched JetBrains TeamCity instance.\n\n"
                 f"Advisory Summary:\n"
                 f"- CVE-2026-132234 (CVSS 9.9): Remote code execution via argument injection in Mercurial VCS root settings.\n"
                 f"- CVE-2026-132233 (CVSS 9.9): Remote code execution via build attribute injection.\n"
                 f"- CVE-2026-132232 (CVSS 9.9): Remote code execution via argument injection in Perforce settings.\n"
-                f"- CVE-2026-132231 (CVSS 9.9): Remote code execution via best-fit character mapping in Perforce settings.\n\n"
+                f"- CVE-2026-132231 (CVSS 9.9): Remote code execution via best-fit character mapping in Perforce settings.\n"
+                f"- CVE-2026-132891 (CVSS 9.8): Remote code execution via external pull requests.\n\n"
                 f"Affected Endpoints:\n" + "\n".join(vulnerable_findings) + "\n\n"
                 f"Remediation:\n"
-                f"1. Upgrade JetBrains TeamCity to version 2026.1.3+ or 2025.11.7+.\n"
+                f"1. Upgrade JetBrains TeamCity to version 2026.2+, 2026.1.4+, or 2025.11.8+.\n"
                 f"2. Restrict network access to the TeamCity web interface and VCS administration endpoints."
             )
             return self.format_result("Vulnerable", proof=proof, details=details)

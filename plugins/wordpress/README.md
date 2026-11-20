@@ -41,3 +41,5 @@ All plugins in this folder perform strictly **passive, non-intrusive** HTTP/HTTP
 | **Estatik Local File Inclusion Audit** | **CVE-2026-125795** | `CRITICAL 9.8` | Estatik `<= 4.3.6` | `4.3.7+` | [`wp_estatik/`](wp_estatik/) |
 | **Custom Block Builder REST Authorization Audit** | **CVE-2026-127048** | `CRITICAL 9.8` | Custom Block Builder `< 3.0.0` | `3.0.0+` | [`wp_custom_block_builder/`](wp_custom_block_builder/) |
 | **Auth Armor Missing Authentication Audit** | **CVE-2026-110960** | `CRITICAL 9.8` | Auth Armor `<= 1.0.3` | `1.0.4+` | [`wp_auth_armor/`](wp_auth_armor/) |
+| **WP Duplicate Migration Plugin RCE Audit** | **CVE-2026-14492** | `CRITICAL 9.8` | WP Duplicate – WordPress Migration Plugin `<= 1.1.11` | `1.1.12+` | [`wp_duplicate/`](wp_duplicate/) |
+| **WP Photo Album Plus Code Injection Audit** | **CVE-2026-129048** | `CRITICAL 9.9` | WP Photo Album Plus `<= 9.3.06.003` | `9.3.06.004+` | [`wp_photo_album_plus/`](wp_photo_album_plus/) |
