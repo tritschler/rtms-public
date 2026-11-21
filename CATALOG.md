@@ -1,8 +1,8 @@
 # RTMS Community Security Plugins — Full Catalog
 
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-81-brightgreen.svg)](README.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-193%2B-red.svg)](https://nvd.nist.gov/)
+[![Plugins](https://img.shields.io/badge/Plugins-86-brightgreen.svg)](README.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-204%2B-red.svg)](https://nvd.nist.gov/)
 
 This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecurity Suite](https://3ts.ai)** plugins available in this repository, grouped by technology domain.
 
@@ -63,6 +63,8 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **NGINX Open Source & NGINX Plus Version Compliance Audit** | **CVE-2026-121810** | `CRITICAL 9.2` | NGINX Open Source `< 1.30.7`, `1.31.0`–`1.31.8` (`< 1.31.9`) & NGINX Plus (5 CVEs) | [`plugins/nginx/`](plugins/nginx/) | `python plugins/nginx/nginx_cve_2026_121810_audit.py <target>` |
 | **JetBrains TeamCity Version Compliance Audit** | **CVE-2026-132234** / **CVE-2026-132891** | `CRITICAL 9.9` | JetBrains TeamCity `< 2025.11.8` & `2026.1.0`–`2026.1.3` (`< 2026.1.4`) (5 CVEs) | [`plugins/jetbrains_teamcity/`](plugins/jetbrains_teamcity/) | `python plugins/jetbrains_teamcity/jetbrains_teamcity_cve_2026_132234_audit.py <target>` |
 | **PHP & PHP-FPM Multi-CVE Version Compliance Audit** | **CVE-2026-129289** | `CRITICAL 9.2` | PHP / PHP-FPM `8.2 < 8.2.36`, `8.3 < 8.3.37`, `8.4 < 8.4.28`, `8.5 < 8.5.13` (7 CVEs) | [`plugins/php_fpm/`](plugins/php_fpm/) | `python plugins/php_fpm/php_fpm_cve_2026_129289_audit.py <target>` |
+| **Apache Tomcat Multi-CVE Version Compliance Audit** | **CVE-2026-133325** | `CRITICAL 9.8` | Apache Tomcat `< 11.0.30`, `< 10.1.63`, `< 9.0.125`, EOL `<= 8.5.100` (4 CVEs) | [`plugins/apache_tomcat/`](plugins/apache_tomcat/) | `python plugins/apache_tomcat/apache_tomcat_cve_2026_133325_audit.py <target>` |
+| **Postgres Enterprise Manager (PEM) Multi-CVE Audit** | **CVE-2026-132660** | `CRITICAL 9.4` | EDB Postgres Enterprise Manager (PEM) `< 10.6.1` (3 CVEs) | [`plugins/postgres_enterprise_manager/`](plugins/postgres_enterprise_manager/) | `python plugins/postgres_enterprise_manager/postgres_enterprise_manager_cve_2026_132660_audit.py <target>` |
 
 ---
 
@@ -87,11 +89,12 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **NoMachine nxwebrunner Web Service Audit** | **CVE-2026-114549** | `CRITICAL 9.8` | NoMachine `nxwebrunner` `<= 9.7.3` | [`plugins/nomachine/`](plugins/nomachine/) | `python plugins/nomachine/nomachine_cve_2026_114549_audit.py <target>` |
 | **OpenCTI Platform Version Compliance Audit** | **CVE-2026-104840** | `CRITICAL 9.2` | OpenCTI `< 7.260428.0` | [`plugins/opencti/`](plugins/opencti/) | `python plugins/opencti/opencti_cve_2026_104840_audit.py <target>` |
 | **phpMyFAQ Version Compliance Audit** | **CVE-2026-130369** / **CVE-2026-130371** | `CRITICAL 9.2` | phpMyFAQ `< 4.1.12`, `4.2.0-alpha`–`< 4.2.0-RC.2` | [`plugins/phpmyfaq/`](plugins/phpmyfaq/) | `python plugins/phpmyfaq/phpmyfaq_cve_2026_130369_audit.py <target>` |
+| **Poste.io Mail Server DMARC RCE Compliance Audit** | **CVE-2026-127027** | `CRITICAL 9.2` | Poste.io Mail Server `< 2.5.22` (`<= 2.5.21`) | [`plugins/poste_io/`](plugins/poste_io/) | `python plugins/poste_io/poste_io_cve_2026_127027_audit.py <target>` |
 
 ---
 
-## 🌐 5. WordPress & WooCommerce Ecosystem (30 Plugins)
+## 🌐 5. WordPress & WooCommerce Ecosystem (32 Plugins)
 
-All 30 WordPress and WooCommerce plugins are indexed in their dedicated catalog:
+All 32 WordPress and WooCommerce plugins are indexed in their dedicated catalog:
 
 👉 **[Open the WordPress & WooCommerce Security Plugins Catalog (`plugins/wordpress/README.md`)](plugins/wordpress/README.md)**
