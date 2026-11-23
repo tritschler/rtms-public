@@ -5,14 +5,17 @@ Standalone Defensive Version Compliance Tool & External Plugin for RTMS Suite.
 Performs passive, read-only HTTP/HTTPS web desktop metadata and public API version
 verification for Synology DiskStation Manager (DSM) NAS appliances to check patch
 compliance against:
+  - CVE-2026-120382 (CVSS 9.8 Critical): Improper neutralization of argument delimiters
+    in a command in the Synology DSM OAuth API.
   - CVE-2026-76954 (CVSS 9.8 Critical): Improper neutralization of special elements
     used in an SQL command (SQL Injection) in the Synology DSM Auth API.
 
 Affected Versions:
-  - Synology DSM < 7.2.1-69057-13 (Fixed in 7.2.1-69057 Update 13+)
-  - Synology DSM 7.2.2 < 7.2.2-72806-10 (Fixed in 7.2.2-72806 Update 10+)
-  - Synology DSM 7.3.x < 7.3.2-86009-5 (Fixed in 7.3.2-86009 Update 5+)
-  - Synology DSM 7.4.x < 7.4.1-90080-1 (Fixed in 7.4.1-90080 Update 1+)
+  - Synology DSM < 7.1.1-42962-10 (Fixed in 7.1.1-42962 Update 10+)
+  - Synology DSM 7.2.1 < 7.2.1-69057-14 (Fixed in 7.2.1-69057 Update 14+; CVE-2026-76954 fixed in Update 13+)
+  - Synology DSM 7.2.2 < 7.2.2-72806-11 (Fixed in 7.2.2-72806 Update 11+; CVE-2026-76954 fixed in Update 10+)
+  - Synology DSM 7.3.x < 7.3.2-86009-6 (Fixed in 7.3.2-86009 Update 6+; CVE-2026-76954 fixed in Update 5+)
+  - Synology DSM 7.4.x < 7.4.1-90080-2 (Fixed in 7.4.1-90080 Update 2+; CVE-2026-76954 fixed in Update 1+)
 
 License: MIT
 SPDX-License-Identifier: MIT
@@ -92,67 +95,120 @@ def is_synology_dsm_version_vulnerable(
     major: int, minor: int, micro: int, build: int, update_num: int
 ) -> Tuple[bool, str]:
     """
-    Evaluates whether a Synology DSM release tuple is affected by CVE-2026-76954 (CVSS 9.8).
-      - < 7.2.1-69057-13: Vulnerable
-      - 7.2.2 < 7.2.2-72806-10: Vulnerable
-      - 7.3.x < 7.3.2-86009-5: Vulnerable
-      - 7.4.x < 7.4.1-90080-1: Vulnerable
+    Evaluates whether a Synology DSM release tuple is affected by CVE-2026-120382 (CVSS 9.8)
+    and/or CVE-2026-76954 (CVSS 9.8).
+      - < 7.1.1-42962-10: Vulnerable (CVE-2026-120382 & CVE-2026-76954)
+      - 7.2.1 < 7.2.1-69057-14: Vulnerable (< 13: both; == 13: CVE-2026-120382)
+      - 7.2.2 < 7.2.2-72806-11: Vulnerable (< 10: both; == 10: CVE-2026-120382)
+      - 7.3.x < 7.3.2-86009-6: Vulnerable (< 5: both; == 5: CVE-2026-120382)
+      - 7.4.x < 7.4.1-90080-2: Vulnerable (< 1: both; == 1: CVE-2026-120382)
     """
     ver_str = f"{major}.{minor}.{micro}-{build}-{update_num}"
 
-    if (major, minor, micro) < (7, 2, 1):
+    if (major, minor, micro) < (7, 1, 1):
         return True, (
-            f"Synology DSM {ver_str} is earlier than the minimum patched branch 7.2.1-69057-13 "
-            f"for CVE-2026-76954."
+            f"Synology DSM {ver_str} is earlier than the minimum patched branch 7.1.1-42962-10 "
+            f"and is affected by CVE-2026-120382 and CVE-2026-76954."
+        )
+
+    if (major, minor, micro) == (7, 1, 1):
+        if (build, update_num) < (42962, 10):
+            return True, (
+                f"Synology DSM {ver_str} is prior to 7.1.1-42962-10 and is affected by "
+                f"CVE-2026-120382 and CVE-2026-76954."
+            )
+        return False, f"Synology DSM {ver_str} is patched (>= 7.1.1-42962-10) against CVE-2026-120382."
+
+    if (7, 1, 1) < (major, minor, micro) < (7, 2, 1):
+        return True, (
+            f"Synology DSM {ver_str} is earlier than the minimum patched branch 7.2.1-69057-14 "
+            f"and is affected by CVE-2026-120382 and CVE-2026-76954."
         )
 
     if (major, minor, micro) == (7, 2, 1):
         if (build, update_num) < (69057, 13):
             return True, (
-                f"Synology DSM {ver_str} is prior to 7.2.1-69057-13 and is affected by CVE-2026-76954."
+                f"Synology DSM {ver_str} is prior to 7.2.1-69057-14 and is affected by "
+                f"CVE-2026-120382 and CVE-2026-76954."
             )
-        return False, f"Synology DSM {ver_str} is patched (>= 7.2.1-69057-13) against CVE-2026-76954."
+        if (build, update_num) < (69057, 14):
+            return True, (
+                f"Synology DSM {ver_str} is prior to 7.2.1-69057-14 and is affected by CVE-2026-120382."
+            )
+        return False, (
+            f"Synology DSM {ver_str} is patched (>= 7.2.1-69057-14) against "
+            f"CVE-2026-120382 and CVE-2026-76954."
+        )
 
     if (major, minor, micro) == (7, 2, 2):
         if (build, update_num) < (72806, 10):
             return True, (
-                f"Synology DSM {ver_str} is prior to 7.2.2-72806-10 and is affected by CVE-2026-76954."
+                f"Synology DSM {ver_str} is prior to 7.2.2-72806-11 and is affected by "
+                f"CVE-2026-120382 and CVE-2026-76954."
             )
-        return False, f"Synology DSM {ver_str} is patched (>= 7.2.2-72806-10) against CVE-2026-76954."
+        if (build, update_num) < (72806, 11):
+            return True, (
+                f"Synology DSM {ver_str} is prior to 7.2.2-72806-11 and is affected by CVE-2026-120382."
+            )
+        return False, (
+            f"Synology DSM {ver_str} is patched (>= 7.2.2-72806-11) against "
+            f"CVE-2026-120382 and CVE-2026-76954."
+        )
 
     if (major, minor) == (7, 3):
         if (micro, build, update_num) < (2, 86009, 5):
             return True, (
-                f"Synology DSM {ver_str} is prior to 7.3.2-86009-5 and is affected by CVE-2026-76954."
+                f"Synology DSM {ver_str} is prior to 7.3.2-86009-6 and is affected by "
+                f"CVE-2026-120382 and CVE-2026-76954."
             )
-        return False, f"Synology DSM {ver_str} is patched (>= 7.3.2-86009-5) against CVE-2026-76954."
+        if (micro, build, update_num) < (2, 86009, 6):
+            return True, (
+                f"Synology DSM {ver_str} is prior to 7.3.2-86009-6 and is affected by CVE-2026-120382."
+            )
+        return False, (
+            f"Synology DSM {ver_str} is patched (>= 7.3.2-86009-6) against "
+            f"CVE-2026-120382 and CVE-2026-76954."
+        )
 
     if (major, minor) == (7, 4):
         if (micro, build, update_num) < (1, 90080, 1):
             return True, (
-                f"Synology DSM {ver_str} is prior to 7.4.1-90080-1 and is affected by CVE-2026-76954."
+                f"Synology DSM {ver_str} is prior to 7.4.1-90080-2 and is affected by "
+                f"CVE-2026-120382 and CVE-2026-76954."
             )
-        return False, f"Synology DSM {ver_str} is patched (>= 7.4.1-90080-1) against CVE-2026-76954."
+        if (micro, build, update_num) < (1, 90080, 2):
+            return True, (
+                f"Synology DSM {ver_str} is prior to 7.4.1-90080-2 and is affected by CVE-2026-120382."
+            )
+        return False, (
+            f"Synology DSM {ver_str} is patched (>= 7.4.1-90080-2) against "
+            f"CVE-2026-120382 and CVE-2026-76954."
+        )
 
-    return False, f"Synology DSM {ver_str} is outside the affected branches for CVE-2026-76954."
+    return False, (
+        f"Synology DSM {ver_str} is outside the affected branches for "
+        f"CVE-2026-120382 and CVE-2026-76954."
+    )
 
 
 class SynologyDSMAuditPlugin(BasePlugin):
     """
-    RTMS Security Plugin: Synology DiskStation Manager (DSM) Compliance Audit (CVE-2026-76954).
+    RTMS Security Plugin: Synology DiskStation Manager (DSM) Compliance Audit
+    (CVE-2026-120382 / CVE-2026-76954).
     """
 
     def __init__(self):
         super().__init__()
         self.info = {
-            "name": "Synology DiskStation Manager (DSM) Version Compliance Audit (CVE-2026-76954)",
+            "name": "Synology DiskStation Manager (DSM) Version Compliance Audit (CVE-2026-120382 / CVE-2026-76954)",
             "description": (
                 "Passive version compliance check for Synology DiskStation Manager (DSM) "
-                "against CVE-2026-76954 (CVSS 9.8 Auth API SQL injection)."
+                "against CVE-2026-120382 (CVSS 9.8 OAuth API argument delimiter neutralization) "
+                "and CVE-2026-76954 (CVSS 9.8 Auth API SQL injection)."
             ),
             "severity": "CRITICAL",
-            "cve": "CVE-2026-76954",
-            "version": "1.0.0",
+            "cve": "CVE-2026-120382, CVE-2026-76954",
+            "version": "1.1.0",
         }
         self.target_ports = DEFAULT_DSM_PORTS.copy()
         self.ssl_ports = sorted(list(SSL_PORTS))
@@ -303,8 +359,8 @@ class SynologyDSMAuditPlugin(BasePlugin):
                 "concealed": True,
                 "reason": (
                     "Synology DSM web interface or API is active, but the exact build/update version "
-                    "is concealed in unauthenticated responses. Verify DSM >= 7.2.1-69057-13 / 7.2.2-72806-10 / "
-                    "7.3.2-86009-5 / 7.4.1-90080-1."
+                    "is concealed in unauthenticated responses. Verify DSM >= 7.1.1-42962-10 / 7.2.1-69057-14 / "
+                    "7.2.2-72806-11 / 7.3.2-86009-6 / 7.4.1-90080-2."
                 ),
             }
 
@@ -339,18 +395,21 @@ class SynologyDSMAuditPlugin(BasePlugin):
 
         if vulnerable_findings:
             proof = (
-                f"CVE-2026-76954 affected Synology DiskStation Manager (DSM) version detected on {target_ip}.\n"
+                f"CVE-2026-120382 / CVE-2026-76954 affected Synology DiskStation Manager (DSM) version detected on {target_ip}.\n"
                 + "\n".join(vulnerable_findings)
             )
             details = (
-                f"CRITICAL COMPLIANCE FINDING (CVE-2026-76954 - CVSS 9.8):\n"
+                f"CRITICAL COMPLIANCE FINDING (CVE-2026-120382 / CVE-2026-76954 - CVSS 9.8):\n"
                 f"The target host {target_ip} runs an affected Synology DiskStation Manager (DSM) build.\n\n"
                 f"Advisory Summary:\n"
+                f"- CVE-2026-120382 (CVSS 9.8): Improper neutralization of argument delimiters in a command "
+                f"in the Synology DSM OAuth API.\n"
                 f"- CVE-2026-76954 (CVSS 9.8): Improper neutralization of special elements used in an SQL command "
                 f"in the Synology DSM Auth API.\n\n"
                 f"Affected Endpoints:\n" + "\n".join(vulnerable_findings) + "\n\n"
                 f"Remediation:\n"
-                f"1. Update Synology DSM to 7.2.1-69057-13+, 7.2.2-72806-10+, 7.3.2-86009-5+, or 7.4.1-90080-1+.\n"
+                f"1. Update Synology DSM to 7.1.1-42962-10+, 7.2.1-69057-14+, 7.2.2-72806-11+, "
+                f"7.3.2-86009-6+, or 7.4.1-90080-2+.\n"
                 f"2. Restrict external access to DSM management ports (5000/TCP and 5001/TCP) via firewall rules."
             )
             return self.format_result("Vulnerable", proof=proof, details=details)

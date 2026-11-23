@@ -1,5 +1,6 @@
 """
-test_synology_dsm_audit.py - Unit tests for Synology DiskStation Manager (DSM) Version Compliance Audit (CVE-2026-76954).
+test_synology_dsm_audit.py - Unit tests for Synology DiskStation Manager (DSM)
+Version Compliance Audit (CVE-2026-120382 / CVE-2026-76954).
 """
 
 from plugins.synology_dsm.synology_dsm_cve_2026_76954_audit import (
@@ -11,10 +12,11 @@ from plugins.synology_dsm.synology_dsm_cve_2026_76954_audit import (
 
 def test_plugin_metadata():
     plugin = SynologyDSMAuditPlugin()
-    assert plugin.info["cve"] == "CVE-2026-76954"
+    assert "CVE-2026-120382" in plugin.info["cve"]
+    assert "CVE-2026-76954" in plugin.info["cve"]
     assert plugin.info["severity"] == "CRITICAL"
     assert "Synology" in plugin.info["name"]
-    assert plugin.info["version"] == "1.0.0"
+    assert plugin.info["version"] == "1.1.0"
 
 
 def test_version_parsing():
@@ -46,29 +48,41 @@ def test_version_parsing():
 
 
 def test_version_vulnerability_logic():
-    vuln_721, reason_721 = is_synology_dsm_version_vulnerable(7, 2, 1, 69057, 12)
-    assert vuln_721 is True
-    assert "CVE-2026-76954" in reason_721
+    vuln_711, reason_711 = is_synology_dsm_version_vulnerable(7, 1, 1, 42962, 9)
+    assert vuln_711 is True
+    assert "CVE-2026-120382" in reason_711
 
-    safe_721, _ = is_synology_dsm_version_vulnerable(7, 2, 1, 69057, 13)
+    safe_711, _ = is_synology_dsm_version_vulnerable(7, 1, 1, 42962, 10)
+    assert safe_711 is False
+
+    vuln_721_both, reason_721_both = is_synology_dsm_version_vulnerable(7, 2, 1, 69057, 12)
+    assert vuln_721_both is True
+    assert "CVE-2026-76954" in reason_721_both
+    assert "CVE-2026-120382" in reason_721_both
+
+    vuln_721_oauth, reason_721_oauth = is_synology_dsm_version_vulnerable(7, 2, 1, 69057, 13)
+    assert vuln_721_oauth is True
+    assert "CVE-2026-120382" in reason_721_oauth
+
+    safe_721, _ = is_synology_dsm_version_vulnerable(7, 2, 1, 69057, 14)
     assert safe_721 is False
 
-    vuln_722, _ = is_synology_dsm_version_vulnerable(7, 2, 2, 72806, 9)
+    vuln_722, _ = is_synology_dsm_version_vulnerable(7, 2, 2, 72806, 10)
     assert vuln_722 is True
 
-    safe_722, _ = is_synology_dsm_version_vulnerable(7, 2, 2, 72806, 10)
+    safe_722, _ = is_synology_dsm_version_vulnerable(7, 2, 2, 72806, 11)
     assert safe_722 is False
 
-    vuln_732, _ = is_synology_dsm_version_vulnerable(7, 3, 2, 86009, 4)
+    vuln_732, _ = is_synology_dsm_version_vulnerable(7, 3, 2, 86009, 5)
     assert vuln_732 is True
 
-    safe_732, _ = is_synology_dsm_version_vulnerable(7, 3, 2, 86009, 5)
+    safe_732, _ = is_synology_dsm_version_vulnerable(7, 3, 2, 86009, 6)
     assert safe_732 is False
 
-    vuln_741, _ = is_synology_dsm_version_vulnerable(7, 4, 1, 90080, 0)
+    vuln_741, _ = is_synology_dsm_version_vulnerable(7, 4, 1, 90080, 1)
     assert vuln_741 is True
 
-    safe_741, _ = is_synology_dsm_version_vulnerable(7, 4, 1, 90080, 1)
+    safe_741, _ = is_synology_dsm_version_vulnerable(7, 4, 1, 90080, 2)
     assert safe_741 is False
 
 

@@ -1,8 +1,8 @@
 # RTMS Community Security Plugins — Full Catalog
 
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-89-brightgreen.svg)](README.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-211%2B-red.svg)](https://nvd.nist.gov/)
+[![Plugins](https://img.shields.io/badge/Plugins-91-brightgreen.svg)](README.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-214%2B-red.svg)](https://nvd.nist.gov/)
 
 This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecurity Suite](https://3ts.ai)** plugins available in this repository, grouped by technology domain.
 
@@ -21,7 +21,7 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **WatchGuard Fireware OS & SonicWall SMA1000 Audit** | **CVE-2026-93866** | `CRITICAL 10.0` | Fireware OS `< 12.11.9` / `< 2026.2.1`, SonicWall SMA1000 `< 12.4.3-03312` | [`plugins/watchguard_fireware/`](plugins/watchguard_fireware/) | `python plugins/watchguard_fireware/watchguard_fireware_cve_2026_93866_audit.py <target>` |
 | **SonicWall GMS Internal File Read Audit** | **CVE-2026-109593** | `CRITICAL 9.1` | SonicWall Global Management System `<= 9.5.2` | [`plugins/sonicwall_gms/`](plugins/sonicwall_gms/) | `python plugins/sonicwall_gms/sonicwall_gms_cve_2026_109593_audit.py <target>` |
 | **Barracuda Email Security Gateway Auth Bypass Audit** | **CVE-2026-116606** | `CRITICAL 9.3` | Barracuda Email Security Gateway `< 9.4.0.030` | [`plugins/barracuda_esg/`](plugins/barracuda_esg/) | `python plugins/barracuda_esg/barracuda_esg_cve_2026_116606_audit.py <target>` |
-| **Synology DiskStation Manager Version Audit** | **CVE-2026-76954** | `CRITICAL 9.8` | Synology DSM `< 7.2.1-69057-13`, `< 7.2.2-72806-10`, `< 7.3.2-86009-5`, `< 7.4.1-90080-1` | [`plugins/synology_dsm/`](plugins/synology_dsm/) | `python plugins/synology_dsm/synology_dsm_cve_2026_76954_audit.py <target>` |
+| **Synology DiskStation Manager Version Audit** | **CVE-2026-120382** / **CVE-2026-76954** | `CRITICAL 9.8` | Synology DSM `< 7.1.1-42962-10`, `< 7.2.1-69057-14`, `< 7.2.2-72806-11`, `< 7.3.2-86009-6`, `< 7.4.1-90080-2` | [`plugins/synology_dsm/`](plugins/synology_dsm/) | `python plugins/synology_dsm/synology_dsm_cve_2026_76954_audit.py <target>` |
 | **F5 BIG-IP TMOS & APM Version Compliance Audit** | **CVE-2026-123637** | `CRITICAL 9.3` | F5 BIG-IP `17.1.x < 17.1.3.6`, `17.5.x < 17.5.1.10`, `21.1.x < 21.1.0.2` (7 CVEs) | [`plugins/f5_bigip/`](plugins/f5_bigip/) | `python plugins/f5_bigip/f5_bigip_cve_2026_123637_audit.py <target>` |
 
 ---
@@ -67,6 +67,7 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Postgres Enterprise Manager (PEM) Multi-CVE Audit** | **CVE-2026-132660** | `CRITICAL 9.4` | EDB Postgres Enterprise Manager (PEM) `< 10.6.1` (3 CVEs) | [`plugins/postgres_enterprise_manager/`](plugins/postgres_enterprise_manager/) | `python plugins/postgres_enterprise_manager/postgres_enterprise_manager_cve_2026_132660_audit.py <target>` |
 | **Fastify Middleware (`@fastify/express` & `@fastify/middie`) Audit** | **CVE-2026-133120** / **CVE-2026-133250** | `CRITICAL 9.1` | `@fastify/express < 4.0.10`, `@fastify/middie <= 9.3.7` (5 CVEs) | [`plugins/fastify/`](plugins/fastify/) | `python plugins/fastify/fastify_cve_2026_133120_audit.py <target>` |
 | **SurrealDB Embedded JS Capability Bypass Audit** | **CVE-2026-134292** | `CRITICAL 9.3` | SurrealDB `>= 1.0.0, < 4.0.0` | [`plugins/surrealdb/`](plugins/surrealdb/) | `python plugins/surrealdb/surrealdb_cve_2026_134292_audit.py <target>` |
+| **Cribl Stream REST Collector Pagination Compliance Audit** | **CVE-2026-115899** | `CRITICAL 9.3` | Cribl Stream `<= 4.20.4` (`< 4.20.5`) | [`plugins/cribl_stream/`](plugins/cribl_stream/) | `python plugins/cribl_stream/cribl_stream_cve_2026_115899_audit.py <target>` |
 
 ---
 
@@ -95,8 +96,8 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 
 ---
 
-## 🌐 5. WordPress & WooCommerce Ecosystem (33 Plugins)
+## 🌐 5. WordPress & WooCommerce Ecosystem (34 Plugins)
 
-All 33 WordPress and WooCommerce plugins are indexed in their dedicated catalog:
+All 34 WordPress and WooCommerce plugins are indexed in their dedicated catalog:
 
 👉 **[Open the WordPress & WooCommerce Security Plugins Catalog (`plugins/wordpress/README.md`)](plugins/wordpress/README.md)**

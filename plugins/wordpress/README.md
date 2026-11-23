@@ -46,3 +46,4 @@ All plugins in this folder perform strictly **passive, non-intrusive** HTTP/HTTP
 | **miniOrange OTP Verification Auth Bypass Audit** | **CVE-2026-129073** | `CRITICAL 9.8` | miniOrange OTP Verification `<= 5.6.1` | `5.6.2+` | [`wp_miniorange_otp_verification/`](wp_miniorange_otp_verification/) |
 | **Tribulant Newsletters Object Injection & SQLi Audit** | **CVE-2026-129039** / **CVE-2026-129043** | `CRITICAL 9.8` | Tribulant Newsletters (`newsletters-lite`) `<= 4.18.2` | `4.18.3+` | [`wp_newsletters_lite/`](wp_newsletters_lite/) |
 | **Nexter Blocks Pro Privilege Escalation Audit** | **CVE-2026-125294** | `CRITICAL 9.8` | Nexter Blocks Pro `<= 5.0.10` | `5.0.11+` | [`wp_nexter_blocks_pro/`](wp_nexter_blocks_pro/) |
+| **Simple Shopping Cart Object Injection Audit** | **CVE-2026-131782** | `CRITICAL 9.8` | Simple Shopping Cart (`wordpress-simple-paypal-shopping-cart`) `<= 5.3.3` | `5.3.4+` | [`wp_simple_shopping_cart/`](wp_simple_shopping_cart/) |

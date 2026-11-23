@@ -3,16 +3,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-89-brightgreen.svg)](CATALOG.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-211%2B-red.svg)](CATALOG.md)
+[![Plugins](https://img.shields.io/badge/Plugins-91-brightgreen.svg)](CATALOG.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-214%2B-red.svg)](CATALOG.md)
 
-Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **89 standalone security audit plugins** covering **211 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
+Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **91 standalone security audit plugins** covering **214 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
 
 Each plugin is developed to provide rapid, reliable, and strictly non-destructive detection of critical emerging vulnerabilities (`CVSS >= 9.0`) across enterprise networks.
 
 ---
 
-## 📚 Security Plugins Catalog (89 Plugins | 211 Critical CVEs)
+## 📚 Security Plugins Catalog (91 Plugins | 214 Critical CVEs)
 
 > 💡 **Full Searchable Index:** Browse **[`CATALOG.md`](CATALOG.md)** for the single-page master table, or expand a domain below.
 
@@ -20,10 +20,10 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 |:---|:---:|:---|:---|
 | **🛡️ Network, Firewalls & VPN Appliances** | `8` | F5 BIG-IP, Citrix NetScaler, FortiOS, FortiManager, WatchGuard, SonicWall, Barracuda, Synology DSM | [View in `CATALOG.md`](CATALOG.md#-1-network-appliances-firewalls--vpn-gateways) |
 | **🔑 Identity, IAM, SSO & PKI** | `6` | Keycloak, OpenAM, IBM API Connect, Cyrus SASL, eMudhra Weak CA | [View in `CATALOG.md`](CATALOG.md#-2-identity-iam-sso--pki-infrastructure) |
-| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `24` | Fastify Middleware, SurrealDB, Apache Tomcat, Postgres Enterprise Manager (PEM), PHP / PHP-FPM, NGINX, JetBrains TeamCity, Oracle MySQL, Oracle WebLogic, Apache TomEE, AdminNeo, Arize Phoenix, FrankenPHP, Dokploy, PHP2Shell, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Redpanda, imgproxy, vsftpd, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
+| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `25` | Cribl Stream, Fastify Middleware, SurrealDB, Apache Tomcat, Postgres Enterprise Manager (PEM), PHP / PHP-FPM, NGINX, JetBrains TeamCity, Oracle MySQL, Oracle WebLogic, Apache TomEE, AdminNeo, Arize Phoenix, FrankenPHP, Dokploy, PHP2Shell, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Redpanda, imgproxy, vsftpd, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
 | **🏢 Enterprise Apps, ERP, ITSM & Healthcare** | `18` | Poste.io, Splunk Enterprise & SOAR, VMware vCenter, OpenCTI, phpMyFAQ, SAP NetWeaver, SharePoint, OpenEMR, GLPI, ManageEngine, Ivanti EPM, Apache OFBiz, Craft CMS, SOGo, Payara, FreeSWITCH, NoMachine | [View in `CATALOG.md`](CATALOG.md#-4-enterprise-apps-erp-itsm-groupware--healthcare) |
-| **🌐 WordPress & WooCommerce Ecosystem** | `33` | Nexter Blocks Pro, miniOrange OTP Verification, Tribulant Newsletters, WP Duplicate, WP Photo Album Plus, Custom Block Builder, Auth Armor, Gravity Forms, Contact Form 7, Advanced Form Integration, Document Library Pro, Estatik & 21 more | 👉 **[`plugins/wordpress/README.md`](plugins/wordpress/README.md)** |
-| **📊 Total Public Repository** | **`89`** | **211 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
+| **🌐 WordPress & WooCommerce Ecosystem** | `34` | Simple Shopping Cart, Nexter Blocks Pro, miniOrange OTP Verification, Tribulant Newsletters, WP Duplicate, WP Photo Album Plus, Custom Block Builder, Auth Armor, Gravity Forms, Contact Form 7, Advanced Form Integration, Document Library Pro, Estatik & 21 more | 👉 **[`plugins/wordpress/README.md`](plugins/wordpress/README.md)** |
+| **📊 Total Public Repository** | **`91`** | **214 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
 
 <details>
 <summary><b>🛡️ 1. Network Appliances, Firewalls & VPN Gateways (Click to expand — 8 plugins)</b></summary>
@@ -39,7 +39,7 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 | **WatchGuard Fireware OS & SonicWall SMA1000 Audit** | **CVE-2026-93866** | `CRITICAL 10.0` | Fireware OS `< 12.11.9` / `< 2026.2.1`, SonicWall SMA1000 `< 12.4.3-03312` | [`plugins/watchguard_fireware/`](plugins/watchguard_fireware/) |
 | **SonicWall GMS Internal File Read Audit** | **CVE-2026-109593** | `CRITICAL 9.1` | SonicWall Global Management System `<= 9.5.2` | [`plugins/sonicwall_gms/`](plugins/sonicwall_gms/) |
 | **Barracuda Email Security Gateway Auth Bypass Audit** | **CVE-2026-116606** | `CRITICAL 9.3` | Barracuda Email Security Gateway `< 9.4.0.030` | [`plugins/barracuda_esg/`](plugins/barracuda_esg/) |
-| **Synology DiskStation Manager Version Audit** | **CVE-2026-76954** | `CRITICAL 9.8` | Synology DSM `< 7.2.1-69057-13`, `< 7.2.2-72806-10`, `< 7.3.2-86009-5`, `< 7.4.1-90080-1` | [`plugins/synology_dsm/`](plugins/synology_dsm/) |
+| **Synology DiskStation Manager Version Audit** | **CVE-2026-120382** / **CVE-2026-76954** | `CRITICAL 9.8` | Synology DSM `< 7.1.1-42962-10`, `< 7.2.1-69057-14`, `< 7.2.2-72806-11`, `< 7.3.2-86009-6`, `< 7.4.1-90080-2` | [`plugins/synology_dsm/`](plugins/synology_dsm/) |
 
 </details>
 
@@ -60,12 +60,13 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 </details>
 
 <details>
-<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 24 plugins)</b></summary>
+<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 25 plugins)</b></summary>
 
 <br>
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
 |:---|:---:|:---:|:---|:---:|
+| **Cribl Stream REST Collector Pagination Compliance Audit** | **CVE-2026-115899** | `CRITICAL 9.3` | Cribl Stream `<= 4.20.4` (`< 4.20.5`) | [`plugins/cribl_stream/`](plugins/cribl_stream/) |
 | **Fastify Middleware (`@fastify/express` & `@fastify/middie`) Audit** | **CVE-2026-133120** / **CVE-2026-133250** | `CRITICAL 9.1` | `@fastify/express < 4.0.10`, `@fastify/middie <= 9.3.7` (5 CVEs) | [`plugins/fastify/`](plugins/fastify/) |
 | **SurrealDB Embedded JS Capability Bypass Audit** | **CVE-2026-134292** | `CRITICAL 9.3` | SurrealDB `>= 1.0.0, < 4.0.0` | [`plugins/surrealdb/`](plugins/surrealdb/) |
 | **Apache Tomcat Multi-CVE Version Compliance Audit** | **CVE-2026-133325** | `CRITICAL 9.8` | Apache Tomcat `< 11.0.30`, `< 10.1.63`, `< 9.0.125`, EOL `<= 8.5.100` (4 CVEs) | [`plugins/apache_tomcat/`](plugins/apache_tomcat/) |
