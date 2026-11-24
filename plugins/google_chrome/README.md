@@ -1,15 +1,18 @@
-# Google Chrome & Headless Chromium Sandbox Escape Auditor (CVE-2026-131088 / CVE-2026-126885)
+# Google Chrome & Headless Chromium Sandbox Escape Auditor (CVE-2026-134401 / CVE-2026-131088 / CVE-2026-126885)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
 [![CVSS Score](https://img.shields.io/badge/CVSS_v3.1-9.6_CRITICAL-red.svg)](https://nvd.nist.gov/)
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
-[![Target](https://img.shields.io/badge/Vulnerability-CVE--2026--131088-orange.svg)]()
+[![Target](https://img.shields.io/badge/Vulnerability-CVE--2026--134401-orange.svg)]()
 
-A passive, read-only version compliance tool and official plugin for **[RTMS Suite](https://3ts.ai)** to verify **Google Chrome**, **Headless Chromium**, **Chrome DevTools Protocol (CDP)**, and **Selenium / WebDriver** endpoints against the November 2026 Chrome security bulletins (`< 158.0.8127.36` and `< 157.0.8103.78`, covering 18 critical CVEs).
+A passive, read-only version compliance tool and official plugin for **[RTMS Suite](https://3ts.ai)** to verify **Google Chrome**, **Headless Chromium**, **Chrome DevTools Protocol (CDP)**, and **Selenium / WebDriver** endpoints against the November 2026 Chrome security bulletins (`< 158.0.8127.88`, `< 158.0.8127.36`, and `< 157.0.8103.78`, covering 19 critical CVEs).
 
 ---
 
 ## 🔍 Advisory Overview
+
+### Chrome 158 Security Update (`< 158.0.8127.88`)
+* **CVE-2026-134401** (`CVSS 9.6 Critical`): Improper input validation in `Variations`.
 
 ### Chrome 158 Security Update (`< 158.0.8127.36`)
 * **CVE-2026-131088** (`CVSS 9.6 Critical`): Improper input validation in `WebAppInstalls`.
@@ -33,7 +36,7 @@ A passive, read-only version compliance tool and official plugin for **[RTMS Sui
 
 | Component | Affected Versions | Patched Version |
 |:---|:---:|:---:|
-| **Google Chrome / Headless Chromium** | `< 158.0.8127.36` | `>= 158.0.8127.36` |
+| **Google Chrome / Headless Chromium** | `< 158.0.8127.88` | `>= 158.0.8127.88` |
 
 ---
 

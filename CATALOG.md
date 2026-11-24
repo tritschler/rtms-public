@@ -1,8 +1,8 @@
 # RTMS Community Security Plugins — Full Catalog
 
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-91-brightgreen.svg)](README.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-214%2B-red.svg)](https://nvd.nist.gov/)
+[![Plugins](https://img.shields.io/badge/Plugins-92-brightgreen.svg)](README.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-218%2B-red.svg)](https://nvd.nist.gov/)
 
 This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecurity Suite](https://3ts.ai)** plugins available in this repository, grouped by technology domain.
 
@@ -53,7 +53,7 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Redpanda Connect Version Compliance Audit** | **CVE-2026-123270** | `CRITICAL 9.8` | Redpanda Connect `4.39`–`4.110` (`< 4.111.0`) | [`plugins/redpanda_connect/`](plugins/redpanda_connect/) | `python plugins/redpanda_connect/redpanda_connect_cve_2026_123270_audit.py <target>` |
 | **imgproxy ICO Loader Version Compliance Audit** | **CVE-2026-123614** | `CRITICAL 9.3` | imgproxy `4.0.0`–`4.0.15` (`< 4.0.16`) | [`plugins/imgproxy/`](plugins/imgproxy/) | `python plugins/imgproxy/imgproxy_cve_2026_123614_audit.py <target>` |
 | **vsftpd FTPS Data Channel Hijacking Audit** | **CVE-2026-119568** | `CRITICAL 9.1` | vsftpd `<= 3.0.5` (Ubuntu, Debian, RHEL) | [`plugins/vsftpd/`](plugins/vsftpd/) | `python plugins/vsftpd/vsftpd_cve_2026_119568_audit.py <target>` |
-| **Google Chrome & Headless Chromium Sandbox Audit** | **CVE-2026-131088** / **CVE-2026-126885** | `CRITICAL 9.6` | Google Chrome / Headless Chromium `< 158.0.8127.36` (18 CVEs) | [`plugins/google_chrome/`](plugins/google_chrome/) | `python plugins/google_chrome/google_chrome_cve_2026_126885_audit.py <target>` |
+| **Google Chrome & Headless Chromium Sandbox Audit** | **CVE-2026-134401** / **CVE-2026-131088** / **CVE-2026-126885** | `CRITICAL 9.6` | Google Chrome / Headless Chromium `< 158.0.8127.88` (19 CVEs) | [`plugins/google_chrome/`](plugins/google_chrome/) | `python plugins/google_chrome/google_chrome_cve_2026_126885_audit.py <target>` |
 | **Dokploy PaaS Version Compliance Audit** | **CVE-2026-129433** | `CRITICAL 9.4` | Dokploy `< 0.31.1` (`<= 0.31.0`) | [`plugins/dokploy/`](plugins/dokploy/) | `python plugins/dokploy/dokploy_cve_2026_129433_audit.py <target>` |
 | **Apache TomEE & OpenEJB Version Compliance Audit** | **CVE-2026-87756** | `CRITICAL 9.8` | Apache TomEE / OpenEJB `< 10.3.0`, `11.0.0-M1` (9 CVEs) | [`plugins/apache_tomee/`](plugins/apache_tomee/) | `python plugins/apache_tomee/apache_tomee_cve_2026_87756_audit.py <target>` |
 | **AdminNeo Database Manager Compliance Audit** | **CVE-2026-130366** / **CVE-2026-130380** | `CRITICAL 9.2` | AdminNeo `< 5.9.1` | [`plugins/adminneo/`](plugins/adminneo/) | `python plugins/adminneo/adminneo_cve_2026_130366_audit.py <target>` |
@@ -68,6 +68,7 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Fastify Middleware (`@fastify/express` & `@fastify/middie`) Audit** | **CVE-2026-133120** / **CVE-2026-133250** | `CRITICAL 9.1` | `@fastify/express < 4.0.10`, `@fastify/middie <= 9.3.7` (5 CVEs) | [`plugins/fastify/`](plugins/fastify/) | `python plugins/fastify/fastify_cve_2026_133120_audit.py <target>` |
 | **SurrealDB Embedded JS Capability Bypass Audit** | **CVE-2026-134292** | `CRITICAL 9.3` | SurrealDB `>= 1.0.0, < 4.0.0` | [`plugins/surrealdb/`](plugins/surrealdb/) | `python plugins/surrealdb/surrealdb_cve_2026_134292_audit.py <target>` |
 | **Cribl Stream REST Collector Pagination Compliance Audit** | **CVE-2026-115899** | `CRITICAL 9.3` | Cribl Stream `<= 4.20.4` (`< 4.20.5`) | [`plugins/cribl_stream/`](plugins/cribl_stream/) | `python plugins/cribl_stream/cribl_stream_cve_2026_115899_audit.py <target>` |
+| **FFmpeg libavfilter Heap Out-of-Bounds Compliance Audit** | **CVE-2026-135736** / **CVE-2026-135743** | `CRITICAL 9.2` | FFmpeg `4.3` / `4.4` to `< 9.1` | [`plugins/ffmpeg/`](plugins/ffmpeg/) | `python plugins/ffmpeg/ffmpeg_cve_2026_135736_audit.py <target>` |
 
 ---
 
@@ -78,7 +79,7 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Splunk Enterprise & SOAR Multi-CVE Compliance Audit** | **CVE-2026-76536** / **CVE-2026-131253** | `CRITICAL 9.9` | Splunk Enterprise `< 9.4.17`/`10.0.12`/`10.2.9`/`10.4.5`/`10.6.1`, SOAR `< 8.8.0`, ES `< 8.7.0` (5 CVEs) | [`plugins/splunk_enterprise/`](plugins/splunk_enterprise/) | `python plugins/splunk_enterprise/splunk_enterprise_cve_2026_76536_audit.py <target>` |
 | **VMware vCenter Server Directory Service Auth Bypass Audit** | **CVE-2026-123890** | `CRITICAL 9.8` | VMware vCenter Server `9.1 < 9.1.1.0200`, `9.0 < 9.0.2.0200`, `8.0 < 8.0 U3m`, `5.x < 5.2.5` | [`plugins/vmware_vcenter/`](plugins/vmware_vcenter/) | `python plugins/vmware_vcenter/vmware_vcenter_cve_2026_123890_audit.py <target>` |
 | **SAP Web Dispatcher & NetWeaver Compliance Audit** | **CVE-2026-89126** | `CRITICAL 10.0` | SAP Web Dispatcher & ICM `7.22`–`9.21` | [`plugins/sap_netweaver/`](plugins/sap_netweaver/) | `python plugins/sap_netweaver/sap_netweaver_cve_2026_89126_audit.py <target>` |
-| **Microsoft SharePoint Server Version Compliance Audit** | **CVE-2026-120002** | `CRITICAL 9.9` | SharePoint Server Subscription / 2019 / 2016 (Nov 2026 PU) | [`plugins/sharepoint/`](plugins/sharepoint/) | `python plugins/sharepoint/sharepoint_cve_2026_120002_audit.py <target>` |
+| **Microsoft SharePoint Server Version Compliance Audit** | **CVE-2026-70193** / **CVE-2026-120002** | `CRITICAL 9.9` | SharePoint Server Subscription (`< 16.0.20326.20190`) / 2019 / 2016 (Nov 2026 PU) | [`plugins/sharepoint/`](plugins/sharepoint/) | `python plugins/sharepoint/sharepoint_cve_2026_120002_audit.py <target>` |
 | **OpenEMR Multi-CVE Version Compliance Audit** | **CVE-2026-126473** / **CVE-2026-124445** | `CRITICAL 9.4` | OpenEMR `< 8.4.0` (`< 8.3.0`) (6 CVEs) | [`plugins/openemr/`](plugins/openemr/) | `python plugins/openemr/openemr_cve_2026_124445_audit.py <target>` |
 | **GLPI Two-Factor Authentication Bypass Audit** | **CVE-2026-52848** | `CRITICAL 9.2` | GLPI `11.0.0` to `11.0.7` (`< 11.0.8`) | [`plugins/glpi/`](plugins/glpi/) | `python plugins/glpi/glpi_cve_2026_52848_audit.py <target>` |
 | **Zoho ManageEngine ITSM, M365 Manager & DDI Audit** | **CVE-2026-12591** / **CVE-2026-12507** | `CRITICAL 9.9` | M365 Manager Plus `< 4818`, ServiceDesk Plus `< 15290`, DDI Central `< 6301` | [`plugins/manageengine_itsm/`](plugins/manageengine_itsm/) | `python plugins/manageengine_itsm/manageengine_itsm_cve_2026_12591_audit.py <target>` |

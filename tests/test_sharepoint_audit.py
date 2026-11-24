@@ -14,11 +14,12 @@ def test_plugin_metadata():
     assert plugin.info["cve"] == "CVE-2026-120002"
     assert plugin.info["severity"] == "CRITICAL"
     assert "SharePoint" in plugin.info["name"]
-    assert plugin.info["version"] == "1.0.0"
+    assert plugin.info["version"] == "1.1.0"
 
 
 def test_version_parsing():
     assert parse_sharepoint_version("16.0.18526.20400") == (16, 0, 18526, 20400, "16.0.18526.20400")
+    assert parse_sharepoint_version("16.0.20326.20190") == (16, 0, 20326, 20190, "16.0.20326.20190")
     assert parse_sharepoint_version("MicrosoftSharePointTeamServices: 16.0.0.10416") == (
         16,
         0,
@@ -34,8 +35,13 @@ def test_version_vulnerability_logic():
     vuln_sub, reason_sub = is_sharepoint_version_vulnerable(16, 0, 18526, 20400)
     assert vuln_sub is True
     assert "CVE-2026-120002" in reason_sub
+    assert "CVE-2026-70193" in reason_sub
 
-    safe_sub, _ = is_sharepoint_version_vulnerable(16, 0, 18526, 20650)
+    vuln_sub_70193, reason_70193 = is_sharepoint_version_vulnerable(16, 0, 18526, 20650)
+    assert vuln_sub_70193 is True
+    assert "CVE-2026-70193" in reason_70193
+
+    safe_sub, _ = is_sharepoint_version_vulnerable(16, 0, 20326, 20190)
     assert safe_sub is False
 
     vuln_2019, _ = is_sharepoint_version_vulnerable(16, 0, 10416, 20000)

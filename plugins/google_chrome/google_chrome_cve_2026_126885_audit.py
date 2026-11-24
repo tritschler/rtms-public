@@ -4,7 +4,9 @@ google_chrome_cve_2026_126885_audit.py
 Standalone Defensive Version Compliance Tool & External Plugin for RTMS Suite.
 Performs passive, read-only HTTP/HTTPS version verification for Google Chrome / Headless Chromium
 services (Chrome DevTools Protocol /json/version, Selenium Grid / WebDriver /status, Browserless,
-and rendering services) against the November 2026 Chrome Security Bulletins (18 Critical CVEs):
+and rendering services) against the November 2026 Chrome Security Bulletins (19 Critical CVEs):
+  - Prior to 158.0.8127.88 (CVSS 9.6 Critical):
+    CVE-2026-134401 (Improper input validation in Variations).
   - Prior to 158.0.8127.36 (CVSS 9.6 Critical):
     CVE-2026-131088, CVE-2026-131077, CVE-2026-131061, CVE-2026-131057, CVE-2026-131054,
     CVE-2026-131031, CVE-2026-131025, CVE-2026-130994, CVE-2026-130996, CVE-2026-130971,
@@ -14,7 +16,7 @@ and rendering services) against the November 2026 Chrome Security Bulletins (18 
     CVE-2026-126912, CVE-2026-126859 (ServiceWorker, Skia, FileSystem, ANGLE, Passwords).
 
 Affected Versions:
-  - Google Chrome / Chromium prior to 158.0.8127.36 (Fixed in 158.0.8127.36+)
+  - Google Chrome / Chromium prior to 158.0.8127.88 (Fixed in 158.0.8127.88+)
 
 License: MIT
 SPDX-License-Identifier: MIT
@@ -57,7 +59,8 @@ logger = logging.getLogger(__name__)
 DEFAULT_CHROME_PORTS = [9222, 9229, 9515, 4444, 3000, 8080, 8443, 80, 443]
 SSL_PORTS = {443, 8443, 9443}
 MIN_PATCHED_CHROME_157 = (157, 0, 8103, 78)
-MIN_PATCHED_CHROME = (158, 0, 8127, 36)
+MIN_PATCHED_CHROME_158_36 = (158, 0, 8127, 36)
+MIN_PATCHED_CHROME = (158, 0, 8127, 88)
 
 
 def parse_chrome_version(text: str) -> Optional[Tuple[int, int, int, int, str]]:
@@ -93,53 +96,59 @@ def parse_chrome_version(text: str) -> Optional[Tuple[int, int, int, int, str]]:
 
 def is_chrome_version_vulnerable(major: int, minor: int, build: int, patch: int) -> Tuple[bool, str]:
     """
-    Evaluates whether a Google Chrome / Chromium version tuple is prior to 158.0.8127.36
-    and affected by CVE-2026-131088..CVE-2026-130910 (< 158.0.8127.36) and/or
-    CVE-2026-126885..CVE-2026-126912 (< 157.0.8103.78) (CVSS 9.6 Critical).
+    Evaluates whether a Google Chrome / Chromium version tuple is prior to 158.0.8127.88
+    and affected by CVE-2026-134401 (< 158.0.8127.88), CVE-2026-131088..CVE-2026-130910 (< 158.0.8127.36),
+    and/or CVE-2026-126885..CVE-2026-126912 (< 157.0.8103.78) (CVSS 9.6 Critical).
     """
     ver_tuple = (major, minor, build, patch)
     ver_str = f"{major}.{minor}.{build}.{patch}"
 
     if ver_tuple < MIN_PATCHED_CHROME_157:
         return True, (
-            f"Google Chrome / Chromium {ver_str} is prior to 157.0.8103.78 and 158.0.8127.36, "
-            f"affected by 18 critical CVEs including CVE-2026-131088, CVE-2026-131077, CVE-2026-131061, "
-            f"CVE-2026-126885, CVE-2026-126846, CVE-2026-126872, CVE-2026-126842, CVE-2026-126909, "
-            f"CVE-2026-126912, and CVE-2026-126859 (CVSS 9.6 Sandbox Escape / Memory Corruption)."
+            f"Google Chrome / Chromium {ver_str} is prior to 157.0.8103.78 and 158.0.8127.88, "
+            f"affected by 19 critical CVEs including CVE-2026-134401, CVE-2026-131088, CVE-2026-131077, "
+            f"CVE-2026-131061, CVE-2026-126885, CVE-2026-126846, CVE-2026-126872, CVE-2026-126842, "
+            f"CVE-2026-126909, CVE-2026-126912, and CVE-2026-126859 (CVSS 9.6 Sandbox Escape / Memory Corruption)."
+        )
+
+    if ver_tuple < MIN_PATCHED_CHROME_158_36:
+        return True, (
+            f"Google Chrome / Chromium {ver_str} is prior to 158.0.8127.36 and 158.0.8127.88, and is affected by "
+            f"CVE-2026-134401, CVE-2026-131088, CVE-2026-131077, CVE-2026-131061, CVE-2026-131057, "
+            f"CVE-2026-131054, CVE-2026-131031, CVE-2026-131025, CVE-2026-130994, CVE-2026-130996, "
+            f"CVE-2026-130971, and CVE-2026-130910 (CVSS 9.6 Sandbox Escape / Memory Corruption)."
         )
 
     if ver_tuple < MIN_PATCHED_CHROME:
         return True, (
-            f"Google Chrome / Chromium {ver_str} is prior to 158.0.8127.36 and is affected by "
-            f"CVE-2026-131088, CVE-2026-131077, CVE-2026-131061, CVE-2026-131057, CVE-2026-131054, "
-            f"CVE-2026-131031, CVE-2026-131025, CVE-2026-130994, CVE-2026-130996, CVE-2026-130971, "
-            f"and CVE-2026-130910 (CVSS 9.6 Sandbox Escape / Memory Corruption)."
+            f"Google Chrome / Chromium {ver_str} is prior to 158.0.8127.88 and is affected by "
+            f"CVE-2026-134401 (CVSS 9.6 Improper Input Validation in Variations)."
         )
 
     return False, (
-        f"Google Chrome / Chromium {ver_str} is patched (>= 158.0.8127.36) against "
-        f"CVE-2026-131088..CVE-2026-130910 and CVE-2026-126885..CVE-2026-126912."
+        f"Google Chrome / Chromium {ver_str} is patched (>= 158.0.8127.88) against "
+        f"CVE-2026-134401, CVE-2026-131088..CVE-2026-130910, and CVE-2026-126885..CVE-2026-126912."
     )
 
 
 class GoogleChromeAuditPlugin(BasePlugin):
     """
     RTMS Security Plugin: Google Chrome / Chromium Headless & CDP Endpoint Compliance Audit
-    (CVE-2026-131088..CVE-2026-130910 and CVE-2026-126885..CVE-2026-126912).
+    (CVE-2026-134401, CVE-2026-131088..CVE-2026-130910, and CVE-2026-126885..CVE-2026-126912).
     """
 
     def __init__(self):
         super().__init__()
         self.info = {
-            "name": "Google Chrome & Headless Chromium Sandbox Escape Audit (CVE-2026-126885 / CVE-2026-131088)",
+            "name": "Google Chrome & Headless Chromium Sandbox Escape Audit (CVE-2026-134401 / CVE-2026-126885)",
             "description": (
                 "Passive version compliance check for Google Chrome / Chromium CDP & WebDriver endpoints "
-                "(< 158.0.8127.36) against 18 critical CVEs including CVE-2026-131088..CVE-2026-130910 "
-                "and CVE-2026-126885..CVE-2026-126912 (CVSS 9.6)."
+                "(< 158.0.8127.88) against 19 critical CVEs including CVE-2026-134401, "
+                "CVE-2026-131088..CVE-2026-130910, and CVE-2026-126885..CVE-2026-126912 (CVSS 9.6)."
             ),
             "severity": "CRITICAL",
             "cve": "CVE-2026-126885",
-            "version": "1.1.0",
+            "version": "1.2.0",
         }
         self.target_ports = DEFAULT_CHROME_PORTS.copy()
         self.ssl_ports = sorted(list(SSL_PORTS))
@@ -300,13 +309,14 @@ class GoogleChromeAuditPlugin(BasePlugin):
 
         if vulnerable_findings:
             proof = (
-                f"CVE-2026-131088 / CVE-2026-126885 affected Google Chrome / Chromium version detected on {target_ip}.\n"
+                f"CVE-2026-134401 / CVE-2026-131088 / CVE-2026-126885 affected Google Chrome / Chromium version detected on {target_ip}.\n"
                 + "\n".join(vulnerable_findings)
             )
             details = (
-                f"CRITICAL COMPLIANCE FINDING (CVE-2026-131088, CVE-2026-126885 & Related Advisories - CVSS 9.6):\n"
-                f"The target host {target_ip} exposes a Google Chrome / Headless Chromium instance prior to 158.0.8127.36.\n\n"
+                f"CRITICAL COMPLIANCE FINDING (CVE-2026-134401, CVE-2026-131088, CVE-2026-126885 & Related Advisories - CVSS 9.6):\n"
+                f"The target host {target_ip} exposes a Google Chrome / Headless Chromium instance prior to 158.0.8127.88.\n\n"
                 f"Advisory Summary:\n"
+                f"- CVE-2026-134401 (< 158.0.8127.88, CVSS 9.6): Improper input validation in Variations.\n"
                 f"- CVE-2026-131088, CVE-2026-131077, CVE-2026-131061, CVE-2026-131057, CVE-2026-131054, "
                 f"CVE-2026-131031, CVE-2026-131025, CVE-2026-130994, CVE-2026-130996, CVE-2026-130971, "
                 f"CVE-2026-130910 (< 158.0.8127.36, CVSS 9.6): Multiple Out-of-Bounds Read/Write, Buffer Overflow, "
@@ -316,7 +326,7 @@ class GoogleChromeAuditPlugin(BasePlugin):
                 f"Skia, ANGLE, FileSystem, and Passwords.\n\n"
                 f"Affected Endpoints:\n" + "\n".join(vulnerable_findings) + "\n\n"
                 f"Remediation:\n"
-                f"1. Update Google Chrome / Chromium packages and container images to >= 158.0.8127.36.\n"
+                f"1. Update Google Chrome / Chromium packages and container images to >= 158.0.8127.88.\n"
                 f"2. Bind Chrome DevTools Protocol (--remote-debugging-port) to 127.0.0.1 and restrict external network access."
             )
             return self.format_result("Vulnerable", proof=proof, details=details)
@@ -324,7 +334,7 @@ class GoogleChromeAuditPlugin(BasePlugin):
         if safe_findings:
             proof = f"Audited ports: {ports_to_scan}\n" + "\n".join(safe_findings)
             details = (
-                f"Safe: Google Chrome / Chromium instance on {target_ip} meets the minimum patched release (>= 158.0.8127.36):\n"
+                f"Safe: Google Chrome / Chromium instance on {target_ip} meets the minimum patched release (>= 158.0.8127.88):\n"
                 + "\n".join(safe_findings)
             )
             return self.format_result("OK", proof=proof, details=details)

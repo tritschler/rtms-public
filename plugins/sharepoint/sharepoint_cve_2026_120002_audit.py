@@ -5,12 +5,13 @@ Standalone Defensive Version Compliance Tool & External Plugin for RTMS Suite.
 Performs passive, read-only HTTP/HTTPS response header verification (`MicrosoftSharePointTeamServices`)
 for on-premises Microsoft SharePoint Server deployments to check patch compliance against the
 November 2026 Microsoft Patch Tuesday Critical SharePoint Advisories:
+  - CVE-2026-70193 (CVSS 9.9 Critical): Improper limitation of a pathname to a restricted directory (Path Traversal) in Microsoft Office SharePoint
   - CVE-2026-120002 (CVSS 9.9 Critical): Incorrect authorization in Microsoft Office SharePoint
   - CVE-2026-80095 (CVSS 9.0 Critical): Improper neutralization of input (XSS) in Microsoft SharePoint
   - CVE-2026-109454 (CVSS 9.0 Critical): Improper neutralization of input (Spoofing) in Microsoft SharePoint
 
-Affected Editions & Minimum Safe Builds (November 2026 Patch Tuesday):
-  - SharePoint Server Subscription Edition: < 16.0.18526.20650
+Affected Editions & Minimum Safe Builds (November 2026 Security Updates):
+  - SharePoint Server Subscription Edition: < 16.0.20326.20190 (CVE-2026-70193) / < 16.0.18526.20650 (CVE-2026-120002)
   - SharePoint Server 2019:                 < 16.0.10417.20075
   - SharePoint Server 2016:                 < 16.0.5580.1000
   - SharePoint Server 2013 / 2010 (15.0 / 14.0): End-of-Life (unpatched)
@@ -97,14 +98,15 @@ def is_sharepoint_version_vulnerable(
 ) -> Tuple[bool, str]:
     """
     Evaluates whether a Microsoft SharePoint build tuple is affected by
-    CVE-2026-120002 (CVSS 9.9), CVE-2026-80095 (CVSS 9.0), and CVE-2026-109454 (CVSS 9.0).
+    CVE-2026-70193 (CVSS 9.9), CVE-2026-120002 (CVSS 9.9), CVE-2026-80095 (CVSS 9.0),
+    and CVE-2026-109454 (CVSS 9.0).
     """
     ver_str = f"{major}.{minor}.{build}.{revision}"
 
     if major in (14, 15):
         edition = "SharePoint 2013" if major == 15 else "SharePoint 2010"
         return True, (
-            f"{edition} ({ver_str}) is End-of-Life and unpatched against CVE-2026-120002 (CVSS 9.9)."
+            f"{edition} ({ver_str}) is End-of-Life and unpatched against CVE-2026-70193 and CVE-2026-120002 (CVSS 9.9)."
         )
 
     if major != 16:
@@ -134,16 +136,22 @@ def is_sharepoint_version_vulnerable(
             f"(>= 16.0.10417.20075)."
         )
 
-    # SharePoint Server Subscription Edition (builds 14000 - 19999)
-    if 14000 <= build < 20000:
+    # SharePoint Server Subscription Edition (builds 14000 - 24999)
+    if 14000 <= build < 25000:
         if (build, revision) < (18526, 20650):
             return True, (
                 f"SharePoint Server Subscription Edition build {ver_str} is prior to the November 2026 "
-                f"Security Update (< 16.0.18526.20650) and is affected by CVE-2026-120002, CVE-2026-80095, and CVE-2026-109454."
+                f"Security Updates (< 16.0.18526.20650 and < 16.0.20326.20190) and is affected by "
+                f"CVE-2026-70193, CVE-2026-120002, CVE-2026-80095, and CVE-2026-109454."
+            )
+        if (build, revision) < (20326, 20190):
+            return True, (
+                f"SharePoint Server Subscription Edition build {ver_str} is prior to build 16.0.20326.20190 "
+                f"and is affected by CVE-2026-70193 (CVSS 9.9)."
             )
         return False, (
             f"SharePoint Server Subscription Edition build {ver_str} meets or exceeds the November 2026 "
-            f"Security Update (>= 16.0.18526.20650)."
+            f"Security Update (>= 16.0.20326.20190)."
         )
 
     return False, f"SharePoint build {ver_str} is outside the affected on-premises build ranges."
@@ -151,20 +159,21 @@ def is_sharepoint_version_vulnerable(
 
 class SharePointAuditPlugin(BasePlugin):
     """
-    RTMS Security Plugin: Microsoft SharePoint Server Compliance Audit (CVE-2026-120002).
+    RTMS Security Plugin: Microsoft SharePoint Server Compliance Audit (CVE-2026-70193 / CVE-2026-120002).
     """
 
     def __init__(self):
         super().__init__()
         self.info = {
-            "name": "Microsoft SharePoint Server Version Compliance Audit (CVE-2026-120002)",
+            "name": "Microsoft SharePoint Server Version Compliance Audit (CVE-2026-70193 / CVE-2026-120002)",
             "description": (
                 "Passive HTTP header version compliance check for Microsoft SharePoint Server "
-                "against CVE-2026-120002 (CVSS 9.9), CVE-2026-80095 (CVSS 9.0), and CVE-2026-109454 (CVSS 9.0)."
+                "against CVE-2026-70193 (CVSS 9.9), CVE-2026-120002 (CVSS 9.9), CVE-2026-80095 (CVSS 9.0), "
+                "and CVE-2026-109454 (CVSS 9.0)."
             ),
             "severity": "CRITICAL",
             "cve": "CVE-2026-120002",
-            "version": "1.0.0",
+            "version": "1.1.0",
         }
         self.target_ports = DEFAULT_SHAREPOINT_PORTS.copy()
         self.ssl_ports = sorted(list(SSL_PORTS))
@@ -354,20 +363,21 @@ class SharePointAuditPlugin(BasePlugin):
 
         if vulnerable_findings:
             proof = (
-                f"CVE-2026-120002 / CVE-2026-80095 / CVE-2026-109454 affected Microsoft SharePoint build detected on {target_ip}.\n"
+                f"CVE-2026-70193 / CVE-2026-120002 / CVE-2026-80095 / CVE-2026-109454 affected Microsoft SharePoint build detected on {target_ip}.\n"
                 + "\n".join(vulnerable_findings)
             )
             details = (
-                f"CRITICAL COMPLIANCE FINDING (CVE-2026-120002 - CVSS 9.9):\n"
+                f"CRITICAL COMPLIANCE FINDING (CVE-2026-70193 / CVE-2026-120002 - CVSS 9.9):\n"
                 f"The target host {target_ip} runs an unpatched Microsoft SharePoint Server build.\n\n"
                 f"Associated November 2026 Patch Tuesday SharePoint Advisories:\n"
+                f"- CVE-2026-70193 (CVSS 9.9): Improper limitation of a pathname to a restricted directory (Path Traversal)\n"
                 f"- CVE-2026-120002 (CVSS 9.9): Incorrect authorization privilege escalation\n"
                 f"- CVE-2026-80095 (CVSS 9.0): Cross-Site Scripting (XSS) privilege escalation\n"
                 f"- CVE-2026-109454 (CVSS 9.0): Cross-Site Scripting (Spoofing)\n\n"
                 f"Affected Endpoints:\n" + "\n".join(vulnerable_findings) + "\n\n"
                 f"Remediation:\n"
                 f"1. Apply the November 2026 Microsoft SharePoint Server Security Update:\n"
-                f"   - SharePoint Server Subscription Edition: >= 16.0.18526.20650\n"
+                f"   - SharePoint Server Subscription Edition: >= 16.0.20326.20190\n"
                 f"   - SharePoint Server 2019:                 >= 16.0.10417.20075\n"
                 f"   - SharePoint Server 2016:                 >= 16.0.5580.1000\n"
                 f"2. Run the SharePoint Products Configuration Wizard (`psconfig.exe`) on all farm servers after patching."
