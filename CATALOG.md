@@ -1,8 +1,8 @@
 # RTMS Community Security Plugins — Full Catalog
 
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-98-brightgreen.svg)](README.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-249%2B-red.svg)](https://nvd.nist.gov/)
+[![Plugins](https://img.shields.io/badge/Plugins-120-brightgreen.svg)](README.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-295%2B-red.svg)](https://nvd.nist.gov/)
 
 This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecurity Suite](https://3ts.ai)** plugins available in this repository, grouped by technology domain.
 
@@ -24,6 +24,9 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Synology DiskStation Manager Version Audit** | **CVE-2026-120382** / **CVE-2026-76954** | `CRITICAL 9.8` | Synology DSM `< 7.1.1-42962-10`, `< 7.2.1-69057-14`, `< 7.2.2-72806-11`, `< 7.3.2-86009-6`, `< 7.4.1-90080-2` | [`plugins/synology_dsm/`](plugins/synology_dsm/) | `python plugins/synology_dsm/synology_dsm_cve_2026_76954_audit.py <target>` |
 | **F5 BIG-IP TMOS & APM Version Compliance Audit** | **CVE-2026-123637** | `CRITICAL 9.3` | F5 BIG-IP `17.1.x < 17.1.3.6`, `17.5.x < 17.5.1.10`, `21.1.x < 21.1.0.2` (7 CVEs) | [`plugins/f5_bigip/`](plugins/f5_bigip/) | `python plugins/f5_bigip/f5_bigip_cve_2026_123637_audit.py <target>` |
 | **HPE Aruba AirWave Management Platform Compliance Audit** | **CVE-2026-133973** / **CVE-2026-133971** | `CRITICAL 9.8` | HPE Networking Management Software (AirWave) `8.3.0.0`–`8.3.0.7` (`< 8.3.0.8`) (3 CVEs) | [`plugins/hpe_airwave/`](plugins/hpe_airwave/) | `python plugins/hpe_airwave/hpe_airwave_cve_2026_133973_audit.py <target>` |
+| **HPE ArubaOS Wireless Controller & Gateway RCE Audit** | **CVE-2026-95787** | `CRITICAL 10.0` | HPE ArubaOS `10.4.0.0`–`10.4.1.13`, `10.7.0.0`–`10.7.2.6`, `10.8.0.0`–`10.8.1.1` | [`plugins/hpe_arubaos/`](plugins/hpe_arubaos/) | `python plugins/hpe_arubaos/hpe_arubaos_cve_2026_95787_audit.py --target <target>` |
+| **Fortinet FortiMail Heap Overflow RCE Compliance Audit** | **CVE-2026-126263** | `CRITICAL 9.8` | FortiMail `7.4.0`–`7.4.6`, `7.6.0`–`7.6.4`, `8.0.0`–`8.0.1` | [`plugins/fortimail/`](plugins/fortimail/) | `python plugins/fortimail/fortimail_cve_2026_126263_audit.py --target <target>` |
+| **Fortinet FortiAnalyzer Authorization Bypass Audit** | **CVE-2026-126229** | `CRITICAL 9.1` | FortiAnalyzer `7.2.0`–`7.2.12`, `7.4.0`–`7.4.11`, `7.6.0`–`7.6.7`, `8.0.0`–`8.0.1` | [`plugins/fortianalyzer/`](plugins/fortianalyzer/) | `python plugins/fortianalyzer/fortianalyzer_cve_2026_126229_audit.py --target <target>` |
 
 ---
 
@@ -37,6 +40,7 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **IBM API Connect Auth Bypass & RCE Audit** | **CVE-2026-17301** / **CVE-2026-17410** | `CRITICAL 9.9` | IBM API Connect `10.0.8.0`–`10.0.8.12`, `12.1.0.0`–`12.1.1.2` | [`plugins/ibm_api_connect/`](plugins/ibm_api_connect/) | `python plugins/ibm_api_connect/ibm_api_connect_cve_2026_17301_audit.py <target>` |
 | **eMudhra Weak Intermediate CA Audit** | **CVE-2026-91403** | `CRITICAL 9.1` | WebPKI, Java JSSE, TLS endpoints | [`plugins/emudhra_weak_ca/`](plugins/emudhra_weak_ca/) | `python plugins/emudhra_weak_ca/emudhra_weak_ca_audit.py <target>` |
 | **Cyrus SASL SRP Authentication Bypass Audit** | **CVE-2026-129483** | `CRITICAL 9.3` | Cyrus SASL (`libsasl2`) `<= 2.1.28` | [`plugins/cyrus_sasl/`](plugins/cyrus_sasl/) | `python plugins/cyrus_sasl/cyrus_sasl_cve_2026_129483_audit.py <target>` |
+| **Oracle Access Manager (OAM) SSO Engine Compliance Audit** | **CVE-2026-91510** | `CRITICAL 10.0` | Oracle Access Manager `12.2.1.4.0`, `14.1.2.1.0` | [`plugins/oracle_access_manager/`](plugins/oracle_access_manager/) | `python plugins/oracle_access_manager/oracle_access_manager_cve_2026_91510_audit.py --target <target>` |
 
 ---
 
@@ -72,6 +76,15 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **FFmpeg libavfilter Heap Out-of-Bounds Compliance Audit** | **CVE-2026-135736** / **CVE-2026-135743** | `CRITICAL 9.2` | FFmpeg `4.3` / `4.4` to `< 9.1` | [`plugins/ffmpeg/`](plugins/ffmpeg/) | `python plugins/ffmpeg/ffmpeg_cve_2026_135736_audit.py <target>` |
 | **Mozilla Firefox, Firefox ESR & Thunderbird Sandbox Audit** | **CVE-2026-135597** | `CRITICAL 9.6` | Firefox / Thunderbird `< 161.0`, ESR `< 153.8`, ESR `< 115.46` (18 CVEs) | [`plugins/mozilla_firefox/`](plugins/mozilla_firefox/) | `python plugins/mozilla_firefox/mozilla_firefox_cve_2026_135597_audit.py <target>` |
 | **Jenkins Script Security Plugin Sandbox Bypass Audit** | **CVE-2026-136835** | `CRITICAL 9.9` | Jenkins Script Security Plugin (`script-security`) `<= 1436.v1082791135e4` | [`plugins/jenkins/`](plugins/jenkins/) | `python plugins/jenkins/jenkins_cve_2026_136835_audit.py <target>` |
+| **Oracle Database Server (DBMS_AQ /AQAdm) Compliance Audit** | **CVE-2026-114848** | `CRITICAL 9.9` | Oracle Database `19.3`–`19.33`, `21.3`–`21.24`, `23.4.0`–`23.26.3` | [`plugins/oracle_database/`](plugins/oracle_database/) | `python plugins/oracle_database/oracle_database_cve_2026_114848_audit.py --target <target>` |
+| **Microsoft Azure DevOps Server 2025 RCE Compliance Audit** | **CVE-2026-109467** | `CRITICAL 9.9` | Azure DevOps Server 2025 `< Patch 9` | [`plugins/azure_devops_server/`](plugins/azure_devops_server/) | `python plugins/azure_devops_server/azure_devops_server_cve_2026_109467_audit.py --target <target>` |
+| **Eclipse Mosquitto MQTT Broker Auth Bypass & RCE Audit** | **CVE-2026-110486** | `CRITICAL 9.8` | Eclipse Mosquitto `2.1.0`–`2.1.2` (`< 2.1.3`) | [`plugins/eclipse_mosquitto/`](plugins/eclipse_mosquitto/) | `python plugins/eclipse_mosquitto/eclipse_mosquitto_cve_2026_110486_audit.py --target <target>` |
+| **Xen Orchestra & xo-server API Command Injection Audit** | **CVE-2026-133469** | `CRITICAL 9.8` | Xen Orchestra `< 6.9.2`, `6.10.0` & `xo-server` `< 5.211.2`, `5.213.0` | [`plugins/xen_orchestra/`](plugins/xen_orchestra/) | `python plugins/xen_orchestra/xen_orchestra_cve_2026_133469_audit.py --target <target>` |
+| **ArangoDB Foxx Microservice Sandbox Escape Audit** | **CVE-2026-126755** | `CRITICAL 9.3` | ArangoDB `< 3.12.11` | [`plugins/arangodb/`](plugins/arangodb/) | `python plugins/arangodb/arangodb_cve_2026_126755_audit.py --target <target>` |
+| **Camunda 8 Persistent Web Session Deserialization Audit** | **CVE-2026-77230** | `CRITICAL 9.2` | Camunda `8.8 < 8.8.47`, `8.9 < 8.9.29`, `8.10 < 8.10.10`, `8.11.0-alpha1` | [`plugins/camunda/`](plugins/camunda/) | `python plugins/camunda/camunda_cve_2026_77230_audit.py --target <target>` |
+| **Webmin Insecure Default Admin Provisioning Audit** | **CVE-2026-134639** | `CRITICAL 9.2` | Webmin `<= 2.670` (`< 2.671`) | [`plugins/webmin/`](plugins/webmin/) | `python plugins/webmin/webmin_cve_2026_134639_audit.py --target <target>` |
+| **Wing FTP Server Predictable Admin Session Token Audit** | **CVE-2026-135171** | `CRITICAL 9.2` | Wing FTP Server `< 8.2.8` (`<= 8.2.7`) | [`plugins/wing_ftp_server/`](plugins/wing_ftp_server/) | `python plugins/wing_ftp_server/wing_ftp_server_cve_2026_135171_audit.py --target <target>` |
+| **Rclone `serve sftp --auth-proxy` Auth Bypass Audit** | **CVE-2026-134352** | `CRITICAL 9.2` | Rclone `1.51.0`–`1.75.x` (`< 1.76.0`) | [`plugins/rclone/`](plugins/rclone/) | `python plugins/rclone/rclone_cve_2026_134352_audit.py --target <target>` |
 
 ---
 
@@ -99,6 +112,15 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Poste.io Mail Server DMARC RCE Compliance Audit** | **CVE-2026-127027** | `CRITICAL 9.2` | Poste.io Mail Server `< 2.5.22` (`<= 2.5.21`) | [`plugins/poste_io/`](plugins/poste_io/) | `python plugins/poste_io/poste_io_cve_2026_127027_audit.py <target>` |
 | **Joomla! CMS Multi-CVE Version Compliance Audit** | **CVE-2026-129393** / **CVE-2026-123214** | `CRITICAL 9.4` | Joomla! CMS `1.6.0`–`5.4.10` (`< 5.4.11`), `6.0.0`–`6.2.0` (`< 6.2.1`) (4 CVEs) | [`plugins/joomla/`](plugins/joomla/) | `python plugins/joomla/joomla_cve_2026_129393_audit.py <target>` |
 | **MediaWiki & Extensions Multi-CVE Compliance Audit** | **CVE-2026-132726** / **CVE-2026-132669** | `CRITICAL 9.3` | MediaWiki `1.43 < 1.43.12`, `1.45 < 1.45.7`, `1.46 < 1.46.3`, `1.47.0` (4 CVEs) | [`plugins/mediawiki/`](plugins/mediawiki/) | `python plugins/mediawiki/mediawiki_cve_2026_132726_audit.py <target>` |
+| **Adobe Experience Manager (AEM) Forms & Core RCE Audit** | **CVE-2026-132877** / **CVE-2026-123266** | `CRITICAL 9.9` | Adobe Experience Manager `6.5 <= 6.5.26.0` (2 CVEs) | [`plugins/adobe_aem/`](plugins/adobe_aem/) | `python plugins/adobe_aem/adobe_aem_cve_2026_132877_audit.py --target <target>` |
+| **Adobe Campaign Classic Multi-CVE RCE & SQLi Audit** | **CVE-2026-125675** / **CVE-2026-123987** | `CRITICAL 9.9` | Adobe Campaign Classic `<= 7.4.4 build 9403`, `7.4.5 <= build 9420` (11 CVEs) | [`plugins/adobe_campaign/`](plugins/adobe_campaign/) | `python plugins/adobe_campaign/adobe_campaign_cve_2026_125675_audit.py --target <target>` |
+| **Oracle E-Business Suite & Oracle APEX Multi-CVE Audit** | **CVE-2026-114925** / **CVE-2026-114863** | `CRITICAL 9.8` | Oracle EBS `12.2.3`–`12.2.15`, Oracle APEX `<= 24.1.22`, `<= 24.2.21`, `<= 26.1.5`, `26.2.0` (6 CVEs) | [`plugins/oracle_ebs_apex/`](plugins/oracle_ebs_apex/) | `python plugins/oracle_ebs_apex/oracle_ebs_apex_cve_2026_114925_audit.py --target <target>` |
+| **TYPO3 CMS Core Authentication & Deserialization Audit** | **CVE-2026-119623** | `CRITICAL 9.4` | TYPO3 CMS `< 10.4.63`, `< 11.5.57`, `< 12.4.52`, `< 13.4.40`, `< 14.3.12` | [`plugins/typo3_cms/`](plugins/typo3_cms/) | `python plugins/typo3_cms/typo3_cms_cve_2026_119623_audit.py --target <target>` |
+| **mailcow: dockerized Host Header & Auth Bypass Audit** | **CVE-2026-125757** | `CRITICAL 9.4` | mailcow: dockerized `< 2026-11` | [`plugins/mailcow/`](plugins/mailcow/) | `python plugins/mailcow/mailcow_cve_2026_125757_audit.py --target <target>` |
+| **FleetDM MDM Enrollment & SAML Auth Bypass Audit** | **CVE-2026-130759** | `CRITICAL 9.4` | FleetDM `4.71 < 4.88.2`, `4.89 < 4.89.3`, `4.90 < 4.90.3`, `4.91 < 4.91.2`, `4.92 < 4.92.3` | [`plugins/fleetdm/`](plugins/fleetdm/) | `python plugins/fleetdm/fleetdm_cve_2026_130759_audit.py --target <target>` |
+| **N-able N-central RMM Authentication & Command Audit** | **CVE-2026-129280** | `CRITICAL 9.3` | N-able N-central `< 2026.4.1 HF3` | [`plugins/nable_ncentral/`](plugins/nable_ncentral/) | `python plugins/nable_ncentral/nable_ncentral_cve_2026_129280_audit.py --target <target>` |
+| **NocoDB OAuth / JWT Token Authentication Bypass Audit** | **CVE-2026-130730** | `CRITICAL 9.3` | NocoDB `< 2026.10.1` | [`plugins/nocodb/`](plugins/nocodb/) | `python plugins/nocodb/nocodb_cve_2026_130730_audit.py --target <target>` |
+| **SolarWinds Serv-U MFT Privilege Escalation & IDOR Audit** | **CVE-2026-123172** / **CVE-2026-82322** | `CRITICAL 9.1` | SolarWinds Serv-U `<= 2026.3` (`< 2026.4`, `15.5.x`) (9 CVEs) | [`plugins/solarwinds_servu/`](plugins/solarwinds_servu/) | `python plugins/solarwinds_servu/solarwinds_servu_cve_2026_123172_audit.py --target <target>` |
 
 ---
 
