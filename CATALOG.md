@@ -1,8 +1,8 @@
 # RTMS Community Security Plugins — Full Catalog
 
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-95-brightgreen.svg)](README.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-244%2B-red.svg)](https://nvd.nist.gov/)
+[![Plugins](https://img.shields.io/badge/Plugins-98-brightgreen.svg)](README.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-249%2B-red.svg)](https://nvd.nist.gov/)
 
 This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecurity Suite](https://3ts.ai)** plugins available in this repository, grouped by technology domain.
 
@@ -23,6 +23,7 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Barracuda Email Security Gateway Auth Bypass Audit** | **CVE-2026-116606** | `CRITICAL 9.3` | Barracuda Email Security Gateway `< 9.4.0.030` | [`plugins/barracuda_esg/`](plugins/barracuda_esg/) | `python plugins/barracuda_esg/barracuda_esg_cve_2026_116606_audit.py <target>` |
 | **Synology DiskStation Manager Version Audit** | **CVE-2026-120382** / **CVE-2026-76954** | `CRITICAL 9.8` | Synology DSM `< 7.1.1-42962-10`, `< 7.2.1-69057-14`, `< 7.2.2-72806-11`, `< 7.3.2-86009-6`, `< 7.4.1-90080-2` | [`plugins/synology_dsm/`](plugins/synology_dsm/) | `python plugins/synology_dsm/synology_dsm_cve_2026_76954_audit.py <target>` |
 | **F5 BIG-IP TMOS & APM Version Compliance Audit** | **CVE-2026-123637** | `CRITICAL 9.3` | F5 BIG-IP `17.1.x < 17.1.3.6`, `17.5.x < 17.5.1.10`, `21.1.x < 21.1.0.2` (7 CVEs) | [`plugins/f5_bigip/`](plugins/f5_bigip/) | `python plugins/f5_bigip/f5_bigip_cve_2026_123637_audit.py <target>` |
+| **HPE Aruba AirWave Management Platform Compliance Audit** | **CVE-2026-133973** / **CVE-2026-133971** | `CRITICAL 9.8` | HPE Networking Management Software (AirWave) `8.3.0.0`–`8.3.0.7` (`< 8.3.0.8`) (3 CVEs) | [`plugins/hpe_airwave/`](plugins/hpe_airwave/) | `python plugins/hpe_airwave/hpe_airwave_cve_2026_133973_audit.py <target>` |
 
 ---
 
@@ -70,6 +71,7 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Cribl Stream REST Collector Pagination Compliance Audit** | **CVE-2026-115899** | `CRITICAL 9.3` | Cribl Stream `<= 4.20.4` (`< 4.20.5`) | [`plugins/cribl_stream/`](plugins/cribl_stream/) | `python plugins/cribl_stream/cribl_stream_cve_2026_115899_audit.py <target>` |
 | **FFmpeg libavfilter Heap Out-of-Bounds Compliance Audit** | **CVE-2026-135736** / **CVE-2026-135743** | `CRITICAL 9.2` | FFmpeg `4.3` / `4.4` to `< 9.1` | [`plugins/ffmpeg/`](plugins/ffmpeg/) | `python plugins/ffmpeg/ffmpeg_cve_2026_135736_audit.py <target>` |
 | **Mozilla Firefox, Firefox ESR & Thunderbird Sandbox Audit** | **CVE-2026-135597** | `CRITICAL 9.6` | Firefox / Thunderbird `< 161.0`, ESR `< 153.8`, ESR `< 115.46` (18 CVEs) | [`plugins/mozilla_firefox/`](plugins/mozilla_firefox/) | `python plugins/mozilla_firefox/mozilla_firefox_cve_2026_135597_audit.py <target>` |
+| **Jenkins Script Security Plugin Sandbox Bypass Audit** | **CVE-2026-136835** | `CRITICAL 9.9` | Jenkins Script Security Plugin (`script-security`) `<= 1436.v1082791135e4` | [`plugins/jenkins/`](plugins/jenkins/) | `python plugins/jenkins/jenkins_cve_2026_136835_audit.py <target>` |
 
 ---
 
@@ -100,8 +102,8 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 
 ---
 
-## 🌐 5. WordPress & WooCommerce Ecosystem (34 Plugins)
+## 🌐 5. WordPress & WooCommerce Ecosystem (35 Plugins)
 
-All 34 WordPress and WooCommerce plugins are indexed in their dedicated catalog:
+All 35 WordPress and WooCommerce plugins are indexed in their dedicated catalog:
 
 👉 **[Open the WordPress & WooCommerce Security Plugins Catalog (`plugins/wordpress/README.md`)](plugins/wordpress/README.md)**

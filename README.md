@@ -3,35 +3,36 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-95-brightgreen.svg)](CATALOG.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-244%2B-red.svg)](CATALOG.md)
+[![Plugins](https://img.shields.io/badge/Plugins-98-brightgreen.svg)](CATALOG.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-249%2B-red.svg)](CATALOG.md)
 
-Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **95 standalone security audit plugins** covering **244 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
+Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **98 standalone security audit plugins** covering **249 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
 
 Each plugin is developed to provide rapid, reliable, and strictly non-destructive detection of critical emerging vulnerabilities (`CVSS >= 9.0`) across enterprise networks.
 
 ---
 
-## 📚 Security Plugins Catalog (95 Plugins | 244 Critical CVEs)
+## 📚 Security Plugins Catalog (98 Plugins | 249 Critical CVEs)
 
 > 💡 **Full Searchable Index:** Browse **[`CATALOG.md`](CATALOG.md)** for the single-page master table, or expand a domain below.
 
 | Technology Domain | Modules | Representative Targets | Sub-Catalog / Reference |
 |:---|:---:|:---|:---|
-| **🛡️ Network, Firewalls & VPN Appliances** | `8` | F5 BIG-IP, Citrix NetScaler, FortiOS, FortiManager, WatchGuard, SonicWall, Barracuda, Synology DSM | [View in `CATALOG.md`](CATALOG.md#-1-network-appliances-firewalls--vpn-gateways) |
+| **🛡️ Network, Firewalls & VPN Appliances** | `9` | HPE Aruba AirWave, F5 BIG-IP, Citrix NetScaler, FortiOS, FortiManager, WatchGuard, SonicWall, Barracuda, Synology DSM | [View in `CATALOG.md`](CATALOG.md#-1-network-appliances-firewalls--vpn-gateways) |
 | **🔑 Identity, IAM, SSO & PKI** | `6` | Keycloak, OpenAM, IBM API Connect, Cyrus SASL, eMudhra Weak CA | [View in `CATALOG.md`](CATALOG.md#-2-identity-iam-sso--pki-infrastructure) |
-| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `27` | Mozilla Firefox & Thunderbird, FFmpeg, Cribl Stream, Fastify Middleware, SurrealDB, Apache Tomcat, Postgres Enterprise Manager (PEM), PHP / PHP-FPM, NGINX, JetBrains TeamCity, Oracle MySQL, Oracle WebLogic, Apache TomEE, AdminNeo, Arize Phoenix, FrankenPHP, Dokploy, PHP2Shell, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Redpanda, imgproxy, vsftpd, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
+| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `28` | Jenkins, Mozilla Firefox & Thunderbird, FFmpeg, Cribl Stream, Fastify Middleware, SurrealDB, Apache Tomcat, Postgres Enterprise Manager (PEM), PHP / PHP-FPM, NGINX, JetBrains TeamCity, Oracle MySQL, Oracle WebLogic, Apache TomEE, AdminNeo, Arize Phoenix, FrankenPHP, Dokploy, PHP2Shell, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Redpanda, imgproxy, vsftpd, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
 | **🏢 Enterprise Apps, ERP, ITSM & Healthcare** | `20` | Joomla! CMS, MediaWiki, Poste.io, Splunk Enterprise & SOAR, VMware vCenter, OpenCTI, phpMyFAQ, SAP NetWeaver, SharePoint, OpenEMR, GLPI, ManageEngine, Ivanti EPM, Apache OFBiz, Craft CMS, SOGo, Payara, FreeSWITCH, NoMachine | [View in `CATALOG.md`](CATALOG.md#-4-enterprise-apps-erp-itsm-groupware--healthcare) |
-| **🌐 WordPress & WooCommerce Ecosystem** | `34` | Simple Shopping Cart, Nexter Blocks Pro, miniOrange OTP Verification, Tribulant Newsletters, WP Duplicate, WP Photo Album Plus, Custom Block Builder, Auth Armor, Gravity Forms, Contact Form 7, Advanced Form Integration, Document Library Pro, Estatik & 21 more | 👉 **[`plugins/wordpress/README.md`](plugins/wordpress/README.md)** |
-| **📊 Total Public Repository** | **`95`** | **244 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
+| **🌐 WordPress & WooCommerce Ecosystem** | `35` | WP Rocket, Simple Shopping Cart, Nexter Blocks Pro, miniOrange OTP Verification, Tribulant Newsletters, WP Duplicate, WP Photo Album Plus, Custom Block Builder, Auth Armor, Gravity Forms, Contact Form 7, Advanced Form Integration, Document Library Pro, Estatik & 21 more | 👉 **[`plugins/wordpress/README.md`](plugins/wordpress/README.md)** |
+| **📊 Total Public Repository** | **`98`** | **249 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
 
 <details>
-<summary><b>🛡️ 1. Network Appliances, Firewalls & VPN Gateways (Click to expand — 8 plugins)</b></summary>
+<summary><b>🛡️ 1. Network Appliances, Firewalls & VPN Gateways (Click to expand — 9 plugins)</b></summary>
 
 <br>
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
 |:---|:---:|:---:|:---|:---:|
+| **HPE Aruba AirWave Management Platform Compliance Audit** | **CVE-2026-133973** / **CVE-2026-133971** | `CRITICAL 9.8` | HPE Networking Management Software (AirWave) `8.3.0.0`–`8.3.0.7` (`< 8.3.0.8`) (3 CVEs) | [`plugins/hpe_airwave/`](plugins/hpe_airwave/) |
 | **F5 BIG-IP TMOS & APM Version Compliance Audit** | **CVE-2026-123637** | `CRITICAL 9.3` | F5 BIG-IP `17.1.x < 17.1.3.6`, `17.5.x < 17.5.1.10`, `21.1.x < 21.1.0.2` (7 CVEs) | [`plugins/f5_bigip/`](plugins/f5_bigip/) |
 | **Citrix NetScaler Console & ADC Gateway Audit** | **CVE-2026-120869** / **CVE-2026-120864** | `CRITICAL 9.5` | NetScaler ADC/Gateway `< 14.1-73.57`, `< 13.1-64.39` | [`plugins/citrix_netscaler/`](plugins/citrix_netscaler/) |
 | **Fortinet FortiOS Version Compliance Audit** | **CVE-2026-126259** | `CRITICAL 9.8` | FortiOS `7.0.0`–`7.0.19`, `7.2.0`–`7.2.13`, `7.4.0`–`7.4.12`, `7.6.0`–`7.6.7`, `8.0.0`–`8.0.1` | [`plugins/fortios/`](plugins/fortios/) |
@@ -60,12 +61,13 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 </details>
 
 <details>
-<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 27 plugins)</b></summary>
+<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 28 plugins)</b></summary>
 
 <br>
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
 |:---|:---:|:---:|:---|:---:|
+| **Jenkins Script Security Plugin Sandbox Bypass Audit** | **CVE-2026-136835** | `CRITICAL 9.9` | Jenkins Script Security Plugin (`script-security`) `<= 1436.v1082791135e4` | [`plugins/jenkins/`](plugins/jenkins/) |
 | **Mozilla Firefox, Firefox ESR & Thunderbird Sandbox Audit** | **CVE-2026-135597** | `CRITICAL 9.6` | Firefox / Thunderbird `< 161.0`, ESR `< 153.8`, ESR `< 115.46` (18 CVEs) | [`plugins/mozilla_firefox/`](plugins/mozilla_firefox/) |
 | **FFmpeg libavfilter Heap Out-of-Bounds Compliance Audit** | **CVE-2026-135736** / **CVE-2026-135743** | `CRITICAL 9.2` | FFmpeg `4.3` / `4.4` to `< 9.1` | [`plugins/ffmpeg/`](plugins/ffmpeg/) |
 | **Cribl Stream REST Collector Pagination Compliance Audit** | **CVE-2026-115899** | `CRITICAL 9.3` | Cribl Stream `<= 4.20.4` (`< 4.20.5`) | [`plugins/cribl_stream/`](plugins/cribl_stream/) |
