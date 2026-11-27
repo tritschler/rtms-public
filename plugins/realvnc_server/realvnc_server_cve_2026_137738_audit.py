@@ -53,6 +53,20 @@ class RealVNCServerAuditPlugin(BasePlugin):
     author = "RTMS Security Team"
     version = "1.0.0"
 
+    def __init__(self, target: str = "", options: Optional[Dict] = None):
+        self.target = target
+        self.options = options or {}
+        self.info = {
+            "name": "realvnc_server_cve_2026_137738_audit",
+            "description": "Passive version check for RealVNC Server unauthenticated UDP RCE / DoS (CVE-2026-137738, CVSS 9.8)",
+            "severity": "CRITICAL",
+            "cve": "CVE-2026-137738",
+            "version": "1.0.0",
+        }
+
+    def check_requirements(self, target_ip: str = "", target_services: object = None) -> bool:
+        return True
+
     def _probe_version(self, host: str, port: int, timeout: int) -> Tuple[Optional[str], List[str]]:
         evidence: List[str] = []
         try:
@@ -67,7 +81,9 @@ class RealVNCServerAuditPlugin(BasePlugin):
             evidence.append(f"Banner read on {host}:{port} failed: {e}")
         return None, evidence
 
-    def run_audit(self) -> Dict:
+    def run_audit(self, target_ip: str = "", target_services: object = None, credentials: object = None) -> Dict:
+        if target_ip and not getattr(self, "target", ""):
+            self.target = target_ip
         timeout = int(self.options.get("timeout", 5))
         port = int(self.options.get("port", 5900))
         raw_version = self.options.get("realvnc_version")

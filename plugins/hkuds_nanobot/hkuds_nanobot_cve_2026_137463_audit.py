@@ -51,6 +51,20 @@ class HKUDSNanobotAuditPlugin(BasePlugin):
     author = "RTMS Security Team"
     version = "1.0.0"
 
+    def __init__(self, target: str = "", options: Optional[Dict] = None):
+        self.target = target
+        self.options = options or {}
+        self.info = {
+            "name": "hkuds_nanobot_cve_2026_137463_audit",
+            "description": "Passive version check for HKUDS nanobot TLS certificate validation bypass (CVE-2026-137463, CVSS 9.1)",
+            "severity": "CRITICAL",
+            "cve": "CVE-2026-137463",
+            "version": "1.0.0",
+        }
+
+    def check_requirements(self, target_ip: str = "", target_services: object = None) -> bool:
+        return True
+
     def _build_base_url(self) -> str:
         t = self.target.strip().rstrip("/")
         if t.startswith("http://") or t.startswith("https://"):
@@ -84,7 +98,9 @@ class HKUDSNanobotAuditPlugin(BasePlugin):
                 return ver_str, evidence
         return None, evidence
 
-    def run_audit(self) -> Dict:
+    def run_audit(self, target_ip: str = "", target_services: object = None, credentials: object = None) -> Dict:
+        if target_ip and not getattr(self, "target", ""):
+            self.target = target_ip
         timeout = int(self.options.get("timeout", 8))
         raw_version = self.options.get("nanobot_version")
         evidence: List[str] = []

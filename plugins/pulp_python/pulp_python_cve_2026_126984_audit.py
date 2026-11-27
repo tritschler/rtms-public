@@ -72,6 +72,20 @@ class PulpPythonAuditPlugin(BasePlugin):
     author = "RTMS Security Team"
     version = "1.0.0"
 
+    def __init__(self, target: str = "", options: Optional[Dict] = None):
+        self.target = target
+        self.options = options or {}
+        self.info = {
+            "name": "pulp_python_cve_2026_126984_audit",
+            "description": "Passive version check for Pulp pulp_python pull-through caching SSRF (CVE-2026-126984, CVSS 10.0)",
+            "severity": "CRITICAL",
+            "cve": "CVE-2026-126984",
+            "version": "1.0.0",
+        }
+
+    def check_requirements(self, target_ip: str = "", target_services: object = None) -> bool:
+        return True
+
     def _build_base_url(self) -> str:
         t = self.target.strip().rstrip("/")
         if t.startswith("http://") or t.startswith("https://"):
@@ -104,7 +118,9 @@ class PulpPythonAuditPlugin(BasePlugin):
             evidence.append(f"HTTP probe {url} failed: {e}")
         return None, evidence
 
-    def run_audit(self) -> Dict:
+    def run_audit(self, target_ip: str = "", target_services: object = None, credentials: object = None) -> Dict:
+        if target_ip and not getattr(self, "target", ""):
+            self.target = target_ip
         timeout = int(self.options.get("timeout", 8))
         raw_version = self.options.get("pulp_python_version")
         evidence: List[str] = []

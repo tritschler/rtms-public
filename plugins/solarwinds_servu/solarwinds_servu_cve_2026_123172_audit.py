@@ -79,6 +79,20 @@ class SolarWindsServUAuditPlugin(BasePlugin):
     author = "RTMS Security Team"
     version = "1.0.0"
 
+    def __init__(self, target: str = "", options: Optional[Dict] = None):
+        self.target = target
+        self.options = options or {}
+        self.info = {
+            "name": "solarwinds_servu_cve_2026_123172_audit",
+            "description": "Passive version check for SolarWinds Serv-U privilege escalation, IDOR, and TOCTOU vulnerabilities (CVE-2026-123172 and 8 others, CVSS 9.1)",
+            "severity": "CRITICAL",
+            "cve": "CVE-2026-123167, CVE-2026-123168, CVE-2026-123172, CVE-2026-82315, CVE-2026-82316, CVE-2026-82319, CVE-2026-82320, CVE-2026-82321, CVE-2026-82322",
+            "version": "1.0.0",
+        }
+
+    def check_requirements(self, target_ip: str = "", target_services: object = None) -> bool:
+        return True
+
     def _build_base_url(self) -> str:
         t = self.target.strip().rstrip("/")
         if t.startswith("http://") or t.startswith("https://"):
@@ -136,7 +150,9 @@ class SolarWindsServUAuditPlugin(BasePlugin):
 
         return None, evidence
 
-    def run_audit(self) -> Dict:
+    def run_audit(self, target_ip: str = "", target_services: object = None, credentials: object = None) -> Dict:
+        if target_ip and not getattr(self, "target", ""):
+            self.target = target_ip
         timeout = int(self.options.get("timeout", 8))
         raw_version = self.options.get("servu_version")
         evidence: List[str] = []

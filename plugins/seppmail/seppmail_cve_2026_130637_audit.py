@@ -58,6 +58,20 @@ class SEPPmailAuditPlugin(BasePlugin):
     author = "RTMS Security Team"
     version = "1.0.0"
 
+    def __init__(self, target: str = "", options: Optional[Dict] = None):
+        self.target = target
+        self.options = options or {}
+        self.info = {
+            "name": "seppmail_cve_2026_130637_audit",
+            "description": "Passive version check for SEPPmail Secure E-Mail Gateway pre-auth SSTI and GINA cryptographic flaws (CVE-2026-130637, CVE-2026-124843, CVE-2026-124840, CVSS 9.3)",
+            "severity": "CRITICAL",
+            "cve": "CVE-2026-124840, CVE-2026-124843, CVE-2026-130637",
+            "version": "1.0.0",
+        }
+
+    def check_requirements(self, target_ip: str = "", target_services: object = None) -> bool:
+        return True
+
     def _build_base_url(self) -> str:
         t = self.target.strip().rstrip("/")
         if t.startswith("http://") or t.startswith("https://"):
@@ -91,7 +105,9 @@ class SEPPmailAuditPlugin(BasePlugin):
                 return ver_str, evidence
         return None, evidence
 
-    def run_audit(self) -> Dict:
+    def run_audit(self, target_ip: str = "", target_services: object = None, credentials: object = None) -> Dict:
+        if target_ip and not getattr(self, "target", ""):
+            self.target = target_ip
         timeout = int(self.options.get("timeout", 8))
         raw_version = self.options.get("seppmail_version")
         evidence: List[str] = []

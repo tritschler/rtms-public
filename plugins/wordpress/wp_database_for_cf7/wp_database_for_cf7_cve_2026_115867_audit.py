@@ -57,6 +57,20 @@ class WPDatabaseForCF7AuditPlugin(BasePlugin):
     author = "RTMS Security Team"
     version = "1.0.0"
 
+    def __init__(self, target: str = "", options: Optional[Dict] = None):
+        self.target = target
+        self.options = options or {}
+        self.info = {
+            "name": "wp_database_for_cf7_cve_2026_115867_audit",
+            "description": "Passive version check for WordPress Database for CF7, WPForms, Elementor forms arbitrary file upload (CVE-2026-115867, CVSS 9.8)",
+            "severity": "CRITICAL",
+            "cve": "CVE-2026-115867",
+            "version": "1.0.0",
+        }
+
+    def check_requirements(self, target_ip: str = "", target_services: object = None) -> bool:
+        return True
+
     def _build_base_url(self) -> str:
         t = self.target.strip().rstrip("/")
         if t.startswith("http://") or t.startswith("https://"):
@@ -94,7 +108,9 @@ class WPDatabaseForCF7AuditPlugin(BasePlugin):
                 return ver_str, evidence
         return None, evidence
 
-    def run_audit(self) -> Dict:
+    def run_audit(self, target_ip: str = "", target_services: object = None, credentials: object = None) -> Dict:
+        if target_ip and not getattr(self, "target", ""):
+            self.target = target_ip
         timeout = int(self.options.get("timeout", 8))
         raw_version = self.options.get("plugin_version")
         evidence: List[str] = []
