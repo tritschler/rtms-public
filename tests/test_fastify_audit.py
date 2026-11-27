@@ -12,6 +12,7 @@ from plugins.fastify.fastify_cve_2026_133120_audit import (
 
 def test_plugin_metadata():
     plugin = FastifyMiddlewareAuditPlugin()
+    assert "CVE-2026-135279" in plugin.info["cve"]
     assert "CVE-2026-133120" in plugin.info["cve"]
     assert "CVE-2026-133250" in plugin.info["cve"]
     assert plugin.info["severity"] == "CRITICAL"
@@ -30,12 +31,17 @@ def test_version_parsing():
 def test_version_vulnerability_logic():
     vuln_exp, reason_exp = is_fastify_middleware_version_vulnerable("@fastify/express", 4, 0, 8)
     assert vuln_exp is True
+    assert "CVE-2026-135279" in reason_exp
     assert "CVE-2026-133120" in reason_exp
     assert "CVE-2026-129504" in reason_exp
     assert "CVE-2026-124626" in reason_exp
     assert "CVE-2026-133867" in reason_exp
 
-    safe_exp, _ = is_fastify_middleware_version_vulnerable("@fastify/express", 4, 0, 10)
+    vuln_exp_12, reason_exp_12 = is_fastify_middleware_version_vulnerable("@fastify/express", 4, 0, 12)
+    assert vuln_exp_12 is True
+    assert "CVE-2026-135279" in reason_exp_12
+
+    safe_exp, _ = is_fastify_middleware_version_vulnerable("@fastify/express", 4, 0, 14)
     assert safe_exp is False
 
     vuln_mid, reason_mid = is_fastify_middleware_version_vulnerable("@fastify/middie", 9, 3, 7)

@@ -1,16 +1,17 @@
-# Fastify Middleware (`@fastify/express` & `@fastify/middie`) Multi-CVE Auditor (CVE-2026-133120)
+# Fastify Middleware (`@fastify/express` & `@fastify/middie`) Multi-CVE Auditor (CVE-2026-135279 / CVE-2026-133120)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
 [![CVSS Score](https://img.shields.io/badge/CVSS_v3.1-9.1_CRITICAL-red.svg)](https://nvd.nist.gov/)
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
-[![Target](https://img.shields.io/badge/Vulnerability-5_Critical_CVEs-orange.svg)]()
+[![Target](https://img.shields.io/badge/Vulnerability-6_Critical_CVEs-orange.svg)]()
 
-A passive, read-only version compliance tool and official plugin for **[RTMS Suite](https://3ts.ai)** to verify **Node.js Fastify middleware packages** (`@fastify/express < 4.0.10` and `@fastify/middie <= 9.3.7`) against five critical path-scoped middleware routing bypass vulnerabilities (`CVSS 9.1`).
+A passive, read-only version compliance tool and official plugin for **[RTMS Suite](https://3ts.ai)** to verify **Node.js Fastify middleware packages** (`@fastify/express < 4.0.14` and `@fastify/middie <= 9.3.7`) against six critical path-scoped middleware routing bypass vulnerabilities (`CVSS 9.1`).
 
 ---
 
 ## 🔍 Advisory Overview
 
+* **CVE-2026-135279** (`CVSS 9.1 Critical`): Empty dynamic route parameter and unanchored regular-expression mount bypass for middleware inside an Express Router or sub-application in `@fastify/express` prior to `4.0.14`.
 * **CVE-2026-133120** (`CVSS 9.1 Critical`): Request path normalization mismatch between Fastify router and `@fastify/express` prior to `4.0.10`.
 * **CVE-2026-129504** (`CVSS 9.1 Critical`): Prefix and mount path concatenation mismatch in `@fastify/express` `4.0.0` through `4.0.9`.
 * **CVE-2026-133867** (`CVSS 9.1 Critical`): Regular-expression mount path mismatch under parameterized plugin prefixes in `@fastify/express` `4.0.7` through `4.0.9`.
@@ -23,7 +24,7 @@ A passive, read-only version compliance tool and official plugin for **[RTMS Sui
 
 | Component | Affected Versions | Patched Version | Covered CVEs |
 |:---|:---:|:---:|:---|
-| **`@fastify/express`** | `< 4.0.10` (`<= 4.0.9`) | `>= 4.0.10` | `CVE-2026-133120`, `CVE-2026-129504`, `CVE-2026-133867`, `CVE-2026-124626` |
+| **`@fastify/express`** | `< 4.0.14` (`<= 4.0.13`) | `>= 4.0.14` | `CVE-2026-135279`, `CVE-2026-133120`, `CVE-2026-129504`, `CVE-2026-133867`, `CVE-2026-124626` |
 | **`@fastify/middie`** | `<= 9.3.7` (`< 9.3.8`) | `>= 9.3.8` | `CVE-2026-133250` |
 
 ---

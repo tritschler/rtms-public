@@ -3,14 +3,15 @@ vmware_vcenter_cve_2026_123890_audit.py
 
 Standalone Defensive Version Compliance Tool & External Plugin for RTMS Suite.
 Performs passive, read-only HTTP/HTTPS SDK and UI version metadata verification
-for VMware vCenter Server against the November 2026 Security Advisory:
+for VMware vCenter Server against the November 2026 Security Advisories:
   - CVE-2026-123890 (CVSS 9.8 Critical): Authentication bypass vulnerability in the VMware Directory Service (vmdir).
+  - CVE-2026-123903 (CVSS 9.8 Critical): Authentication bypass vulnerability in the VMware Directory Service (vmdir).
 
 Affected Versions:
-  - VMware vCenter Server 9.1.x: prior to 9.1.1.0200
-  - VMware vCenter Server 9.0.x: prior to 9.0.2.0200
+  - VMware vCenter Server 9.1.x: prior to 9.1.2 (9.1.2.0 / 9.1.1.0200)
+  - VMware vCenter Server 9.0.x: prior to 9.0.2.0300 (9.0.2.0200 for CVE-2026-123890)
   - VMware vCenter Server 8.0.x: prior to 8.0 U3m (8.0.3.01300 / Update 3m)
-  - VMware vCenter Server 5.x: prior to 5.2.5
+  - VMware vCenter Server / VCF 5.x: prior to 5.2.5
 
 License: MIT
 SPDX-License-Identifier: MIT
@@ -111,12 +112,12 @@ def is_vcenter_version_vulnerable(
     raw_str: str = "",
 ) -> Tuple[bool, str]:
     """
-    Evaluates whether a VMware vCenter Server version is affected by CVE-2026-123890 (CVSS 9.8).
+    Evaluates whether a VMware vCenter Server version is affected by CVE-2026-123890 / CVE-2026-123903 (CVSS 9.8).
     Affected:
       - 5.x prior to 5.2.5 (< (5, 2, 5, 0))
       - 8.0.x prior to 8.0 U3m (Update 3m -> (8, 0, 3, 13) or numeric < (8, 0, 3, 1300))
-      - 9.0.x prior to 9.0.2.0200 (< (9, 0, 2, 200))
-      - 9.1.x prior to 9.1.1.0200 (< (9, 1, 1, 200))
+      - 9.0.x prior to 9.0.2.0300 (< (9, 0, 2, 300); < 9.0.2.0200 also affected by CVE-2026-123890)
+      - 9.1.x prior to 9.1.2 (< (9, 1, 2, 0); < 9.1.1.0200 also affected by CVE-2026-123890)
     """
     ver = (major, minor, patch, sub)
     ver_display = raw_str or f"{major}.{minor}.{patch}.{sub}"
@@ -125,61 +126,69 @@ def is_vcenter_version_vulnerable(
         if ver < (5, 2, 5, 0):
             return True, (
                 f"VMware vCenter {ver_display} is in the 5.x branch prior to 5.2.5 and is affected by "
-                f"CVE-2026-123890 (CVSS 9.8)."
+                f"CVE-2026-123890 and CVE-2026-123903 (CVSS 9.8)."
             )
-        return False, f"VMware vCenter {ver_display} is patched in the 5.x branch (>= 5.2.5) against CVE-2026-123890."
+        return False, (
+            f"VMware vCenter {ver_display} is patched in the 5.x branch (>= 5.2.5) against "
+            f"CVE-2026-123890 and CVE-2026-123903."
+        )
 
     if major == 8 and minor == 0:
-        # In Update notation, U3m maps to patch=3, sub=13 ('m' is 13th letter).
-        # In 4-part numeric notation, 8.0.3.01300 has sub=1300.
         threshold_sub = 13 if sub < 100 else 1300
         if (major, minor, patch, sub) < (8, 0, 3, threshold_sub):
             return True, (
                 f"VMware vCenter {ver_display} is in the 8.0 branch prior to 8.0 U3m and is affected by "
-                f"CVE-2026-123890 (CVSS 9.8)."
-            )
-        return False, f"VMware vCenter {ver_display} is patched in the 8.0 branch (>= 8.0 U3m) against CVE-2026-123890."
-
-    if major == 9 and minor == 0:
-        if ver < (9, 0, 2, 200):
-            return True, (
-                f"VMware vCenter {ver_display} is in the 9.0.x branch prior to 9.0.2.0200 and is affected by "
-                f"CVE-2026-123890 (CVSS 9.8)."
+                f"CVE-2026-123890 and CVE-2026-123903 (CVSS 9.8)."
             )
         return False, (
-            f"VMware vCenter {ver_display} is patched in the 9.0.x branch (>= 9.0.2.0200) against CVE-2026-123890."
+            f"VMware vCenter {ver_display} is patched in the 8.0 branch (>= 8.0 U3m) against "
+            f"CVE-2026-123890 and CVE-2026-123903."
+        )
+
+    if major == 9 and minor == 0:
+        if ver < (9, 0, 2, 300):
+            cves = "CVE-2026-123890 and CVE-2026-123903" if ver < (9, 0, 2, 200) else "CVE-2026-123903"
+            return True, (
+                f"VMware vCenter {ver_display} is in the 9.0.x branch prior to 9.0.2.0300 and is affected by "
+                f"{cves} (CVSS 9.8)."
+            )
+        return False, (
+            f"VMware vCenter {ver_display} is patched in the 9.0.x branch (>= 9.0.2.0300) against "
+            f"CVE-2026-123890 and CVE-2026-123903."
         )
 
     if major == 9 and minor == 1:
-        if ver < (9, 1, 1, 200):
+        if ver < (9, 1, 2, 0):
+            cves = "CVE-2026-123890 and CVE-2026-123903" if ver < (9, 1, 1, 200) else "CVE-2026-123903"
             return True, (
-                f"VMware vCenter {ver_display} is in the 9.1.x branch prior to 9.1.1.0200 and is affected by "
-                f"CVE-2026-123890 (CVSS 9.8)."
+                f"VMware vCenter {ver_display} is in the 9.1.x branch prior to 9.1.2 and is affected by "
+                f"{cves} (CVSS 9.8)."
             )
         return False, (
-            f"VMware vCenter {ver_display} is patched in the 9.1.x branch (>= 9.1.1.0200) against CVE-2026-123890."
+            f"VMware vCenter {ver_display} is patched in the 9.1.x branch (>= 9.1.2) against "
+            f"CVE-2026-123890 and CVE-2026-123903."
         )
 
-    return False, f"VMware vCenter {ver_display} is not in an affected version range for CVE-2026-123890."
+    return False, f"VMware vCenter {ver_display} is not in an affected version range for CVE-2026-123890 / CVE-2026-123903."
 
 
 class VMwareVCenterAuditPlugin(BasePlugin):
     """
     RTMS Security Plugin: VMware vCenter Server Version Compliance Audit
-    (CVE-2026-123890 - CVSS 9.8 Critical).
+    (CVE-2026-123890, CVE-2026-123903 - CVSS 9.8 Critical).
     """
 
     def __init__(self):
         super().__init__()
         self.info = {
-            "name": "VMware vCenter Server Directory Service Auth Bypass Audit (CVE-2026-123890)",
+            "name": "VMware vCenter Server Directory Service Auth Bypass Audit (CVE-2026-123890 / CVE-2026-123903)",
             "description": (
-                "Passive version compliance check for VMware vCenter Server (9.1.x < 9.1.1.0200, "
-                "9.0.x < 9.0.2.0200, 8.0 < 8.0 U3m, 5.x < 5.2.5) against CVE-2026-123890 (CVSS 9.8)."
+                "Passive version compliance check for VMware vCenter Server (9.1.x < 9.1.2, "
+                "9.0.x < 9.0.2.0300, 8.0 < 8.0 U3m, 5.x < 5.2.5) against CVE-2026-123890 and CVE-2026-123903 (CVSS 9.8)."
             ),
             "severity": "CRITICAL",
-            "cve": "CVE-2026-123890",
-            "version": "1.0.0",
+            "cve": "CVE-2026-123890, CVE-2026-123903",
+            "version": "1.1.0",
         }
         self.target_ports = DEFAULT_VCENTER_PORTS.copy()
         self.ssl_ports = sorted(list(SSL_PORTS))

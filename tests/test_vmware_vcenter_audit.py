@@ -12,10 +12,11 @@ from plugins.vmware_vcenter.vmware_vcenter_cve_2026_123890_audit import (
 
 def test_plugin_metadata():
     plugin = VMwareVCenterAuditPlugin()
-    assert plugin.info["cve"] == "CVE-2026-123890"
+    assert "CVE-2026-123890" in plugin.info["cve"]
+    assert "CVE-2026-123903" in plugin.info["cve"]
     assert plugin.info["severity"] == "CRITICAL"
     assert "vCenter" in plugin.info["name"]
-    assert plugin.info["version"] == "1.0.0"
+    assert plugin.info["version"] == "1.1.0"
 
 
 def test_version_parsing():
@@ -57,10 +58,10 @@ def test_version_vulnerability_logic():
     vuln_5, _ = is_vcenter_version_vulnerable(5, 2, 4, 0, "5.2.4")
     assert vuln_5 is True
 
-    safe_91, _ = is_vcenter_version_vulnerable(9, 1, 1, 200, "9.1.1.0200")
+    safe_91, _ = is_vcenter_version_vulnerable(9, 1, 2, 0, "9.1.2")
     assert safe_91 is False
 
-    safe_90, _ = is_vcenter_version_vulnerable(9, 0, 2, 200, "9.0.2.0200")
+    safe_90, _ = is_vcenter_version_vulnerable(9, 0, 2, 300, "9.0.2.0300")
     assert safe_90 is False
 
     safe_80, _ = is_vcenter_version_vulnerable(8, 0, 3, 13, "8.0 U3m")

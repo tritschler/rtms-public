@@ -3,16 +3,16 @@ fastify_cve_2026_133120_audit.py
 
 Standalone Defensive Version Compliance Tool & External Plugin for RTMS Suite.
 Performs passive, read-only HTTP/HTTPS and manifest metadata version verification for
-Node.js Fastify deployments using @fastify/express (< 4.0.10) or @fastify/middie (<= 9.3.7)
-to verify patch compliance against CVE-2026-133120, CVE-2026-129504, CVE-2026-133867,
-CVE-2026-124626, and CVE-2026-133250.
+Node.js Fastify deployments using @fastify/express (< 4.0.14) or @fastify/middie (<= 9.3.7)
+to verify patch compliance against CVE-2026-135279, CVE-2026-133120, CVE-2026-129504,
+CVE-2026-133867, CVE-2026-124626, and CVE-2026-133250.
 
 CVSS Score: 9.1 (Critical)
 Affected Components:
-  - @fastify/express < 4.0.10 (CVE-2026-133120, CVE-2026-129504, CVE-2026-133867, CVE-2026-124626)
+  - @fastify/express < 4.0.14 (CVE-2026-135279; < 4.0.10 also affected by CVE-2026-133120, CVE-2026-129504, CVE-2026-133867, CVE-2026-124626)
   - @fastify/middie <= 9.3.7 (< 9.3.8) (CVE-2026-133250)
 Fixed in:
-  - @fastify/express 4.0.10+
+  - @fastify/express 4.0.14+
   - @fastify/middie 9.3.8+
 
 License: MIT
@@ -55,7 +55,7 @@ logger = logging.getLogger(__name__)
 
 DEFAULT_WEB_PORTS = [3000, 8080, 8000, 443, 80, 8443]
 SSL_PORTS = {443, 8443, 9443}
-MIN_PATCHED_FASTIFY_EXPRESS = (4, 0, 10)
+MIN_PATCHED_FASTIFY_EXPRESS = (4, 0, 14)
 MIN_PATCHED_FASTIFY_MIDDIE = (9, 3, 8)
 
 
@@ -112,7 +112,9 @@ def is_fastify_middleware_version_vulnerable(
 
     if pkg == "@fastify/express":
         if ver_tuple < MIN_PATCHED_FASTIFY_EXPRESS:
-            cves = ["CVE-2026-133120"]
+            cves = ["CVE-2026-135279"]
+            if ver_tuple < (4, 0, 10):
+                cves.append("CVE-2026-133120")
             if (4, 0, 0) <= ver_tuple <= (4, 0, 9):
                 cves.append("CVE-2026-129504")
             if (4, 0, 5) <= ver_tuple <= (4, 0, 9):
@@ -122,11 +124,11 @@ def is_fastify_middleware_version_vulnerable(
             cve_list = ", ".join(cves)
             return True, (
                 f"@fastify/express {ver_str} is affected by {cve_list} "
-                f"(affected: < 4.0.10; requires upgrade to >= 4.0.10)."
+                f"(affected: < 4.0.14; requires upgrade to >= 4.0.14)."
             )
         return False, (
-            f"@fastify/express {ver_str} is patched against CVE-2026-133120, CVE-2026-129504, "
-            f"CVE-2026-133867, and CVE-2026-124626 (running >= 4.0.10)."
+            f"@fastify/express {ver_str} is patched against CVE-2026-135279, CVE-2026-133120, "
+            f"CVE-2026-129504, CVE-2026-133867, and CVE-2026-124626 (running >= 4.0.14)."
         )
 
     if pkg == "@fastify/middie":
@@ -152,14 +154,14 @@ class FastifyMiddlewareAuditPlugin(BasePlugin):
     def __init__(self):
         super().__init__()
         self.info = {
-            "name": "Fastify Middleware (@fastify/express & @fastify/middie) Multi-CVE Audit (CVE-2026-133120)",
+            "name": "Fastify Middleware (@fastify/express & @fastify/middie) Multi-CVE Audit (CVE-2026-135279 / CVE-2026-133120)",
             "description": (
-                "Passive version compliance check for @fastify/express < 4.0.10 and @fastify/middie <= 9.3.7 "
-                "(CVE-2026-133120, CVE-2026-129504, CVE-2026-133867, CVE-2026-124626, CVE-2026-133250 — CVSS 9.1)."
+                "Passive version compliance check for @fastify/express < 4.0.14 and @fastify/middie <= 9.3.7 "
+                "(CVE-2026-135279, CVE-2026-133120, CVE-2026-129504, CVE-2026-133867, CVE-2026-124626, CVE-2026-133250 — CVSS 9.1)."
             ),
             "severity": "CRITICAL",
-            "cve": "CVE-2026-133120, CVE-2026-129504, CVE-2026-133867, CVE-2026-124626, CVE-2026-133250",
-            "version": "1.0.0",
+            "cve": "CVE-2026-135279, CVE-2026-133120, CVE-2026-129504, CVE-2026-133867, CVE-2026-124626, CVE-2026-133250",
+            "version": "1.1.0",
         }
         self.target_ports = DEFAULT_WEB_PORTS.copy()
         self.ssl_ports = sorted(list(SSL_PORTS))
