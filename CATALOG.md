@@ -1,8 +1,8 @@
 # RTMS Community Security Plugins — Full Catalog
 
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-147-brightgreen.svg)](README.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-332%2B-red.svg)](https://nvd.nist.gov/)
+[![Plugins](https://img.shields.io/badge/Plugins-160-brightgreen.svg)](README.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-350%2B-red.svg)](https://nvd.nist.gov/)
 
 This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecurity Suite](https://3ts.ai)** plugins available in this repository, grouped by technology domain.
 
@@ -28,6 +28,7 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Fortinet FortiMail Heap Overflow RCE Compliance Audit** | **CVE-2026-126263** | `CRITICAL 9.8` | FortiMail `7.4.0`–`7.4.6`, `7.6.0`–`7.6.4`, `8.0.0`–`8.0.1` | [`plugins/fortimail/`](plugins/fortimail/) | `python plugins/fortimail/fortimail_cve_2026_126263_audit.py --target <target>` |
 | **Fortinet FortiAnalyzer Authorization Bypass Audit** | **CVE-2026-126229** | `CRITICAL 9.1` | FortiAnalyzer `7.2.0`–`7.2.12`, `7.4.0`–`7.4.11`, `7.6.0`–`7.6.7`, `8.0.0`–`8.0.1` | [`plugins/fortianalyzer/`](plugins/fortianalyzer/) | `python plugins/fortianalyzer/fortianalyzer_cve_2026_126229_audit.py --target <target>` |
 | **SEPPmail Secure E-Mail Gateway Pre-Auth SSTI & GINA Audit** | **CVE-2026-130637** / **CVE-2026-124843** | `CRITICAL 9.3` | SEPPmail Secure E-Mail Gateway `< 15.1.2` (3 CVEs) | [`plugins/seppmail/`](plugins/seppmail/) | `python plugins/seppmail/seppmail_cve_2026_130637_audit.py --target <target>` |
+| **TRENDnet TEW-751DR & TEW-733GR UPnP Firmware Compliance Audit** | **CVE-2026-138004** / **CVE-2026-138003** | `CRITICAL 9.3` | TRENDnet TEW-751DR & TEW-733GR `<= 1.03B01` (2 CVEs) | [`plugins/trendnet_tew/`](plugins/trendnet_tew/) | `python plugins/trendnet_tew/trendnet_tew_cve_2026_138004_audit.py --target <target>` |
 
 ---
 
@@ -43,6 +44,7 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Cyrus SASL SRP Authentication Bypass Audit** | **CVE-2026-129483** | `CRITICAL 9.3` | Cyrus SASL (`libsasl2`) `<= 2.1.28` | [`plugins/cyrus_sasl/`](plugins/cyrus_sasl/) | `python plugins/cyrus_sasl/cyrus_sasl_cve_2026_129483_audit.py <target>` |
 | **Oracle Access Manager (OAM) SSO Engine Compliance Audit** | **CVE-2026-91510** | `CRITICAL 10.0` | Oracle Access Manager `12.2.1.4.0`, `14.1.2.1.0` | [`plugins/oracle_access_manager/`](plugins/oracle_access_manager/) | `python plugins/oracle_access_manager/oracle_access_manager_cve_2026_91510_audit.py --target <target>` |
 | **Direk Tech Smart Portal AD Domain Admins Authorization Audit** | **CVE-2026-137706** | `CRITICAL 9.4` | Direk Tech Smart Portal `< 2026.12.0` | [`plugins/direk_smart_portal/`](plugins/direk_smart_portal/) | `python plugins/direk_smart_portal/direk_smart_portal_cve_2026_137706_audit.py --target <target>` |
+| **Mendix OIDC Provider JWT Integrity Validation Bypass Audit** | **CVE-2026-124981** | `CRITICAL 9.4` | Mendix OIDC Provider `< V4.3.0` (Mendix 9), `< V6.0.0` (Mendix 10/11) | [`plugins/mendix_oidc/`](plugins/mendix_oidc/) | `python plugins/mendix_oidc/mendix_oidc_cve_2026_124981_audit.py --target <target>` |
 
 ---
 
@@ -95,6 +97,7 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **Parse Server Google Play Games Auth Bypass Audit** | **CVE-2026-137465** | `CRITICAL 9.1` | Parse Server `3.10.0`–`< 8.6.123`, `9.0.0`–`< 9.11.1-alpha.4` | [`plugins/parse_server/`](plugins/parse_server/) | `python plugins/parse_server/parse_server_cve_2026_137465_audit.py --target <target>` |
 | **HKUDS `nanobot` TLS Certificate Validation Bypass Audit** | **CVE-2026-137463** | `CRITICAL 9.1` | HKUDS `nanobot` `0.1.4` to `< 0.4.1` | [`plugins/hkuds_nanobot/`](plugins/hkuds_nanobot/) | `python plugins/hkuds_nanobot/hkuds_nanobot_cve_2026_137463_audit.py --target <target>` |
 | **LaraDashboard Module Namespace Path Traversal Audit** | **CVE-2026-137544** | `CRITICAL 9.4` | LaraDashboard `< 1.5.0` | [`plugins/laradashboard/`](plugins/laradashboard/) | `python plugins/laradashboard/laradashboard_cve_2026_137544_audit.py --target <target>` |
+| **Google Cloud Managed Services Revision Compliance Audit** | **CVE-2026-106169** / **CVE-2026-85258** / **CVE-2026-110739** | `CRITICAL 9.4` | GCP Application Integration `< 2026-09-22`, Vertex AI `< 2026-04-13`, GKE Fleet `< 2026-09-25` (3 CVEs) | [`plugins/gcp_managed_services/`](plugins/gcp_managed_services/) | `python plugins/gcp_managed_services/gcp_managed_services_cve_2026_106169_audit.py --target <target>` |
 
 ---
 
@@ -135,15 +138,18 @@ This catalog indexes all standalone defensive audit tools and **[RTMS Cybersecur
 | **RealVNC Server Unauthenticated UDP RCE Compliance Audit** | **CVE-2026-137738** | `CRITICAL 9.8` | RealVNC Server `6.4.0`–`7.19.0` (`< 7.19.1`) | [`plugins/realvnc_server/`](plugins/realvnc_server/) | `python plugins/realvnc_server/realvnc_server_cve_2026_137738_audit.py --target <target>` |
 | **Mitel OpenScape 4000 & Manager Command Injection & Auth Audit** | **CVE-2026-137721** / **CVE-2026-137724** | `CRITICAL 10.0` | Mitel OpenScape 4000 & Manager `V10 <= R1.68`, `V11 R0.22`–`R2.11` (3 CVEs) | [`plugins/mitel_openscape/`](plugins/mitel_openscape/) | `python plugins/mitel_openscape/mitel_openscape_cve_2026_137721_audit.py --target <target>` |
 | **Budibase Server Prototype Pollution & OIDC/SSO Auth Bypass Audit** | **CVE-2026-137498** / **CVE-2026-137499** | `CRITICAL 9.9` | Budibase `3.39.18`–`< 4.0.0` (2 CVEs) | [`plugins/budibase/`](plugins/budibase/) | `python plugins/budibase/budibase_cve_2026_137498_audit.py --target <target>` |
-| **ToolJet OAuth SSO Sign-In Authentication Bypass Audit** | **CVE-2026-137536** | `CRITICAL 9.3` | ToolJet `< 3.21.94-beta` | [`plugins/tooljet/`](plugins/tooljet/) | `python plugins/tooljet/tooljet_cve_2026_137536_audit.py --target <target>` |
+| **ToolJet OAuth SSO & Release Workflow Compliance Audit** | **CVE-2026-137536** / **CVE-2026-137964** | `CRITICAL 9.3` | ToolJet `< 3.21.96-LTS` (`< 3.21.94-beta`) (2 CVEs) | [`plugins/tooljet/`](plugins/tooljet/) | `python plugins/tooljet/tooljet_cve_2026_137536_audit.py --target <target>` |
 | **Frappe Framework Document.update() Authorization Audit** | **CVE-2026-137550** | `CRITICAL 9.3` | Frappe Framework `< 15.122.0`, `16.x < 16.50.0` | [`plugins/frappe/`](plugins/frappe/) | `python plugins/frappe/frappe_cve_2026_137550_audit.py --target <target>` |
 | **Twenty CRM Multi-Workspace Invitation Auth Bypass Audit** | **CVE-2026-137584** | `CRITICAL 9.1` | Twenty CRM `<= 2.63.0` (`< 2.63.1`) | [`plugins/twenty_crm/`](plugins/twenty_crm/) | `python plugins/twenty_crm/twenty_crm_cve_2026_137584_audit.py --target <target>` |
 | **SiYuan WebDAV Error Rendering XSS Compliance Audit** | **CVE-2026-137471** | `CRITICAL 9.0` | SiYuan `< 3.8.10` | [`plugins/siyuan/`](plugins/siyuan/) | `python plugins/siyuan/siyuan_cve_2026_137471_audit.py --target <target>` |
+| **Drupal Core Access Control & Forceful Browsing Audit** | **CVE-2026-136716** / **CVE-2026-132165** | `CRITICAL 9.8` | Drupal Core `<= 10.6.23`, `11.0.0`–`11.3.23`, `11.4.0`–`11.4.14` (2 CVEs) | [`plugins/drupal/`](plugins/drupal/) | `python plugins/drupal/drupal_cve_2026_136716_audit.py --target <target>` |
+| **MONEO ERP WebSocket JSON-RPC Session Bypass Audit** | **CVE-2026-59103** | `CRITICAL 9.3` | MONEO ERP `< 2026.11.28` | [`plugins/moneo_erp/`](plugins/moneo_erp/) | `python plugins/moneo_erp/moneo_erp_cve_2026_59103_audit.py --target <target>` |
+| **POSTAL 2 Workshop Mod Sandbox Escape Build Audit** | **CVE-2026-138154** | `CRITICAL 9.3` | POSTAL 2 `< build 26810491` | [`plugins/postal2/`](plugins/postal2/) | `python plugins/postal2/postal2_cve_2026_138154_audit.py --target <target>` |
 
 ---
 
-## 🌐 5. WordPress & WooCommerce Ecosystem (44 Plugins)
+## 🌐 5. WordPress & WooCommerce Ecosystem (51 Plugins)
 
-All 44 WordPress and WooCommerce plugins are indexed in their dedicated catalog:
+All 51 WordPress and WooCommerce plugins are indexed in their dedicated catalog:
 
 👉 **[Open the WordPress & WooCommerce Security Plugins Catalog (`plugins/wordpress/README.md`)](plugins/wordpress/README.md)**

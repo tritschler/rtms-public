@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
-RTMS Audit Plugin — ToolJet OAuth SSO Sign-In Authentication Bypass Audit
-Target CVE:
+RTMS Audit Plugin — ToolJet OAuth SSO Sign-In Bypass & Release Workflow Command Injection Audit
+Target CVEs:
   - CVE-2026-137536 (CVSS 9.3, Critical): ToolJet before 3.21.94-beta contains an authentication
     bypass in its server OAuth SSO sign-in module, resolving Google and Git SSO logins solely by
     provider-asserted email without checking email_verified or binding the SSO subject.
+  - CVE-2026-137964 (CVSS 9.3, Critical): ToolJet before 3.21.96-LTS contains a command injection
+    vulnerability in its release workflow prior to 3.21.96-LTS.
 
 Strictly read-only passive version check via ToolJet health/config endpoints or supplied version string.
 """
@@ -26,8 +28,11 @@ except ImportError:
             self.options = options or {}
 
 
+TOOLJET_CVES: List[str] = ["CVE-2026-137536", "CVE-2026-137964"]
+
+
 def parse_tooljet_version(text: str) -> Optional[Tuple[int, int, int]]:
-    """Parse a ToolJet version string (e.g. '3.21.93', '3.21.94-beta', 'v3.21.94') into (major, minor, patch)."""
+    """Parse a ToolJet version string (e.g. '3.21.93', '3.21.96-LTS', 'v3.21.96') into (major, minor, patch)."""
     if not text:
         return None
     m = re.search(r"\bv?(\d+)\.(\d+)\.(\d+)(?:-[a-z0-9.]+)?\b", text.strip(), re.IGNORECASE)
@@ -37,30 +42,33 @@ def parse_tooljet_version(text: str) -> Optional[Tuple[int, int, int]]:
 
 
 def is_tooljet_version_vulnerable(version: Tuple[int, int, int]) -> Tuple[bool, str]:
-    """Return (is_vulnerable, fixed_version) for CVE-2026-137536 (< 3.21.94-beta)."""
-    if version < (3, 21, 94):
-        return True, "3.21.94-beta"
-    return False, "3.21.94-beta"
+    """Return (is_vulnerable, fixed_version) for CVE-2026-137536 (< 3.21.94-beta) and CVE-2026-137964 (< 3.21.96-LTS)."""
+    if version < (3, 21, 96):
+        return True, "3.21.96-LTS"
+    return False, "3.21.96-LTS"
 
 
 class ToolJetAuditPlugin(BasePlugin):
     name = "tooljet_cve_2026_137536_audit"
     description = (
-        "Passive version check for ToolJet OAuth SSO authentication bypass "
-        "(CVE-2026-137536, CVSS 9.3)"
+        "Passive version check for ToolJet OAuth SSO authentication bypass and release compliance "
+        "(CVE-2026-137536, CVE-2026-137964, CVSS 9.3)"
     )
     author = "RTMS Security Team"
-    version = "1.0.0"
+    version = "1.1.0"
 
     def __init__(self, target: str = "", options: Optional[Dict] = None):
         self.target = target
         self.options = options or {}
         self.info = {
             "name": "tooljet_cve_2026_137536_audit",
-            "description": "Passive version check for ToolJet OAuth SSO authentication bypass (CVE-2026-137536, CVSS 9.3)",
+            "description": (
+                "Passive version check for ToolJet OAuth SSO authentication bypass and release compliance "
+                "(CVE-2026-137536, CVE-2026-137964, CVSS 9.3)"
+            ),
             "severity": "CRITICAL",
-            "cve": "CVE-2026-137536",
-            "version": "1.0.0",
+            "cve": "CVE-2026-137536, CVE-2026-137964",
+            "version": "1.1.0",
         }
 
     def check_requirements(self, target_ip: str = "", target_services: object = None) -> bool:
@@ -117,10 +125,10 @@ class ToolJetAuditPlugin(BasePlugin):
                 "plugin": self.name,
                 "target": self.target,
                 "status": "Inconclusive",
-                "cve": ["CVE-2026-137536"],
+                "cve": list(TOOLJET_CVES),
                 "severity": "INFO",
                 "finding": "Could not passively determine ToolJet version.",
-                "remediation": "Upgrade ToolJet to version 3.21.94-beta or later.",
+                "remediation": "Upgrade ToolJet to version 3.21.96-LTS or later.",
                 "evidence": evidence,
             }
 
@@ -130,28 +138,31 @@ class ToolJetAuditPlugin(BasePlugin):
                 "plugin": self.name,
                 "target": self.target,
                 "status": "Inconclusive",
-                "cve": ["CVE-2026-137536"],
+                "cve": list(TOOLJET_CVES),
                 "severity": "INFO",
                 "finding": f"Unrecognized ToolJet version format: '{raw_version}'.",
-                "remediation": "Upgrade ToolJet to version 3.21.94-beta or later.",
+                "remediation": "Upgrade ToolJet to version 3.21.96-LTS or later.",
                 "evidence": evidence,
             }
 
         vuln, fixed = is_tooljet_version_vulnerable(parsed)
         ver_display = f"{parsed[0]}.{parsed[1]}.{parsed[2]}"
         if vuln:
+            matched_cves = ["CVE-2026-137964"]
+            if parsed < (3, 21, 94):
+                matched_cves.insert(0, "CVE-2026-137536")
             return {
                 "plugin": self.name,
                 "target": self.target,
                 "status": "Vulnerable",
-                "cve": ["CVE-2026-137536"],
+                "cve": matched_cves,
                 "severity": "CRITICAL",
                 "cvss": 9.3,
                 "detected_version": ver_display,
                 "fixed_version": fixed,
                 "finding": (
-                    f"ToolJet {ver_display} is vulnerable to CVE-2026-137536 "
-                    f"(OAuth SSO unverified-email authentication bypass, fixed in {fixed})."
+                    f"ToolJet {ver_display} is vulnerable to {', '.join(matched_cves)} "
+                    f"(fixed in {fixed})."
                 ),
                 "remediation": f"Upgrade ToolJet to version {fixed} or later immediately.",
                 "evidence": evidence,
@@ -161,7 +172,7 @@ class ToolJetAuditPlugin(BasePlugin):
             "plugin": self.name,
             "target": self.target,
             "status": "OK",
-            "cve": ["CVE-2026-137536"],
+            "cve": list(TOOLJET_CVES),
             "severity": "NONE",
             "detected_version": ver_display,
             "fixed_version": fixed,
@@ -172,7 +183,7 @@ class ToolJetAuditPlugin(BasePlugin):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="ToolJet CVE-2026-137536 Passive Audit")
+    parser = argparse.ArgumentParser(description="ToolJet CVE-2026-137536 / CVE-2026-137964 Passive Audit")
     parser.add_argument("--target", required=True, help="Target URL or hostname")
     parser.add_argument("--version", dest="tooljet_version", help="Override detected version string")
     args = parser.parse_args()

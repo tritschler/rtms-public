@@ -3,35 +3,36 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
-[![Plugins](https://img.shields.io/badge/Plugins-147-brightgreen.svg)](CATALOG.md)
-[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-332%2B-red.svg)](CATALOG.md)
+[![Plugins](https://img.shields.io/badge/Plugins-160-brightgreen.svg)](CATALOG.md)
+[![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-350%2B-red.svg)](CATALOG.md)
 
-Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **147 standalone security audit plugins** covering **332 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
+Welcome to the official **RTMS Community Plugins** repository. This open-source hub currently provides **160 standalone security audit plugins** covering **350 critical CVEs** (`CVSS 9.0–10.0`), engineered for the **[RTMS Cybersecurity Suite](https://3ts.ai)** (Real-Time Monitoring & Security).
 
 Each plugin is developed to provide rapid, reliable, and strictly non-destructive detection of critical emerging vulnerabilities (`CVSS >= 9.0`) across enterprise networks.
 
 ---
 
-## 📚 Security Plugins Catalog (147 Plugins | 332 Critical CVEs)
+## 📚 Security Plugins Catalog (160 Plugins | 350 Critical CVEs)
 
 > 💡 **Full Searchable Index:** Browse **[`CATALOG.md`](CATALOG.md)** for the single-page master table, or expand a domain below.
 
 | Technology Domain | Modules | Representative Targets | Sub-Catalog / Reference |
 |:---|:---:|:---|:---|
-| **🛡️ Network, Firewalls & VPN Appliances** | `13` | SEPPmail, HPE ArubaOS, HPE Aruba AirWave, FortiMail, FortiAnalyzer, F5 BIG-IP, Citrix NetScaler, FortiOS, FortiManager, WatchGuard, SonicWall, Barracuda, Synology DSM | [View in `CATALOG.md`](CATALOG.md#-1-network-appliances-firewalls--vpn-gateways) |
-| **🔑 Identity, IAM, SSO & PKI** | `8` | Direk Tech Smart Portal, Oracle Access Manager (OAM), Keycloak, OpenAM, IBM API Connect, Cyrus SASL, eMudhra Weak CA | [View in `CATALOG.md`](CATALOG.md#-2-identity-iam-sso--pki-infrastructure) |
-| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `45` | Canonical LXD & pylxd, Coder, Pulp `pulp_python`, `llama.cpp`, Eclipse Ditto, Parse Server, HKUDS `nanobot`, LaraDashboard, Oracle Database, Azure DevOps Server, Eclipse Mosquitto, Xen Orchestra, ArangoDB, Camunda 8, Webmin, Wing FTP Server, Rclone, Jenkins, Mozilla Firefox & Thunderbird, FFmpeg, Cribl Stream, Fastify, SurrealDB, Apache Tomcat, PEM, PHP-FPM, NGINX, TeamCity, MySQL, WebLogic, TomEE, AdminNeo, Arize Phoenix, FrankenPHP, Dokploy, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
-| **🏢 Enterprise Apps, ERP, ITSM & Healthcare** | `37` | VMware ESXi, RealVNC Server, Mitel OpenScape 4000, Budibase, ToolJet, Frappe Framework, Twenty CRM, SiYuan, Adobe AEM, Adobe Campaign, Oracle EBS & APEX, TYPO3 CMS, mailcow, FleetDM, N-able N-central, NocoDB, SolarWinds Serv-U, Joomla!, MediaWiki, Poste.io, Splunk, VMware vCenter, OpenCTI, phpMyFAQ, SAP NetWeaver, SharePoint, OpenEMR, GLPI, ManageEngine, Ivanti EPM, OFBiz, Craft CMS, SOGo, Payara, FreeSWITCH, NoMachine | [View in `CATALOG.md`](CATALOG.md#-4-enterprise-apps-erp-itsm-groupware--healthcare) |
-| **🌐 WordPress & WooCommerce Ecosystem** | `44` | Ultimate Member, FunnelKit Automations, Simple Membership, WordPress File Upload, WP Job Portal, Sneeit Framework, WP Rocket, Simple Shopping Cart, Nexter Blocks Pro, miniOrange OTP Verification, Tribulant Newsletters, WP Duplicate, WP Photo Album Plus, Custom Block Builder, Auth Armor, Gravity Forms, Contact Form 7 & 27 more | 👉 **[`plugins/wordpress/README.md`](plugins/wordpress/README.md)** |
-| **📊 Total Public Repository** | **`147`** | **332 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
+| **🛡️ Network, Firewalls & VPN Appliances** | `14` | TRENDnet TEW, SEPPmail, HPE ArubaOS, HPE Aruba AirWave, FortiMail, FortiAnalyzer, F5 BIG-IP, Citrix NetScaler, FortiOS, FortiManager, WatchGuard, SonicWall, Barracuda, Synology DSM | [View in `CATALOG.md`](CATALOG.md#-1-network-appliances-firewalls--vpn-gateways) |
+| **🔑 Identity, IAM, SSO & PKI** | `9` | Mendix OIDC Provider, Direk Tech Smart Portal, Oracle Access Manager (OAM), Keycloak, OpenAM, IBM API Connect, Cyrus SASL, eMudhra Weak CA | [View in `CATALOG.md`](CATALOG.md#-2-identity-iam-sso--pki-infrastructure) |
+| **⚙️ Web Servers, Runtimes, DevOps & Containers** | `46` | Google Cloud (GKE Fleet / Vertex AI / App Integration), Canonical LXD & pylxd, Coder, Pulp `pulp_python`, `llama.cpp`, Eclipse Ditto, Parse Server, HKUDS `nanobot`, LaraDashboard, Oracle Database, Azure DevOps Server, Eclipse Mosquitto, Xen Orchestra, ArangoDB, Camunda 8, Webmin, Wing FTP Server, Rclone, Jenkins, Mozilla Firefox & Thunderbird, FFmpeg, Cribl Stream, Fastify, SurrealDB, Apache Tomcat, PEM, PHP-FPM, NGINX, TeamCity, MySQL, WebLogic, TomEE, AdminNeo, Arize Phoenix, FrankenPHP, Dokploy, GitLab, Red Hat Quay, Rancher, Nexus, pgAdmin 4, Chrome | [View in `CATALOG.md`](CATALOG.md#%EF%B8%8F-3-web-servers-runtimes-devops--containers) |
+| **🏢 Enterprise Apps, ERP, ITSM & Healthcare** | `40` | Drupal Core, MONEO ERP, POSTAL 2, VMware ESXi, RealVNC Server, Mitel OpenScape 4000, Budibase, ToolJet, Frappe Framework, Twenty CRM, SiYuan, Adobe AEM, Adobe Campaign, Oracle EBS & APEX, TYPO3 CMS, mailcow, FleetDM, N-able N-central, NocoDB, SolarWinds Serv-U, Joomla!, MediaWiki, Poste.io, Splunk, VMware vCenter, OpenCTI, phpMyFAQ, SAP NetWeaver, SharePoint, OpenEMR, GLPI, ManageEngine, Ivanti EPM, OFBiz, Craft CMS, SOGo, Payara, FreeSWITCH, NoMachine | [View in `CATALOG.md`](CATALOG.md#-4-enterprise-apps-erp-itsm-groupware--healthcare) |
+| **🌐 WordPress & WooCommerce Ecosystem** | `51` | WPMasterToolKit, MemberPress Discord Addon, Revertix, WebinarIgnition, Hello Clever Gateway, Media Library Assistant, Amelia, Ultimate Member, FunnelKit Automations, Simple Membership, WordPress File Upload, WP Job Portal, Sneeit Framework, WP Rocket, Simple Shopping Cart, Nexter Blocks Pro, miniOrange OTP Verification, Tribulant Newsletters, WP Duplicate, WP Photo Album Plus, Custom Block Builder, Auth Armor, Gravity Forms, Contact Form 7 & 27 more | 👉 **[`plugins/wordpress/README.md`](plugins/wordpress/README.md)** |
+| **📊 Total Public Repository** | **`160`** | **350 Critical CVEs Covered (`CVSS 9.0–10.0`)** | **[Full Master Index (`CATALOG.md`)](CATALOG.md)** |
 
 <details>
-<summary><b>🛡️ 1. Network Appliances, Firewalls & VPN Gateways (Click to expand — 13 plugins)</b></summary>
+<summary><b>🛡️ 1. Network Appliances, Firewalls & VPN Gateways (Click to expand — 14 plugins)</b></summary>
 
 <br>
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
 |:---|:---:|:---:|:---|:---:|
+| **TRENDnet TEW-751DR & TEW-733GR UPnP Firmware Compliance Audit** | **CVE-2026-138004** / **CVE-2026-138003** | `CRITICAL 9.3` | TRENDnet TEW-751DR & TEW-733GR `<= 1.03B01` (2 CVEs) | [`plugins/trendnet_tew/`](plugins/trendnet_tew/) |
 | **SEPPmail Secure E-Mail Gateway Pre-Auth SSTI & GINA Audit** | **CVE-2026-130637** / **CVE-2026-124843** | `CRITICAL 9.3` | SEPPmail Secure E-Mail Gateway `< 15.1.2` (3 CVEs) | [`plugins/seppmail/`](plugins/seppmail/) |
 | **HPE ArubaOS Wireless Controller & Gateway RCE Audit** | **CVE-2026-95787** | `CRITICAL 10.0` | HPE ArubaOS `10.4.0.0`–`10.4.1.13`, `10.7.0.0`–`10.7.2.6`, `10.8.0.0`–`10.8.1.1` | [`plugins/hpe_arubaos/`](plugins/hpe_arubaos/) |
 | **Fortinet FortiMail Heap Overflow RCE Compliance Audit** | **CVE-2026-126263** | `CRITICAL 9.8` | FortiMail `7.4.0`–`7.4.6`, `7.6.0`–`7.6.4`, `8.0.0`–`8.0.1` | [`plugins/fortimail/`](plugins/fortimail/) |
@@ -49,12 +50,13 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 </details>
 
 <details>
-<summary><b>🔑 2. Identity, IAM, SSO & PKI Infrastructure (Click to expand — 8 plugins)</b></summary>
+<summary><b>🔑 2. Identity, IAM, SSO & PKI Infrastructure (Click to expand — 9 plugins)</b></summary>
 
 <br>
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
 |:---|:---:|:---:|:---|:---:|
+| **Mendix OIDC Provider JWT Integrity Validation Bypass Audit** | **CVE-2026-124981** | `CRITICAL 9.4` | Mendix OIDC Provider `< V4.3.0` (Mendix 9), `< V6.0.0` (Mendix 10/11) | [`plugins/mendix_oidc/`](plugins/mendix_oidc/) |
 | **Direk Tech Smart Portal AD Domain Admins Authorization Audit** | **CVE-2026-137706** | `CRITICAL 9.4` | Direk Tech Smart Portal `< 2026.12.0` | [`plugins/direk_smart_portal/`](plugins/direk_smart_portal/) |
 | **Oracle Access Manager (OAM) SSO Engine Compliance Audit** | **CVE-2026-91510** | `CRITICAL 10.0` | Oracle Access Manager `12.2.1.4.0`, `14.1.2.1.0` | [`plugins/oracle_access_manager/`](plugins/oracle_access_manager/) |
 | **OpenAM Live Session Token & Auth Bypass Audit** | **CVE-2026-123551** | `CRITICAL 10.0` | OpenAM `< 16.1.4` (`14.0.0`–`16.1.3`) | [`plugins/openam/`](plugins/openam/) |
@@ -67,12 +69,13 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 </details>
 
 <details>
-<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 45 plugins)</b></summary>
+<summary><b>⚙️ 3. Web Servers, Runtimes, DevOps & Containers (Click to expand — 46 plugins)</b></summary>
 
 <br>
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
 |:---|:---:|:---:|:---|:---:|
+| **Google Cloud Managed Services Revision Compliance Audit** | **CVE-2026-106169** / **CVE-2026-85258** / **CVE-2026-110739** | `CRITICAL 9.4` | GCP Application Integration `< 2026-09-22`, Vertex AI `< 2026-04-13`, GKE Fleet `< 2026-09-25` (3 CVEs) | [`plugins/gcp_managed_services/`](plugins/gcp_managed_services/) |
 | **Canonical LXD OIDC Auth Bypass & pylxd TLS Validation Audit** | **CVE-2026-135384** / **CVE-2026-127163** | `CRITICAL 9.2` | Canonical LXD `< 5.0.12`, `< 5.21.10`, `< 6.10.2` & `pylxd < 2.4.3` (2 CVEs) | [`plugins/canonical_lxd/`](plugins/canonical_lxd/) |
 | **Coder AWS IAM Database Password Disclosure Audit** | **CVE-2026-137547** | `CRITICAL 9.2` | Coder `< 2.29.27`, `< 2.34.19`, `< 2.37.11`, `< 2.38.7`, `< 2.39.1` | [`plugins/coder/`](plugins/coder/) |
 | **Pulp `pulp_python` Pull-Through Caching SSRF Audit** | **CVE-2026-126984** | `CRITICAL 10.0` | `pulp_python` `3.6 < 3.11.10`, `3.12 < 3.12.11`, `3.13 < 3.13.9`, `3.14 < 3.19.8`, `3.20 < 3.27.10`, `3.28 < 3.36.7`, `3.37 < 3.38.2` | [`plugins/pulp_python/`](plugins/pulp_python/) |
@@ -122,17 +125,20 @@ Each plugin is developed to provide rapid, reliable, and strictly non-destructiv
 </details>
 
 <details>
-<summary><b>🏢 4. Enterprise Apps, ERP, ITSM, Groupware & Healthcare (Click to expand — 37 plugins)</b></summary>
+<summary><b>🏢 4. Enterprise Apps, ERP, ITSM, Groupware & Healthcare (Click to expand — 40 plugins)</b></summary>
 
 <br>
 
 | Plugin Name | Target CVE | Severity | Affected Systems | Plugin Directory |
 |:---|:---:|:---:|:---|:---:|
+| **Drupal Core Access Control & Forceful Browsing Audit** | **CVE-2026-136716** / **CVE-2026-132165** | `CRITICAL 9.8` | Drupal Core `<= 10.6.23`, `11.0.0`–`11.3.23`, `11.4.0`–`11.4.14` (2 CVEs) | [`plugins/drupal/`](plugins/drupal/) |
+| **MONEO ERP WebSocket JSON-RPC Session Bypass Audit** | **CVE-2026-59103** | `CRITICAL 9.3` | MONEO ERP `< 2026.11.28` | [`plugins/moneo_erp/`](plugins/moneo_erp/) |
+| **POSTAL 2 Workshop Mod Sandbox Escape Build Audit** | **CVE-2026-138154** | `CRITICAL 9.3` | POSTAL 2 `< build 26810491` | [`plugins/postal2/`](plugins/postal2/) |
 | **VMware ESX / ESXi I/O Filter & XHCI USB Controller Audit** | **CVE-2026-123910** / **CVE-2026-123911** | `CRITICAL 9.8` | VMware ESXi `9.1 < 9.1.2.0`, `9.0 < 9.0.2.0200`, `8.0 < 8.0 U3m`, VCF `5.x < 5.2.5` (3 CVEs) | [`plugins/vmware_esxi/`](plugins/vmware_esxi/) |
 | **RealVNC Server Unauthenticated UDP RCE Compliance Audit** | **CVE-2026-137738** | `CRITICAL 9.8` | RealVNC Server `6.4.0`–`7.19.0` (`< 7.19.1`) | [`plugins/realvnc_server/`](plugins/realvnc_server/) |
 | **Mitel OpenScape 4000 & Manager Command Injection & Auth Audit** | **CVE-2026-137721** / **CVE-2026-137724** | `CRITICAL 10.0` | Mitel OpenScape 4000 & Manager `V10 <= R1.68`, `V11 R0.22`–`R2.11` (3 CVEs) | [`plugins/mitel_openscape/`](plugins/mitel_openscape/) |
 | **Budibase Server Prototype Pollution & OIDC/SSO Auth Bypass Audit** | **CVE-2026-137498** / **CVE-2026-137499** | `CRITICAL 9.9` | Budibase `3.39.18`–`< 4.0.0` (2 CVEs) | [`plugins/budibase/`](plugins/budibase/) |
-| **ToolJet OAuth SSO Sign-In Authentication Bypass Audit** | **CVE-2026-137536** | `CRITICAL 9.3` | ToolJet `< 3.21.94-beta` | [`plugins/tooljet/`](plugins/tooljet/) |
+| **ToolJet OAuth SSO & Release Workflow Compliance Audit** | **CVE-2026-137536** / **CVE-2026-137964** | `CRITICAL 9.3` | ToolJet `< 3.21.96-LTS` (`< 3.21.94-beta`) (2 CVEs) | [`plugins/tooljet/`](plugins/tooljet/) |
 | **Frappe Framework Document.update() Authorization Audit** | **CVE-2026-137550** | `CRITICAL 9.3` | Frappe Framework `< 15.122.0`, `16.x < 16.50.0` | [`plugins/frappe/`](plugins/frappe/) |
 | **Twenty CRM Multi-Workspace Invitation Auth Bypass Audit** | **CVE-2026-137584** | `CRITICAL 9.1` | Twenty CRM `<= 2.63.0` (`< 2.63.1`) | [`plugins/twenty_crm/`](plugins/twenty_crm/) |
 | **SiYuan WebDAV Error Rendering XSS Compliance Audit** | **CVE-2026-137471** | `CRITICAL 9.0` | SiYuan `< 3.8.10` | [`plugins/siyuan/`](plugins/siyuan/) |
