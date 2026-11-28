@@ -1,7 +1,7 @@
 # RTMS Community Security Plugins & Fast-Response Auditors
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
+[![Python Version](https://img.shields.io/badge/Python-3.12%2B-brightgreen.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-RTMS_Suite-blue.svg)](https://3ts.ai)
 [![Plugins](https://img.shields.io/badge/Plugins-160-brightgreen.svg)](CATALOG.md)
 [![CVEs Covered](https://img.shields.io/badge/Critical_CVEs-350%2B-red.svg)](CATALOG.md)

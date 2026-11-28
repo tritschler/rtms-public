@@ -7,7 +7,7 @@ name = "rtms-community-plugins"
 version = "1.0.0"
 description = "Community security audit tools and official external plugins for RTMS Suite"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 license = {text = "MIT"}
 dependencies = [
     "cryptography>=41.0.0",
